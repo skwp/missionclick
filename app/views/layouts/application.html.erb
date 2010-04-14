@@ -10,7 +10,7 @@
     <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
 
     <!-- REQUIRED: Include devise_facebook_connectable Javascripts. -->
-    <%= javascript_include_tag :defaults, 'devise.facebook_connectable' %>
+    <%= javascript_include_tag :defaults, 'devise.facebook_connectable', 'yelp_gmap', :cache => true %>
     
     <!-- gmaps -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />

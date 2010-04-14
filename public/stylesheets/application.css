@@ -63,3 +63,13 @@ div.facebook_connect_link { display: inline }
 div.facebook_connect_link.sign_in { margin-bottom: -9px }
 
 div.center { margin: 0 auto; text-align: center; margin-top: 9px }
+
+/* gmap */
+.mapMarker {font-size: 11px;}
+.mapMarker .businessimage { float: left;}
+.mapMarker .ratingsimage {vertical-align:middle; margin-top:0px;}
+.mapMarker .businessinfo { margin-left: 110px;}
+.sidebar {margin:5px;padding:5px;border:1px solid #e6e6e6;}
+.small {font-size:8pt;}
+#listingsBox {position:absolute; top:250px; left:5px; width:160px;}
+
