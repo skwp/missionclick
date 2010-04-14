@@ -10,6 +10,7 @@ Rails::Initializer.run do |config|
   # Freeze these gems into the rails app by using "rake gems:unpack"
   config.gem 'warden', :version => '0.9.5'
   config.gem 'devise', :version => '1.0.3'
+  config.gem 'devise_facebook_connectable'
 
   config.time_zone = 'UTC'
 

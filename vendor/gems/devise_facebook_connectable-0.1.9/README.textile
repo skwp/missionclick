@@ -1,0 +1,332 @@
+h1. DEVISE / FACEBOOK CONNECTABLE
+
+_Devise << Facebook Connect_
+
+h2. What is Devise?
+
+"http://github.com/plataformatec/devise":http://github.com/plataformatec/devise
+
+h2. What is Devise Facebook Connect?
+
+*Simple:*
+
+A very straightforward *"Facebook Connect":http://wiki.developers.facebook.com/index.php/Facebook_Connect* authentication/linking with the ease of *"Devise":http://github.com/plataformatec/devise* and power of *"Facebooker":http://github.com/mmangino/facebooker*. If I may say it myself: The easiest way to get a Rails app authorized and connected with Facebook Connect. Authentication in Rails should be straightforward, right? Let's build awesome web-apps instead of re-inventing the authentication!
+
+h2. Dependencies
+
+*You'll need:*
+
+* *"devise 0.9.0+":http://github.com/plataformatec/devise* for authentication - based on "warden":http://github.com/hassox/warden/.
+* *"facebooker":http://github.com/mmangino/facebooker* for Facebook API integration.
+
+*For Ruby 1.9 support:*
+
+* *"rails 2.3.5+":http://github.com/rails/rails* which contains a required Ruby 1.9 patch that Facebooker relies on. See _Important_ for more info.
+
+h2. Installation
+
+*Gem*
+
+<pre>
+  $ sudo gem install devise_facebook_connectable
+</pre>
+
+...and in @config/environment.rb@:
+
+<pre>
+  config.gem 'devise_facebook_connectable'
+</pre>
+
+*Dependencies*
+
+Note: Should be installed automatically with the gem.
+
+<pre>
+  $ sudo gem install devise facebooker
+</pre>
+
+...and in @config/environment.rb@:
+
+<pre>
+  config.gem 'devise'
+  config.gem 'facebooker'
+</pre>
+
+h2. Setup
+
+*Devise: Setup*
+
+See "Devise":http://github.com/plataformatec/devise documentation for instructions on how to setup Devise.
+
+*Facebook Connectable + Facebooker: Setup*
+
+Installs the Facebooker stuff + required Facebook Connect javascript helpers...
+
+<pre>
+  $ ./script/generate devise_facebook_connectable --api API_KEY --secret SECRET_KEY
+    dependency  xd_receiver
+        create    public/xd_receiver.html
+        create    public/xd_receiver_ssl.html
+        create  config/facebooker.yml
+        create  public/javascripts/devise.facebook_connectable.js
+</pre>
+
+Note: The @--api@ and @--secret@ arguments only makes sense if you already got Facebook application details ready; can be configured later (see _Configuration_).
+
+*Facebook Connectable: Migration*
+
+<pre>
+  create_table :users do
+
+    t.facebook_connectable
+
+    # optional: other devise modules
+
+  end
+</pre>
+
+...and indexes (optional):
+
+<pre>
+  add_index :users, :facebook_uid, :unique => true
+</pre>
+
+...and then don't forget: @$ rake db:migrate@.
+
+*Facebook Connectable: Model*
+
+<pre>
+  class User < ActiveRecord::Base
+
+    devise :facebook_connectable
+
+    # optional: other devise modules
+
+  end
+</pre>
+
+h2. Configuration
+
+*Create a Facebook app*
+
+..if you haven't already:
+
+*"Create Facebook Application":http://facebook.com/developers/createapp.php*
+
+...with settings:
+
+Application settings > Connect > Facebook Connect Settings > Connect URL: @http://localhost:3000@ (for testing purposes)
+Application settings > Advanced > Advanced Settings > Sandbox Mode: @Enabled@
+
+...and for next step, copy-paste: @API Key@ and @Application Secret@
+
+*@config/facebooker.yml@*
+
+...should look something like this:
+
+<pre>
+  # ...
+  defaults: &defaults
+    api_key: YOUR_APP_API_KEY
+    secret_key: YOUR_APP_SECRET_KEY
+  # ...
+</pre>
+
+Note: For Facebook Connect only @api_key@, @secret_key@, and @Connect URL@ (configured in Facebook Application settings manager) are required.
+
+*I18n*
+
+Sign in/out link labels, and Flash error messages can be set using I18n:
+
+<pre>
+  en:
+    devise:
+      sessions:
+        facebook_invalid: "Could not sign in. Invalid account."
+        facebook_timeout: "Facebook session expired., please sign in again to continue."
+        facebook_authenticity_token: "Something went wrong. For security reasons, please sign in again."
+        facebook_actions:
+          sign_in: "Sign in"
+          sign_out: "Sign out"
+</pre>
+
+Note: The usage of @:sign_in@/@:sign_out@ depends on configration, e.g. not used for the traditional and default Facebook Connect button.
+
+h2. Usage
+
+In @app/views/layouts/application.html.*@, something like (showing only the relevant parts):
+
+<pre>
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+  <!-- REQUIRED: Include Facebook XMLNS (XML namespace). -->
+  <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+    <head>
+      ...
+      <!-- REQUIRED: Include Facebook Javascript (with current locale). See Facebooker documentation. -->
+      <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
+
+      <!-- REQUIRED: Include devise_facebook_connectable Javascripts. -->
+      <%= javascript_include_tag :defaults, 'devise.facebook_connectable' %>
+      ...
+    </head>
+    <body>
+      <!-- REQUIRED: Init Facebook Javascript (using jQuery). See Facebooker documentation. -->
+      <%= init_fb_connect :XFBML, :js => :jquery %>
+      ...
+      <%= yield %>
+      ...
+    </body>
+  </html>
+</pre>
+
+*View:*
+
+...add the sign in/out (connect) link somewhere - auto-detects scope:
+
+<pre>
+  <%= facebook_link %>
+</pre>
+
+...or with explicit scope:
+
+<pre>
+  <%= facebook_link :for => :customer %>
+</pre>
+
+...or even more explicit, something like:
+
+<pre>
+  <% unless signed_in?(:user) %>
+    <%= facebook_sign_in_link :for => :user %>
+  <% else %>
+    <%= facebook_sign_out_link :for => :user %>
+  <% end %>
+</pre>
+
+etc.
+
+*Model:*
+
+...if you want to fetch and populate any data from Facebook before connect (account creation), and/or after connect (not saved automatically):
+
+<pre>
+  class User < ActiveRecord::Base
+    devise :facebook_connectable
+
+    def before_facebook_connect(fb_session)
+
+      # Just fetch what we really need from Facebook...
+      fb_session.user.populate(:locale, :current_location, :username, :name, :first_name, :last_name,
+                                :birthday_date, :sex, :city, :state, :country)
+
+      self.locale             = my_fancy_locale_parser(fb_session.user.locale)
+      self.time_zone          = fb_session.user.current_location.try(:city)
+      self.country            = fb_session.user.current_location.try(:country)
+
+      self.username           = fb_session.user.username
+
+      self.profile.real_name  = fb_session.user.name
+      self.profile.first_name = fb_session.user.first_name
+      self.profile.last_name  = fb_session.user.last_name
+      self.profile.birthdate  = fb_session.user.birthday_date.try(:to_date)
+      self.profile.gender     = my_fancy_gender_parser(fb_session.user.sex)
+
+      self.profile.city       = fb_session.user.hometown_location.try(:city)
+      self.profile.zip_code   = fb_session.user.hometown_location.try(:state)
+      self.profile.country    = fb_session.user.hometown_location.try(:country)
+
+      # etc...
+
+    end
+
+    def after_facebook_connect(fb_session)
+
+      # ...
+
+    end
+
+  end
+</pre>
+
+*DONE!*
+
+<pre>
+  $ ./script/server
+</pre>
+
+*Note:* If you experience any issues with connecting and/or signing in/out now, then I simply must have forgot something in these instructions. Please file a GitHub-issue in such case! =)
+
+h2. Example:
+
+Checkout my little *"live example":http://devise-facebook-connectable.heroku.com*.
+
+h2. Advanced Configuration
+
+In initializer @config/initializers/devise.rb@:
+
+<pre>
+  Devise.setup do |config|
+    # ...
+    config.facebook_uid_field = :facebook_uid
+    config.facebook_session_key_field = :facebook_session_key
+    config.facebook_auto_create_account = false
+    # ...
+  end
+</pre>
+
+h2. Documentation (RDoc)
+
+"Rdoc.info/devise_facebook_connectable":http://rdoc.info/projects/grimen/devise_facebook_connectable
+
+h2. Important
+
+Stuff that you need to be aware of:
+
+* Just to be clear: You need to use the @devise_facebook_connect@-helpers to sign in/out, otherwise it won't work.
+* If you sign in a resource using Facebook Connect (with this extension), you need to sign out using the the Facebook Connect sign out helpers available. If not you will end up being logged into Facebook but not to the account, and vice-versa. Messy. Would be cool with some kind of polling script that logs the user out of Facebook if the account is signed out - but not really needed now; just a bit of common sense and use the helpers and this will not be an issue.
+* For *Ruby 1.9* support you should *AVOID* installing Rails 2.3.4. This version of rails contains a bug in a session helper that Facebooker relies on. More info about the bug/patch "here":https://rails.lighthouseapp.com/projects/8994/tickets/3144. Rails 2.3.4.1 (patch release) should work.
+
+h2. References
+
+*Examples:*
+
+* "Facebooker Showcase":http://facebooker.pjkh.com - not using Devise, but same-same.
+
+*Documentation:*
+
+* "Facebooker RDoc":http://facebooker.rubyforge.org
+* "Facebook Connect Home":http://wiki.developers.facebook.com/index.php/Facebook_Connect
+* "Facebook Connect Wiki":http://wiki.developers.facebook.com/index.php/Connect/Authorization_Websites
+* "Facebook Connect Javascript SDK":http://developers.facebook.com/docs/?u=facebook.jslib.FB.Connect
+
+*Repos:*
+
+* "Facebook Connect Javascript client":http://github.com/facebook/connect-js
+
+*Similar projects:*
+
+* "authlogic_facebook_connect":http://github.com/kalasjocke/authlogic_facebook_connect - Facebook Connect for "Authlogic":http://github.com/binarylogic/authlogic by "Joakim Ekberg":http://github.com/kalasjocke (using "Facebooker":http://github.com/mmangino/facebooker)
+* "authlogic_facebook":http://github.com/GICodeWarrior/authlogic_facebook Facebook Connect for "Authlogic":http://github.com/binarylogic/authlogic by "Rusty Burchfield":http://github.com/GICodeWarrior (using "MiniFB":http://github.com/appoxy/mini_fb)
+
+h2. TODO / Known Issues
+
+Priority:
+
+* *Timeoutable* module should timeout Facebook sessions as well - configurable.
+* *Specs/Features* would be great. Skipped tests so far as I built this using experimenting as I wasn't sure how Devise and Warden was working - trial-n-error style. Would appreciate any help on this. Looking into using Cucumber + "watircuke":http://github.com/richdownie/watircuke / "culerity":http://github.com/langalex/culerity.
+* *Disconnect link helper* would makes sense, i.e. disconnect a Facebook account from the app/site (a.k.a. delete the account Facebook Connect style).
+* *Connect existing accounts* using "Connect.registerUsers":http://wiki.developers.facebook.com/index.php/Connect.registerUsers.
+* *Option: Facebooker vs. MiniFB* - a more slimmed implementation if Facebooker feels to heavy - for those who don't want to depend on Facebooker - want something more light-weight. Most probably implemented using "MiniFB":http://github.com/appoxy/mini_fb.
+* *Review controller logic* - some of my Facebooker hacks in controller might not be best practice. They seem to do the job though. =)
+
+Maybe:
+
+* *Expired sessions* aka @Facebooker::Session::SessionExpired@ appears less now after some controller filter hacks - but needs thorough testing.
+* *HAML vs ERB clash* - that I right now consider as a HAML bug - breaks the view helpers *if both ERB and HAML is used* in the same project. Can be avoided by either using HAML gem/plugin and use HAML views only, and vice-versa. Note: Something with the @form_for@-helper causing this issue.
+
+h2. License
+
+Released under the MIT license.<br />
+Copyright (c) 2009-2010 "Jonas Grimfelt":http://github.com/grimen

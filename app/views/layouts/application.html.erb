@@ -1,33 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
-    <title><%= h(yield(:title) || "Devise") %></title>
+    <title><%= yield(:title) %></title>
     <%= stylesheet_link_tag 'application' %>
+
+    <!-- REQUIRED: Include Facebook Javascript (with current locale). See Facebooker documentation. -->
+    <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
+
+    <!-- REQUIRED: Include devise_facebook_connectable Javascripts. -->
+    <%= javascript_include_tag :defaults, 'devise.facebook_connectable' %>
+    
     <%= yield(:head) %>
   </head>
   <body>
+    <%= init_fb_connect :XFBML, :js => :prototype %>
+
     <div id="container">
       <%- flash.each do |name, msg| -%>
         <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
       <%- end -%>
 
-      <p><%= link_to 'Home', root_path %></p>
-
+      <div id="user_login_box" style="float:right">
       <% if user_signed_in? -%>
-        <div id="user_login_box" style="float:right">
-          <%= current_user.email %> |
-          <%= link_to 'My info', edit_user_registration_path %> |
-          <%= link_to 'Sign out', destroy_user_session_path %>
-        </div>
-      <% end -%>
-      <% if admin_signed_in? -%>
-        <div id="admin_login_box" style="float:left">
+
+          <% if @facebook_session %>
+              <%= fb_profile_pic current_user, :size => :square, :facebook_logo => true, :class => 'profile_pic' %>
+              Welcome, <%= fb_name current_user, :use_you => false, :linked => false %>.
+          <% else %>
+              Welcome, <%= current_user.email %>
+          <% end %>
+
+          <%= link_to 'Your profile', edit_user_registration_path %> |
+
+          <% if @facebook_session %> 
+            <%= facebook_sign_out_link :user %>
+          <% else %>
+            <%= link_to 'Sign out', destroy_user_session_path %>
+          <% end %>
+      <% elsif admin_signed_in? -%>
           <%= current_admin.email %> |
           <%= link_to 'Admin section', admins_path %> |
           <%= link_to 'Sign out', destroy_admin_session_path %>
-        </div>
-      <% end -%>
+      <% else %>
+        <% unless user_signed_in? -%>
+           <%= link_to 'Sign up', new_user_registration_path %> | <%= link_to 'Sign in', new_user_session_path %>
+           <%= facebook_sign_in_link :user %>
+        <% end -%>
+      <% end %>
+      </div>
       <div style="clear:both"></div>
 
       <%- if show_title? -%>
@@ -35,6 +56,7 @@
       <%- end -%>
 
       <%= yield %>
+
     </div>
   </body>
 </html>

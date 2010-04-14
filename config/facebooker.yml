@@ -1,0 +1,35 @@
+defaults: &defaults
+    # TODO these are for missiondog_test facebook app. Will need to swap
+    # for real keys in production when we figure out an app name
+
+    api_key: e3e0d6bbc90aab9864fe0575c46fb73d
+    secret_key: d242e3c3888b8a068ab058ca9aa0ba22
+
+    # Optional for Facebook Connect.
+    # canvas_page_name: YOUR_APP_CANVAS_NAME
+    # Optional for Facebook Connect. Depends on your Facebook App settings.
+    # callback_url: http://localhost:3000
+
+    # Optional options.
+    # pretty_errors: true
+    # set_asset_host_to_callback_url: false
+    # tunnel:
+    #   public_host_username:
+    #   public_host:
+    #   public_port: 4007
+    #   local_port: 3000
+
+development:
+  <<: *defaults
+
+test: &test
+  <<: *defaults
+
+production: &production
+  <<: *defaults
+
+# staging:
+#   <<: *production
+#
+# cucumber:
+#   <<: *test

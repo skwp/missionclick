@@ -1,0 +1,99 @@
+--- !ruby/object:Gem::Specification 
+name: devise_facebook_connectable
+version: !ruby/object:Gem::Version 
+  version: 0.1.9
+platform: ruby
+authors: 
+- Jonas Grimfelt
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-01-25 00:00:00 -08:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: activesupport
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 2.3.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: devise
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 0.9.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: facebooker
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.0.55
+    version: 
+description: Devise << Facebook Connect.
+email: grimen@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.textile
+files: 
+- MIT-LICENSE
+- README.textile
+- Rakefile
+- generators/devise_facebook_connectable/devise_facebook_connectable_generator.rb
+- generators/devise_facebook_connectable/templates/devise.facebook_connectable.js
+- generators/devise_facebook_connectable/templates/facebooker.yml
+- lib/devise_facebook_connectable.rb
+- lib/devise_facebook_connectable/controller_filters.rb
+- lib/devise_facebook_connectable/locales/en.yml
+- lib/devise_facebook_connectable/model.rb
+- lib/devise_facebook_connectable/routes.rb
+- lib/devise_facebook_connectable/schema.rb
+- lib/devise_facebook_connectable/strategy.rb
+- lib/devise_facebook_connectable/version.rb
+- lib/devise_facebook_connectable/view_helpers.rb
+- rails/init.rb
+has_rdoc: true
+homepage: http://github.com/grimen/devise_facebook_connectable
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.3.5
+signing_key: 
+specification_version: 3
+summary: Devise << Facebook Connect.
+test_files: []
+
