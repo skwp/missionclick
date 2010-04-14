@@ -61,15 +61,18 @@
         <div id="map_canvas" border='1px solid #ddd' style="width:529px; height:191px"></div>
       </div>
     </div><%# dvbannerbgcontainer %>
+    <div class='clear'></div>
+    <%- flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, :class => 'flash',  :id => "flash_#{name}" if msg.is_a?(String) %>
+    <%- end -%>
     <div id="dvleftpanel">
-
       <div id="user_login_box"> 
       <% if user_signed_in? -%>
 
           <% if @facebook_session %>
               <%= fb_profile_pic current_user, :size => :square, :facebook_logo => true, :class => 'profile_pic' %>
           <% end %>
-          <h2>Hey, <%= current_user.fb_profile.first_name %></h2>
+          <h2>Hey, <%= current_user.fb_profile.first_name rescue current_user.email %></h2>
           <%= link_to 'Your profile', edit_user_registration_path %> |
 
           <% if @facebook_session %> 
@@ -104,9 +107,6 @@
       <!-- left pannel div ends here-->
     </div>
     <div id="dvrightpanel">
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-      <%- end -%>
 
 
 
