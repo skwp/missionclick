@@ -12,9 +12,13 @@
     <!-- REQUIRED: Include devise_facebook_connectable Javascripts. -->
     <%= javascript_include_tag :defaults, 'devise.facebook_connectable' %>
     
+    <!-- gmaps -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+       
     <%= yield(:head) %>
   </head>
-  <body>
+  <body> 
     <%= init_fb_connect :XFBML, :js => :prototype %>
 
   <div id="dvmaincontainer">
@@ -38,36 +42,25 @@
       </div>
     </div><%# topcontainer %>
   <div id="dvbodycontainer">
-    <!-- body div starts here-->
     <div id="dvbannerbgcontainer">
-      <!-- banner bg div starts here-->
       <div class="lftcontainer">
         <div class="dvbannerleft">
-          <!-- banner left div starts here-->
           <img src="/images/handdrawn/48x48/favourites.png"  alt="" title=""/>
           <p><b>Cool Events</b> Find the best places to hang out in the Mission.</p>
-          <!-- banner left div ends here-->
         </div>
         <div class="dvbannerleft">
-          <!-- banner left div starts here-->
           <img src="/images/handdrawn/48x48/hint.png"  alt="" title=""/>
           <p><b>Groovy Music</b> We provide you with a detailed price quote.</p>
-          <!-- banner left div ends here-->
         </div>
         <div class="dvbannerleft">
-          <!-- banner left div starts here-->
           <img src="/images/handdrawn/48x48/picture.png"  alt="" title=""/>
           <p><b>Art Stuffs</b> We care about the environment and our projects.</p>
-          <!-- banner left div ends here-->
         </div>
       </div>
       <div id="dvbanner">
-        <!-- banner div starts here-->
-        <img src="/images/skins/environmental/banner.jpg"  alt="" title=""/>
-        <!-- banner div ends here-->
+        <div id="map_canvas" border='1px solid #ddd' style="width:529px; height:191px"></div>
       </div>
-      <!-- banner bg div ends here-->
-    </div>
+    </div><%# dvbannerbgcontainer %>
     <div id="dvleftpanel">
 
       <div id="user_login_box"> 
@@ -141,7 +134,5 @@
   </div>
   <!--main div container ends here-->
 </div>
-  
-
   </body>
 </html>

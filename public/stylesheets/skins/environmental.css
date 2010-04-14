@@ -137,7 +137,6 @@ font-weight:bold;
 #dvbannerbgcontainer #dvbanner
 {
 float:left;
-font-size:0px;
 margin:0px;
 padding:0px 0px 0px 35px;
 }
@@ -587,4 +586,7 @@ border: none;
 		color:#FFFFFF
       }
 
+
+/* custom styles */
 div.hEvent img { float:left; margin-right: 9px; margin-top:-4px}
+div#dvbanner div#map_canvas { border: 1px solid #333 }
