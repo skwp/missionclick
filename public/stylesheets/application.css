@@ -1,30 +1,7 @@
-body {
-  background-color: #4B7399;
-  font-family: Helvetica, Verdana, Arial;
-  font-size: 14px;
-}
-
-a img {
-  border: none;
-}
-
-a {
-  color: #0000FF;
-}
-
 .clear {
   clear: both;
   height: 0;
   overflow: hidden;
-}
-
-#container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
 }
 
 #flash_notice, #flash_alert {
