@@ -122,8 +122,9 @@ font-size:0px;
 .dvbannerleft p
 {
 float:left;
-width:203PX;
-font-size:12px;
+width:210px;
+font-size:14px;
+margin-top: 7px;
 text-align:left;
 color:#424037;
 background-color:#FBF8A8;

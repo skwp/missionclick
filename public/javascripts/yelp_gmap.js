@@ -9,7 +9,7 @@ function constructYelpURL() {
   var URL = "http://api.yelp.com/" +
     "business_review_search?"+
     "callback=" + "handleResults" +
-    "&category=galleries+movietheaters+festivals+jazzandblues+musicvenues+theater+wineries" + 
+    "&category=bars+internetcafe+galleries+movietheaters+festivals+jazzandblues+musicvenues+theater+wineries" + 
     "&num_biz_requested=10" +
     "&location=Mission%2C+San+Francisco%2C+CA"+ 
     "&ywsid=" + YWSID;
