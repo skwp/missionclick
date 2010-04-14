@@ -74,6 +74,7 @@
           <% end %>
           <h2>Hey, <%= current_user.fb_profile.first_name rescue current_user.email %></h2>
           <%= link_to 'Your profile', edit_user_registration_path %> |
+          
 
           <% if @facebook_session %> 
             <%= facebook_sign_out_link :user %>
@@ -91,41 +92,40 @@
         <% end -%>
       <% end %>
       </div>
-      <!-- left pannel div starts here-->
-      <div id="topimage">
-        <!-- top left div starts here-->
-       FEATURED HAPPENINGS
-        <!--<img src="/images/skins/environmental/client.jpg" alt="Client Testimonials" width="274" height="34" title="Client Testimonials" /> -->
-        <!-- top left div end here-->
-      </div>
-      <div id="midcont">
-        <!-- left body div starts here-->
-        <p>"Best services ever! I'd be lost without your company. Your company was great to work with and we look forward to dealing with you in the future. </p>
-        <p>I would recommend your great services to anyone. I appreciate all your help and your passion for the environment."</p>
-        <!-- left body div ends here-->
-      </div>
-      <!-- left pannel div ends here-->
+      
+          <div class='clear'></div>         
+
+          <div class='box'>
+            <%= image_tag("handdrawn/48x48/user-admin.png", :class=>'icon') %>
+            <div class='content'>
+            <h3>Your Interests</h3>
+            <p><%= current_user.fb_profile && current_user.fb_profile.interests %></p>
+            </div>
+          </div>
+        
+          <div class='spacer'></div>
+
+          <div class='box'>
+          <%= image_tag("handdrawn/48x48/wifi-on.png", :class => 'icon') %> 
+            <div class='content'>
+            <h3>Notifications</h3>
+            <p>Don't be left out of the loop! Get notified of the coolest happenings!</p>
+            <ul class='flat'>
+            <li><%= image_tag("handdrawn/16x16/rss.png", :class=>'small_icon') %> <a href="">Grab the feed</a></li>
+            <li><%= image_tag("handdrawn/16x16/calendar.png", :class=>'small_icon') %> <a href="">Add to iCal</a></li>
+            </ul>
+            </div>
+          </div>
+
+
     </div>
     <div id="dvrightpanel">
 
-
-
       <%= yield %>
 
-      <div id="righttfoot"> <img src="/images/skins/environmental/home_icon.jpg" alt="" title="" />
-        <p>We are great to work with on projects.</p>
-        <img src="/images/skins/environmental/light.jpg" alt="" title="" />
-        <p>We have great ideas that will benefit you.</p>
-        <img src="/images/skins/environmental/rpt.jpg" alt="" title="" />
-        <p>We care about the environment a lot.</p>
-      </div>
-
-      <!-- right panel div ends here-->
     </div>
-    <!-- body div ends here-->
   </div>
   <div id="dvfootercontainer">
-    <!-- footer div starts here-->
     <div id="foottop">
       <p><span>Copyright © 2008 Your Company Name</span> 
 
@@ -133,9 +133,7 @@
 <a href="#" title="Home">Home</a><a href="http://www.studio7designs.com">Eco Web Design by Studio7designs</a></p>
       <div class="design"> <a href="#"><img src="/images/skins/environmental/studio.jpg" alt="Studio7designs" border="0" title="Studio7designs" /></a> </div>
     </div>
-    <!-- footer div ends here-->
   </div>
-  <!--main div container ends here-->
 </div>
   </body>
 </html>
