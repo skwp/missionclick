@@ -58,7 +58,7 @@
 }
 
 /* home */
-div#user_login_box { width: 400px; border: 1px solid #ddd;  padding: 9px }
+div#user_login_box { width: 280px; margin: 0 auto; margin-bottom: 9px } 
 div.facebook_connect_link { display: inline }
 div.facebook_connect_link.sign_in { margin-bottom: -9px }
 

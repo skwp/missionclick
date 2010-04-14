@@ -110,6 +110,7 @@ float:left;
 width:277px;
 margin:0px;
 padding:0px 0px 15px 0px;
+margin-bottom:6px;
 }
 .dvbannerleft img
 {
@@ -126,7 +127,6 @@ font-size:12px;
 text-align:left;
 color:#424037;
 background-color:#FBF8A8;
-margin:6px 0px 0px 0px;
 padding:6px 0px 5px 8px;
 }
 .dvbannerleft p b
@@ -586,3 +586,5 @@ border: none;
       	background-position:100% -42px;
 		color:#FFFFFF
       }
+
+div.hEvent img { float:left; margin-right: 9px; margin-top:-4px}

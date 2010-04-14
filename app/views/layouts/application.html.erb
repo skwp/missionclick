@@ -44,20 +44,20 @@
       <div class="lftcontainer">
         <div class="dvbannerleft">
           <!-- banner left div starts here-->
-          <img src="/images/skins/environmental/light.jpg"  alt="" title=""/>
+          <img src="/images/handdrawn/48x48/favourites.png"  alt="" title=""/>
           <p><b>Cool Events</b> Find the best places to hang out in the Mission.</p>
           <!-- banner left div ends here-->
         </div>
         <div class="dvbannerleft">
           <!-- banner left div starts here-->
-          <img src="/images/skins/environmental/home_icon.jpg"  alt="" title=""/>
-          <p><b>Project Quote</b> We provide you with a detailed price quote.</p>
+          <img src="/images/handdrawn/48x48/hint.png"  alt="" title=""/>
+          <p><b>Groovy Music</b> We provide you with a detailed price quote.</p>
           <!-- banner left div ends here-->
         </div>
         <div class="dvbannerleft">
           <!-- banner left div starts here-->
-          <img src="/images/skins/environmental/rpt.jpg"  alt="" title=""/>
-          <p><b>Environment</b> We care about the environment and our projects.</p>
+          <img src="/images/handdrawn/48x48/picture.png"  alt="" title=""/>
+          <p><b>Art Stuffs</b> We care about the environment and our projects.</p>
           <!-- banner left div ends here-->
         </div>
       </div>
@@ -69,38 +69,14 @@
       <!-- banner bg div ends here-->
     </div>
     <div id="dvleftpanel">
-      <!-- left pannel div starts here-->
-      <div id="topimage">
-        <!-- top left div starts here-->
-       CLIENT TESTIMONIALS 
-        <!--<img src="/images/skins/environmental/client.jpg" alt="Client Testimonials" width="274" height="34" title="Client Testimonials" /> -->
-        <!-- top left div end here-->
-      </div>
-      <div id="midcont">
-        <!-- left body div starts here-->
-        <p>"Best services ever! I'd be lost without your company. Your company was great to work with and we look forward to dealing with you in the future. </p>
-        <p>I would recommend your great services to anyone. I appreciate all your help and your passion for the environment."</p>
-        <p><span>- Potential Client Testimonial</span></p>
-        <!-- left body div ends here-->
-      </div>
-      <!-- left pannel div ends here-->
-    </div>
-    <div id="dvrightpanel">
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-      <%- end -%>
 
-
-      <div id="user_login_box" style="float:right">
+      <div id="user_login_box"> 
       <% if user_signed_in? -%>
 
           <% if @facebook_session %>
               <%= fb_profile_pic current_user, :size => :square, :facebook_logo => true, :class => 'profile_pic' %>
-              Welcome, <%= fb_name current_user, :use_you => false, :linked => false %>.
-          <% else %>
-              Welcome, <%= current_user.email %>
           <% end %>
-
+          <h2>Hey, <%= current_user.fb_profile.first_name %></h2>
           <%= link_to 'Your profile', edit_user_registration_path %> |
 
           <% if @facebook_session %> 
@@ -119,17 +95,30 @@
         <% end -%>
       <% end %>
       </div>
+      <!-- left pannel div starts here-->
+      <div id="topimage">
+        <!-- top left div starts here-->
+       FEATURED HAPPENINGS
+        <!--<img src="/images/skins/environmental/client.jpg" alt="Client Testimonials" width="274" height="34" title="Client Testimonials" /> -->
+        <!-- top left div end here-->
+      </div>
+      <div id="midcont">
+        <!-- left body div starts here-->
+        <p>"Best services ever! I'd be lost without your company. Your company was great to work with and we look forward to dealing with you in the future. </p>
+        <p>I would recommend your great services to anyone. I appreciate all your help and your passion for the environment."</p>
+        <!-- left body div ends here-->
+      </div>
+      <!-- left pannel div ends here-->
+    </div>
+    <div id="dvrightpanel">
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <%- end -%>
+
+
 
       <%= yield %>
 
-      <% if false %>
-      <h1>Leader in E-Commerce Solutions</h1>
-      <p>We are an eco based web and logo design company. Our main focus is working with companies that are green friendly. We specialize in getting businesses onto the Internet quickly and professionally. From custom logo identity, to fully branded web and print, we can take your business to success!</p>
-      <p>This area is where your intro text can go, and this is what your text links will look like.</p>
-      <div class="line"><img src="/images/skins/environmental/h_line.jpg" alt="" width="535	" height="1" title="" /></div>
-      <h1>Our Amazing Team</h1>
-      <p>We specialize in getting businesses onto the Internet quickly and professionally. As a one stop provider you will find it easier than ever to gain the strong web presence every modern business requires; from design to brand development.</p>
-      <div class="learn"><span><a href="#">LEARN MORE</a></span></div>
       <div id="righttfoot"> <img src="/images/skins/environmental/home_icon.jpg" alt="" title="" />
         <p>We are great to work with on projects.</p>
         <img src="/images/skins/environmental/light.jpg" alt="" title="" />
@@ -137,7 +126,6 @@
         <img src="/images/skins/environmental/rpt.jpg" alt="" title="" />
         <p>We care about the environment a lot.</p>
       </div>
-      <% end %>
 
       <!-- right panel div ends here-->
     </div>
