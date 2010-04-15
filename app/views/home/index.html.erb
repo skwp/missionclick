@@ -1,11 +1,33 @@
+  <div id="left_sidebar">
+    <%= render :partial => 'shared/user_signed_in_badge' %>
 
-<%= render :partial => 'shared/twitter_widget' %>
-<% 10.times do %>     
+    <div class='box'>
+      <%= image_tag("handdrawn/48x48/wifi-on.png", :class => 'icon') %> 
+      <div class='content'>
+      <h3>Notifications</h3>
+      <p>Don't be left out of the loop! Get notified of the coolest happenings!</p>
+      <ul class='flat'>
+      <li><%= image_tag("colorstroked/Rss.png", :class=>'small_icon') %> <a href="">Grab the feed</a></li>
+      <li><%= image_tag("handdrawn/24x24/calendar.png", :class=>'small_icon') %> <a href="">Add to iCal</a></li>
+      <li><%= image_tag("colorstroked/FaceBook.png", :class=>'small_icon') %> <a href="">Fan us on Facebook</a></li>
+      <li><%= image_tag("colorstroked/Twitter.png", :class=>'small_icon') %> <a href="">Follow us on Twitter</a></li>
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="right_content">
+
+    <%= render :partial => 'shared/twitter_widget' %>
+
+    <% 10.times do %>     
       <div class='hEvent'>
-      <h1><%= image_tag("handdrawn/32x32/calendar.png") %> Sample event at <a href="">Some place</a>, 9pm</h1>
-      <p>
-This area is where your intro text can go, and this is what your text links will look like.
-This area is where your intro text can go, and this is what your text links will look like.</p>
+        <h1><%= image_tag("handdrawn/32x32/calendar.png") %> Sample event at <a href="">Some place</a>, 9pm</h1>
+        <p>
+          This area is where your intro text can go, and this is what your text links will look like.
+          This area is where your intro text can go, and this is what your text links will look like.</p>
       </div>
       <div class="line"><img src="/images/skins/environmental/h_line.jpg" alt="" width="535	" height="1" title="" /></div>
-<% end %>
+    <% end %>
+
+  </div>

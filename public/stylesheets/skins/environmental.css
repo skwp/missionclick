@@ -13,19 +13,19 @@ background-repeat:repeat-x;
 background-color:#3F2F22;
 font-family:'Helvetica', Arial, Verdana;
 }
-#dvmaincontainer
+#body_container
 {
 width:900px;
 margin:0px auto;
 }
-#dvmaincontainer #dvtopcontainer
+#body_container #top_container
 {
 float:left;
 width:900px;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
-#dvtopcontainer #dvlogocontainer
+#top_container #logo_container
 {
 float:left;
 width:324px;
@@ -33,7 +33,7 @@ font-size:0px;
 margin:0px;
 padding:0px 71px 0px 0px;
 }
-#dvlogocontainer h1
+#logo_container h1
 {
 float:right;
 width:314px;
@@ -44,11 +44,11 @@ font-weight:bold;
 margin:0px;
 padding:32px 0px 0px 0px;
 }
-#dvlogocontainer h1, #dvlogocontainer h1 a {
+#logo_container h1, #logo_container h1 a {
 color:#F8F4D5;
 text-decoration: none;
 }
-#dvlogocontainer h4
+#logo_container h4
 {
 float:right;
 width:198px;
@@ -60,7 +60,7 @@ color:#BB9F89;
 margin:0px;
 padding:0px 0px 30px 0px;
 }
-#dvtopcontainer #dvnavicontainer
+#top_container #nav_container
 {
 float:right;
 /* width:395px; */
@@ -68,7 +68,7 @@ font-size:0px;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
-#dvnavicontainer img
+#nav_container img
 {
 float:left;
 font-size:0px;
@@ -76,7 +76,7 @@ margin:0px;
 padding:0px 0px 0px 0px;
 }
 
-#dvmaincontainer #dvbodycontainer
+#body_container #main_content_container
 {
 float:left;
 width:900px;
@@ -86,7 +86,7 @@ background-position:top center;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
-#dvbodycontainer #dvbannerbgcontainer
+#main_content_container #top_featured_section
 {
 float:left;
 width:873px;
@@ -99,7 +99,7 @@ border-top:1px solid #D5D4CD;
 margin:0px;
 padding:38px 0px 0px 25px;
 }
-#dvbannerbgcontainer .lftcontainer
+#top_featured_section .top_left_featured
 {
 float:left;
 width:277px;
@@ -107,7 +107,7 @@ font-size:0px;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
-.lftcontainer .dvbannerleft
+.top_left_featured .bullet
 {
 float:left;
 width:277px;
@@ -115,14 +115,14 @@ margin:0px;
 padding:0px 0px 15px 0px;
 margin-bottom:6px;
 }
-.dvbannerleft img
+.bullet img
 {
 float:left;
 margin:0px;
 padding:0px 11px 0px 0px;
 font-size:0px;
 }
-.dvbannerleft p
+.bullet p
 {
 float:left;
 width:210px;
@@ -132,26 +132,27 @@ text-align:left;
 color:#424037;
 background-color:#FBF8A8;
 padding:6px 0px 5px 8px;
+margin-bottom: 0;
 }
-.dvbannerleft p b
+.bullet p b
 {
 font-size:13px;
 font-weight:bold;
 }
-#dvbannerbgcontainer #dvbanner
+#top_featured_section #top_right_featured
 {
 float:left;
 margin:0px;
 padding:0px 0px 0px 35px;
 }
-#dvbodycontainer #dvleftpanel
+#main_content_container #left_sidebar
 {
 float:left;
 width:274px;
 margin:0px;
-padding:9px 0px 4px 25px;
+padding:18px 0px 4px 0px;
 }
-#dvleftpanel #topimage
+#left_sidebar #topimage
 {
 float:left;
 width:259px;
@@ -168,7 +169,7 @@ voice-family:"\"}\"";
 line-height:18px;
 
 }
-#dvleftpanel #midcont
+#left_sidebar #midcont
 {
 float:left;
 width:247px;
@@ -201,7 +202,7 @@ text-align:right;
 color:#A5051A;
 font-weight:bold;
 }
-#dvleftpanel #leftfoot
+#left_sidebar #leftfoot
 {
 float:left;
 width:258px;
@@ -239,14 +240,14 @@ color:#6B5F58;
 margin:0px;
 padding:5px 0px 5px 15px;
 }
-#dvbodycontainer #dvrightpanel
+#main_content_container #right_content
 {
 float:left;
 width:552px;
-margin:0px 0px 0px 20px;
-padding:18px 0px 4px 3px;
+margin:0px 0px 0px 24px;
+padding:18px 0px 4px 0px;
 }
-#dvrightpanel h1
+#right_content h1
 {
 float:left;
 width:395px;
@@ -256,7 +257,7 @@ color:#2C1B11;
 margin:0px;
 padding:10px 0px 0px 15px;
 }
-#dvrightpanel p
+#right_content p
 {
 float:left;
 width:530px;
@@ -268,7 +269,8 @@ color:#513D2C;
 margin:0px;
 padding:10px 0px 10px 15px;
 }
-#dvrightpanel .line
+
+#right_content .line
 {
 float:left;
 width:533px;
@@ -276,85 +278,15 @@ font-size:0px;
 margin:0px;
 padding:10px 0px 15px 15px;
 }
-#dvrightpanel .learn
-{
-float:left;
-text-align:left;
-font-size:0px;
-margin:0px;
-padding:0px 0px 14px 445px;
-}
 
-#dvrightpanel .learn span
-{
-height:20px;
-width:140px;
-font-size:10px;
-color:#FFFFFF;
-margin:0px 0px 0px 0px;
-padding:0px 0px 0px 0px;
-}
-#dvrightpanel .learn span a
-{
-background-image:url(/images/skins/environmental/learn.jpg);
-background-repeat:no-repeat;
-
-width:140px;
-height:30px;
-font-size:10px;
-color:#FFFFFF;
-padding-right:20px;
-text-decoration:none;
-padding-top:8px;
-voice-family:"\"}\"";
-line-height:17px;
-
-}
-#dvrightpanel .learn span a:hover
-{
-background-image:url(/images/skins/environmental/learn_over.jpg);
-background-repeat:no-repeat;
-width:130px;
-color:#FFFFFF;
-text-decoration:none;
-}
-
-
-
-#dvrightpanel .learn a 
-{
-background-image:url(/images/skins/environmental/learn.jpg);
-background-repeat:no-repeat;
-background-position:center;
-height:20px;
-width:97px;
-font-size:11px;
-color:#FFFFFF;
-padding-bottom:10px;
-padding-left:11px;
-padding-top:3px;
-
-
-}
-
-#dvrightpanel .learn a:hover 
-{
-background-image:url(/images/skins/environmental/learn_over.jpg);
-background-repeat:no-repeat;
-height:20px;
-width:97px;
-padding-bottom:10px;
-color:#FFFFFF;
-}
-
-#dvmaincontainer #dvfootercontainer
+#body_container #footer_container
 {
 float:left;
 width:900px;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
-#dvfootercontainer #foottop
+#footer_container #footer
 {
 float:left;
 width:900px;
@@ -364,7 +296,7 @@ background-position:top center;
 margin:0px;
 padding:0px 0px 50px 0px;
 }
-#foottop p
+#footer p
 {
 float:left;
 font-size:12px;
@@ -373,33 +305,22 @@ color:#938A82;
 margin:0px;
 padding:25px 0px 0px 20px;
 }
-#foottop p a 
+#footer p a 
 {
 text-decoration:none;
 color:#938A82;
 padding-left:5px;
 padding-right:5px;
 }
-#foottop p a:hover
+#footer p a:hover
 {
 text-decoration:underline;
 color:#938A82;
 }
-#foottop p span
+#footer p span
 {
 padding:0px 10px 0px 0px;
 }
-.design
-{
-float:left;
-width:154px;
-margin:0px;
-padding:0px;
-font-size:0px;
-padding-left:80px;
-padding-top:13px;
-}
-
 
 /*- Menu Tabs 1--------------------------- */ 
 
@@ -493,8 +414,11 @@ padding-top:13px;
 border: none;
 } 
 
+div#content_container {
+  padding: 9px 25px;
+}
 
 /* custom styles */
 div.hEvent img { float:left; margin-right: 9px; margin-top:-4px}
-div#dvbanner div#map_canvas { border: 1px solid #333 }
+div#map_canvas { border: 1px solid #333 }
 div#tabs1 span img.icon { margin-bottom: -3px }

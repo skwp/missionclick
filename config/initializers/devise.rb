@@ -2,16 +2,16 @@
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "please-change-me@config-initializers-devise.com"
+  config.mailer_sender = "bot@something.com"
   config.facebook_auto_create_account = true
 
   # Configure the content type of DeviseMailer mails (defaults to text/html")
-  # config.mailer_content_type = "text/plain"
+  config.mailer_content_type = "text/plain"
 
   # ==> Configuration for :authenticatable
   # Invoke `rake secret` and use the printed value to setup a pepper to generate
   # the encrypted password. By default no pepper is used.
-  # config.pepper = "rake secret output"
+  config.pepper = "ee004dea8dd66c989f06741b5f14449e8adf8a595d548d3a1215dffb6a6270c263464bbc5d92df83616ad9c8ee992fa1d89e791b5f76658ee281c009de7f4ec4"
 
   # Configure how many times you want the password is reencrypted. Default is 10.
   # config.stretches = 10
@@ -40,7 +40,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 1.month
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this

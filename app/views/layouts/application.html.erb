@@ -4,14 +4,8 @@
   <head>
     <title><%= yield(:title) %></title>
     <%= stylesheet_link_tag 'application', 'skins/environmental', 'connect_button' %>
-
-    <!-- REQUIRED: Include Facebook Javascript (with current locale). See Facebooker documentation. -->
     <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
-
-    <!-- REQUIRED: Include devise_facebook_connectable Javascripts. -->
     <%= javascript_include_tag :defaults, 'devise.facebook_connectable', 'yelp_gmap', :cache => true %>
-    
-    <!-- gmaps -->
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
        
@@ -20,116 +14,36 @@
   <body> 
     <%= init_fb_connect :XFBML, :js => :prototype %>
 
-  <div id="dvmaincontainer">
-    <div id="dvtopcontainer">
-      <div id="dvlogocontainer">
-        <h1><%= link_to "The Mission Daily", root_path %></h1>
-        <h4>The best of the SF Mission</h4>
+    <div id="body_container">
+      <div id="top_container">
+        <div id="logo_container">
+          <h1><%= link_to "The Mission Daily", root_path %></h1>
+          <h4>The best of the SF Mission</h4>
+        </div>
+        <div id="nav_container">
+          <%= render :partial => 'shared/navigation' %>
+        </div>
       </div>
-      <div id="dvnavicontainer">
-        <img src="/images/skins/environmental/navi_left.jpg" alt="" />
-        <div id="tabs1" >
-          <ul>
-            <!-- CSS Tabs -->
-            <%= link_to_tab 'Today', root_path %>
 
-            <% if user_signed_in? %>
-              <%= link_to_tab 'Your profile', edit_user_registration_path %> 
-
-              <% if @facebook_session %> 
-                <%= fb_sign_out_tab %>
-              <% else %>
-                <%= link_to_tab 'Sign out', destroy_user_session_path %>
-              <% end %>
-            <% else %>
-              <%= link_to_tab 'Sign up', new_user_registration_path %>
-              <%= link_to_tab 'Sign in', new_user_session_path %>
-            <% end %>
-          </ul>
+      <div id="main_content_container">
+        <div id="top_featured_section">
+          <%= render :partial => 'shared/top_featured_section' %>
         </div>
-        <img src="/images/skins/environmental/navi_right.jpg" alt="" />
-      </div>
-    </div><%# topcontainer %>
-  <div id="dvbodycontainer">
-    <div id="dvbannerbgcontainer">
-      <div class="lftcontainer">
-        <div class="dvbannerleft">
-          <img src="/images/handdrawn/48x48/favourites.png"  alt="" title=""/>
-          <p><b>Cool Events</b> Find the best places to hang out in the Mission.</p>
-        </div>
-        <div class="dvbannerleft">
-          <img src="/images/handdrawn/48x48/hint.png"  alt="" title=""/>
-          <p><b>Groovy Music</b> Jazz, Indie, Rock, Classical, only the best.</p>
-        </div>
-        <div class="dvbannerleft">
-          <img src="/images/handdrawn/48x48/picture.png"  alt="" title=""/>
-          <p><b>Art Stuffs</b> The most interesting art events in the neighborhood.</p>
-        </div>
-      </div>
-      <div id="dvbanner">
-        <div id="map_canvas" border='1px solid #ddd' style="width:529px; height:191px"></div>
-      </div>
-    </div><%# dvbannerbgcontainer %>
-    <div class='clear'></div>
-    <%- flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, :class => 'flash',  :id => "flash_#{name}" if msg.is_a?(String) %>
-    <%- end -%>
-    <div id="dvleftpanel">
-      <div id="user_login_box"> 
-      <% if user_signed_in? -%>
-          <% if @facebook_session %>
-              <%= fb_profile_pic current_user, :size => :square, :facebook_logo => true, :class => 'profile_pic' %>
-          <% end %>
-          
-          <h2>Hey, <%= current_user.fb_profile.first_name rescue current_user.email %></h2>
-      <% end %>
-      </div>
       
-          <div class='clear'></div>         
+        <%= clear %>
+        <%= render_notices %>
 
-          <% if user_signed_in? %>
-          <div class='box'>
-            <%= image_tag("handdrawn/48x48/user-admin.png", :class=>'icon') %>
-            <div class='content'>
-            <h3>Your Interests</h3>
-            <p><%= current_user.fb_profile && current_user.fb_profile.interests %></p>
-            </div>
-          </div>
-          <div class='spacer'></div>
-          <% end %>
-        
+        <div id='content_container'>
+          <%= yield %> <%# render the main content %>
+        </div>
+      </div>
 
-          <div class='box'>
-            <%= image_tag("handdrawn/48x48/wifi-on.png", :class => 'icon') %> 
-            <div class='content'>
-            <h3>Notifications</h3>
-            <p>Don't be left out of the loop! Get notified of the coolest happenings!</p>
-            <ul class='flat'>
-            <li><%= image_tag("colorstroked/Rss.png", :class=>'small_icon') %> <a href="">Grab the feed</a></li>
-            <li><%= image_tag("handdrawn/24x24/calendar.png", :class=>'small_icon') %> <a href="">Add to iCal</a></li>
-            <li><%= image_tag("colorstroked/FaceBook.png", :class=>'small_icon') %> <a href="">Fan us on Facebook</a></li>
-            <li><%= image_tag("colorstroked/Twitter.png", :class=>'small_icon') %> <a href="">Follow us on Twitter</a></li>
-            </ul>
-            </div>
-          </div>
-
-
-    </div>
-    <div id="dvrightpanel">
-
-      <%= yield %>
-
-    </div>
+      <div id="footer_container">
+        <div id="footer">
+          <p><span>Copyright © 2010</span> 
+          <%= link_to "Admin Login", new_admin_session_path %>
+        </div>
+      </div>
   </div>
-  <div id="dvfootercontainer">
-    <div id="foottop">
-      <p><span>Copyright © 2008 Your Company Name</span> 
-
-            <%= link_to "Admin Login", new_admin_session_path %>
-<a href="#" title="Home">Home</a><a href="http://www.studio7designs.com">Eco Web Design by Studio7designs</a></p>
-      <div class="design"> <a href="#"><img src="/images/skins/environmental/studio.jpg" alt="Studio7designs" border="0" title="Studio7designs" /></a> </div>
-    </div>
-  </div>
-</div>
   </body>
 </html>

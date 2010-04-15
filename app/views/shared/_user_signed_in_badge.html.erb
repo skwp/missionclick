@@ -1,0 +1,19 @@
+<% if user_signed_in? -%>
+  <div id="user_login_box"> 
+    <% if facebook_session %>
+      <%= image_tag current_user.fb_profile.pic_square_with_logo, :class => 'fb_profile_pic_small' %>
+    <% end %>
+
+    <h2>Hey, <%= current_user.fb_profile.first_name rescue current_user.email %></h2>
+  </div>
+  <%= spacer %>
+
+  <div class='box'>
+    <%= image_tag("handdrawn/48x48/user-admin.png", :class=>'icon') %>
+    <div class='content'>
+      <h3>Your Interests</h3>
+      <p><%= current_user.fb_profile && current_user.fb_profile.interests %></p>
+    </div>
+  </div>
+  <div class='spacer'></div>
+<% end %>

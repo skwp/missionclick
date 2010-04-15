@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # devise plugin handles authentication
-  devise :facebook_connectable, :authenticatable, :lockable, :recoverable,
+  devise :facebook_connectable, :authenticatable, :recoverable,
   :rememberable, :registerable, :trackable, :timeoutable, :validatable
 
   attr_accessible :email, :password, :password_confirmation

@@ -1,6 +1,15 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def spacer; "<div class='spacer'></div>"; end
+  def clear; "<div class='clear'></div>"; end
+
+  def render_notices
+    flash.map{ |name, msg|
+      content_tag :div, msg, :class => 'flash',  :id => "flash_#{name}" if msg.is_a?(String)
+    }.join
+  end
+
   # For the main menu at the top
   def link_to_tab(text, link)
     content_tag :li, link_to(content_tag(:span,text),link), :id => ("current" if current_page?(link))

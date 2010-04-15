@@ -1,4 +1,22 @@
+body {
+  color: #111;
+}
+
 a, a:hover, a:visited { color:#1B5CCD; text-decoration: none }
+
+p { margin-bottom: 9px; }
+
+fieldset {
+  background: #eee;
+  padding: 9px;
+  border: 1px solid #ddd;
+  margin-bottom: 9px;
+}
+
+h3, legend {
+  font-size: 20px;
+  font-weight: bold;
+}
 
 .clear {
   clear: both;
@@ -66,12 +84,18 @@ div.spacer { margin-bottom:18px; height:1px; clear:both; overflow:hidden }
   list-style: disc;
 }
 
-ul.flat { 
+ul.flat, ul.form { 
   list-style-type: none;
 }
 
+/* forms */
+ul.form li { margin-bottom: 9px; }
+ul.form li.label { margin-bottom: 0; }
+ul.form label { font-weight: bold; color: #333 }
+ul.form input[type='text'], ul.form input[type='password'] { font-size: 20px }
+
 /* home */
-div#user_login_box { width: 280px; margin: 0 auto; margin-bottom: 9px } 
+div#user_login_box { width: 280px; margin: 0 auto; margin-bottom: 18px } 
 div.facebook_connect_link { display: inline }
 div.facebook_connect_link.sign_in { margin-bottom: -9px }
 
@@ -91,7 +115,7 @@ div.box img.small_icon { width: 24px; height: 24px; margin-bottom:-6px; }
 #listingsBox {position:absolute; top:250px; left:5px; width:160px;}
 
 /* fb profile */
-img.profile_pic.FB_profile_pic { float: left; margin-right: 9px }
+img.fb_profile_pic_small {float: left; margin-right: 9px; }
 
 .twtr-widget {
 margin-bottom: 15px;
