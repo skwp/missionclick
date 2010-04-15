@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(:version => 20100415044644) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.string   "phone"
+    t.string   "url"
     t.string   "ical_feed_url"
     t.integer  "user_id"
     t.datetime "created_at"

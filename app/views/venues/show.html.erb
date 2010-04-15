@@ -1,0 +1,17 @@
+<% title @venue %>
+
+<% content_for(:notice) do %>
+  <div class='flash flash_notice'> 
+    Is this your venue? <%= link_to 'Claim it' %> to get your own domain at <strong><%= @venue.name.parameterize %>.foodog.com</strong> and customize this page! 
+  </div>
+<% end %>
+
+<h1><%= @venue %></h1>
+<ul class='flat'>
+  <li><%= @venue.address %></li>
+  <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
+</ul>
+
+<%= spacer %>
+
+<%= render :partial => 'home/event_list' %>

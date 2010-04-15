@@ -36,7 +36,7 @@ div.spacer { margin-bottom:18px; height:1px; clear:both; overflow:hidden }
 #flash_notice, #flash_alert {
 }
 
-#flash_notice {
+.flash_notice, #flash_notice {
   background-color: #CFC;
   border-color:#6C6;
 }
