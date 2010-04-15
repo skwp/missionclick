@@ -9,6 +9,9 @@
       <td class='info'>
         <h1><%= event.title%></h1>
         <p><%= event.description %></p>
+        <% unless @venue %>
+          at <%= link_to event.venue, event.venue %>
+        <% end %>
       </td>
       <td>
         <%= fb_share_button(event_url(event)) %>
