@@ -25,6 +25,7 @@
 <% end -%>
 </div>
 
+<% if devise_mapping.registerable? %>
 <div style='float:left; margin-left: 24px; width:400px'>
   <% form_for resource_name, resource, :url => registration_path(resource_name) do |f| -%>
   <%= f.error_messages %>
@@ -45,7 +46,7 @@
     </fieldset>
 <% end -%>
 </div>
-
+<% end %>
 <%= spacer %>
 
 <%= render :partial => "shared/devise_links" %>
