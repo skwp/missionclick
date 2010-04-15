@@ -1,5 +1,7 @@
-<h2>Sign up</h2>
+<h3>Have a facebook account? Use that instead!</h3>
+<%= facebook_sign_in_link :user %>
 
+<h3>Sign up</h3>
 <% form_for resource_name, resource, :url => registration_path(resource_name) do |f| -%>
   <%= f.error_messages %>
   <p><%= f.label :email %></p>

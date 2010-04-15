@@ -76,7 +76,7 @@ div.facebook_connect_link { display: inline }
 div.facebook_connect_link.sign_in { margin-bottom: -9px }
 
 div.center { margin: 0 auto; text-align: center; margin-top: 9px }
-div.box { margin-top:18px; clear:both}
+div.box { clear:both}
 div.box img.icon { float: left; margin-right: 10px; display:block; width:48px }
 div.box div.content { float: left; width:203px }
 div.box img.small_icon { width: 24px; height: 24px; margin-bottom:-6px; }
@@ -95,5 +95,5 @@ img.profile_pic.FB_profile_pic { float: left; margin-right: 9px }
 
 .twtr-widget {
 margin-bottom: 15px;
-margin-left:20px;
+margin-left:15px;
 }

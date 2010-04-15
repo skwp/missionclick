@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <title><%= yield(:title) %></title>
-    <%= stylesheet_link_tag 'application' %>
-    <%= stylesheet_link_tag 'skins/environmental' %>
+    <%= stylesheet_link_tag 'application', 'skins/environmental', 'connect_button' %>
 
     <!-- REQUIRED: Include Facebook Javascript (with current locale). See Facebooker documentation. -->
     <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
@@ -32,10 +31,20 @@
         <div id="tabs1" >
           <ul>
             <!-- CSS Tabs -->
-            <li id="current"><a href="#"><span>Home</span></a></li>
-            <li><a href="#"><span>Today</span></a></li>
-            <li><a href="#"><span>Tomorrow</span></a></li>
-            <li><a href="#"><span>About Us</span></a></li>
+            <%= link_to_tab 'Today', root_path %>
+
+            <% if user_signed_in? %>
+              <%= link_to_tab 'Your profile', edit_user_registration_path %> 
+
+              <% if @facebook_session %> 
+                <%= fb_sign_out_tab %>
+              <% else %>
+                <%= link_to_tab 'Sign out', destroy_user_session_path %>
+              <% end %>
+            <% else %>
+              <%= link_to_tab 'Sign up', new_user_registration_path %>
+              <%= link_to_tab 'Sign in', new_user_session_path %>
+            <% end %>
           </ul>
         </div>
         <img src="/images/skins/environmental/navi_right.jpg" alt="" />
@@ -68,33 +77,17 @@
     <div id="dvleftpanel">
       <div id="user_login_box"> 
       <% if user_signed_in? -%>
-
           <% if @facebook_session %>
               <%= fb_profile_pic current_user, :size => :square, :facebook_logo => true, :class => 'profile_pic' %>
           <% end %>
-          <h2>Hey, <%= current_user.fb_profile.first_name rescue current_user.email %></h2>
-          <%= link_to 'Your profile', edit_user_registration_path %> |
           
-
-          <% if @facebook_session %> 
-            <%= facebook_sign_out_link :user %>
-          <% else %>
-            <%= link_to 'Sign out', destroy_user_session_path %>
-          <% end %>
-      <% elsif admin_signed_in? -%>
-          <%= current_admin.email %> |
-          <%= link_to 'Admin section', admins_path %> |
-          <%= link_to 'Sign out', destroy_admin_session_path %>
-      <% else %>
-        <% unless user_signed_in? -%>
-           <%= link_to 'Sign up', new_user_registration_path %> | <%= link_to 'Sign in', new_user_session_path %>
-           <%= facebook_sign_in_link :user %>
-        <% end -%>
+          <h2>Hey, <%= current_user.fb_profile.first_name rescue current_user.email %></h2>
       <% end %>
       </div>
       
           <div class='clear'></div>         
 
+          <% if user_signed_in? %>
           <div class='box'>
             <%= image_tag("handdrawn/48x48/user-admin.png", :class=>'icon') %>
             <div class='content'>
@@ -102,11 +95,12 @@
             <p><%= current_user.fb_profile && current_user.fb_profile.interests %></p>
             </div>
           </div>
-        
           <div class='spacer'></div>
+          <% end %>
+        
 
           <div class='box'>
-          <%= image_tag("handdrawn/48x48/wifi-on.png", :class => 'icon') %> 
+            <%= image_tag("handdrawn/48x48/wifi-on.png", :class => 'icon') %> 
             <div class='content'>
             <h3>Notifications</h3>
             <p>Don't be left out of the loop! Get notified of the coolest happenings!</p>

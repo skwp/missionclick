@@ -63,7 +63,7 @@ padding:0px 0px 30px 0px;
 #dvtopcontainer #dvnavicontainer
 {
 float:right;
-width:395px;
+/* width:395px; */
 font-size:0px;
 margin:0px;
 padding:0px 0px 0px 0px;
@@ -149,7 +149,7 @@ padding:0px 0px 0px 35px;
 float:left;
 width:274px;
 margin:0px;
-padding:26px 0px 4px 25px;
+padding:9px 0px 4px 25px;
 }
 #dvleftpanel #topimage
 {
@@ -493,74 +493,8 @@ padding-top:13px;
 border: none;
 } 
 
-/*- Menu Tabs 3--------------------------- */
-
-    #tabs3 {
-      float:left;
-      width:362px;
-      font-size:14px;
-	  font-family:Arial, Helvetica, sans-serif;
-      line-height:normal;
-	  background:#FAF6DB;
-	  font-weight:bold;
-	  
-	  
-	  
-      }
-    #tabs3 ul {
-	  margin:0;
-	  padding:10px 5px 5px 0px;
-	  list-style:none;
-	  line-height:21px;
-      }
-    #tabs3 li {
-      display:inline;
-      margin:0;
-      padding:0;
-	 
-      }
-    #tabs3 a {
-      float:left;
-      background:url("/images/skins/environmental/tableft3.gif") no-repeat left top;
-      margin:0;
-      padding:0 0 0 0px;
-      text-decoration:none;
-      }
-    #tabs3 a span {
-      float:left;
-      display:block;
-      background:url("/images/skins/environmental/tabright3.gif") no-repeat right top;
-      padding:7px 0px 4px 0px;
-      color:#2C1B11;
-	  line-height:14px;
-	  height:20px;
-      }
-	    #tabs3 a span {float:none;
-		border:1px solid red;}
-    /* Commented Backslash Hack hides rule fr
-	om IE5-Mac \*/
-    #tabs3 a span {float:none;}
-    /* End IE5-Mac hack */
-    #tabs3 a:hover span {
-      color:#FFF;
-      }
-    #tabs3 a:hover {
-      background-position:0% -42px;
-      }
-    #tabs3 a:hover span {
-      background-position:100% -42px;
-      }  
-
-      #tabs3 #current a {
-      	background-position:0% -42px;
-		color:#FFFFFF
-      }
-      #tabs3 #current a span {
-      	background-position:100% -42px;
-		color:#FFFFFF
-      }
-
 
 /* custom styles */
 div.hEvent img { float:left; margin-right: 9px; margin-top:-4px}
 div#dvbanner div#map_canvas { border: 1px solid #333 }
+div#tabs1 span img.icon { margin-bottom: -3px }

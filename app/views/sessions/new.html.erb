@@ -1,4 +1,8 @@
-<h2>Sign in</h2>
+<h3>Login using your Facebook account!</h3>
+<%= facebook_sign_in_link :user %>
+
+
+<h3>Sign in</h3>
 
 <% form_for resource_name, resource, :url => session_path(resource_name) do |f| -%>
   <p><%= f.label :email %></p>

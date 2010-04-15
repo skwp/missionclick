@@ -11,6 +11,7 @@ Rails::Initializer.run do |config|
   config.gem 'warden', :version => '0.9.5'
   config.gem 'devise', :version => '1.0.3'
   config.gem 'devise_facebook_connectable'
+  config.gem 'ri_cal'
 
   config.time_zone = 'UTC'
 
