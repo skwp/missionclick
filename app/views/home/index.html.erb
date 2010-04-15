@@ -1,6 +1,8 @@
   <div id="left_sidebar">
     <%= render :partial => 'shared/user_signed_in_badge' %>
 
+    <%= render :partial => 'shared/twitter_widget' %>
+
     <div class='box'>
       <%= image_tag("handdrawn/48x48/wifi-on.png", :class => 'icon') %> 
       <div class='content'>
@@ -17,17 +19,26 @@
   </div>
 
   <div id="right_content">
+    <h1><%= @venue %></h1>
 
-    <%= render :partial => 'shared/twitter_widget' %>
+    <table class='eventListing'>
+      <% @events.each do |event| %>     
+        <tr class="<%=cycle('even','odd')%>">
+          <td class='icon'>
+            <%= image_tag("handdrawn/32x32/hint.png") %> 
+          </td><td class='time'>
+            <strong><%= event.start_time.to_s(:short) %></strong>
+          </td>
+          <td class='info'>
+            <h1><%= event.title%></h1>
+            <p><%= event.description %></p>
+          </td>
+          <td>
+            <%= fb_share_button(event_url(event)) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
 
-    <% 10.times do %>     
-      <div class='hEvent'>
-        <h1><%= image_tag("handdrawn/32x32/calendar.png") %> Sample event at <a href="">Some place</a>, 9pm</h1>
-        <p>
-          This area is where your intro text can go, and this is what your text links will look like.
-          This area is where your intro text can go, and this is what your text links will look like.</p>
-      </div>
-      <div class="line"><img src="/images/skins/environmental/h_line.jpg" alt="" width="535	" height="1" title="" /></div>
-    <% end %>
 
   </div>

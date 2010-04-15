@@ -169,114 +169,29 @@ voice-family:"\"}\"";
 line-height:18px;
 
 }
-#left_sidebar #midcont
-{
-float:left;
-width:247px;
-margin:0px;
-padding:25px 0px 4px 25px;
-border-bottom:1px solid #F3F3F3;
-border-left:1px solid #F3F3F3;
-border-right:1px solid #F3F3F3;
-}
-#midcont p
-{
-float:left;
-width:223px;
-font-size:15px;
-text-align:left;
-line-height:18px;
-voice-family:"\"}\"";
-line-height:17px;
-color:#513D2C;
-margin:0px;
-padding:0px;
-padding-bottom:25px;
-
-
-}
-#midcont p span
-{
-float:right;
-text-align:right;
-color:#A5051A;
-font-weight:bold;
-}
-#left_sidebar #leftfoot
-{
-float:left;
-width:258px;
-background-image:url(/images/skins/environmental/left_foot.jpg);
-background-repeat:no-repeat;
-background-position:top;
-margin:12px 0px 0px 0px;
-padding:11px 0px 13px 16px;
-}
-#leftfoot img
-{
-float:left;
-width:46px;
-margin:0px;
-padding:0px 0px 0px 0px;
-}
-#leftfoot p
-{
-float:left;
-width:160px;
-font-size:12px;
-text-align:left;
-color:#6B5F58;
-margin:0px;
-padding:0px 0px 0px 15px;
-}
-#leftfoot span
-{
-float:left;
-width:156px;
-font-size:15px;
-text-align:left;
-font-weight:bold;
-color:#6B5F58;
-margin:0px;
-padding:5px 0px 5px 15px;
-}
 #main_content_container #right_content
 {
 float:left;
-width:552px;
-margin:0px 0px 0px 24px;
-padding:18px 0px 4px 0px;
+width:540px;
+margin:0px 0px 0px 35px;
+padding-top: 18px;
 }
 #right_content h1
 {
-float:left;
-width:395px;
 font-size:20px;
 text-align:left;
 color:#2C1B11;
 margin:0px;
-padding:10px 0px 0px 15px;
 }
 #right_content p
 {
 float:left;
-width:530px;
-font-size:13px;
+font-size:14px;
 text-align:left;
 voice-family:"\"}\"";
 line-height:16px;
 color:#513D2C;
 margin:0px;
-padding:10px 0px 10px 15px;
-}
-
-#right_content .line
-{
-float:left;
-width:533px;
-font-size:0px;
-margin:0px;
-padding:10px 0px 15px 15px;
 }
 
 #body_container #footer_container
@@ -422,3 +337,7 @@ div#content_container {
 div.hEvent img { float:left; margin-right: 9px; margin-top:-4px}
 div#map_canvas { border: 1px solid #333 }
 div#tabs1 span img.icon { margin-bottom: -3px }
+
+table.eventListing { width: 100% }
+table.eventListing td.icon { width: 32px }
+table.eventListing td.time { width: 100px }

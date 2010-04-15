@@ -114,10 +114,14 @@ div.box img.small_icon { width: 24px; height: 24px; margin-bottom:-6px; }
 .small {font-size:8pt;}
 #listingsBox {position:absolute; top:250px; left:5px; width:160px;}
 
+/* tables */
+table { border-spacing: 0}
+td { padding: 4px 8px; }
+tr.even td { background: #eee; }
+
 /* fb profile */
 img.fb_profile_pic_small {float: left; margin-right: 9px; }
 
 .twtr-widget {
 margin-bottom: 15px;
-margin-left:15px;
 }

@@ -5,3 +5,5 @@
 #   
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
+#
+Venue.create(:name => "Revolution Cafe", :address => "3248 22nd St.", :city => "San Francisco", :state => "CA", :zip => "94110", :ical_feed_url => "http://www.google.com/calendar/ical/4qam77hab6mmlkhq0ijim94vf0%40group.calendar.google.com/public/basic.ics")

@@ -11,6 +11,14 @@
 
 ActiveRecord::Schema.define(:version => 20100415044644) do
 
+  create_table "admins", :force => true do |t|
+    t.string   "email",                            :null => false
+    t.string   "encrypted_password", :limit => 40, :null => false
+    t.string   "password_salt",                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "uid"
     t.string   "title"
