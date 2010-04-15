@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
   
   has_one :fb_profile
+  has_many :venues
+  has_many :events
 
   def facebook_id; facebook_uid; end # facebooker compatibility
 

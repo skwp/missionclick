@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  start_time: 2010-04-14 21:46:44
+  finish_time: 2010-04-14 21:46:44
+  user_id: 1
+  venue_id: 1
+
+two:
+  title: MyString
+  description: MyText
+  start_time: 2010-04-14 21:46:44
+  finish_time: 2010-04-14 21:46:44
+  user_id: 1
+  venue_id: 1

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100414074452) do
+ActiveRecord::Schema.define(:version => 20100415044644) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                            :null => false
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(:version => 20100414074452) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "events", :force => true do |t|
+    t.string   "uid"
+    t.string   "title"
+    t.text     "description"
+    t.datetime "start_time"
+    t.datetime "finish_time"
+    t.string   "location"
+    t.integer  "user_id"
+    t.integer  "venue_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
+  add_index "events", ["venue_id"], :name => "index_events_on_venue_id"
 
   create_table "fb_profiles", :force => true do |t|
     t.string   "name"
@@ -90,5 +106,19 @@ ActiveRecord::Schema.define(:version => 20100414074452) do
 
   add_index "users", ["facebook_session_key"], :name => "index_users_on_facebook_session_key"
   add_index "users", ["facebook_uid"], :name => "index_users_on_facebook_uid"
+
+  create_table "venues", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "ical_feed_url"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "venues", ["user_id"], :name => "index_venues_on_user_id"
 
 end
