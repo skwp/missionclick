@@ -1,6 +1,7 @@
 <style>
-  .twtr-widget { font-family: Helvetica, Arial, Verdana; margin-left: 50px }
-  #twtr-widget-1 h4 { font-size: 18px }
+  .twtr-widget { font-family: Helvetica, Arial, Verdana; }
+  .twtr-hd h3 { display: none }
+  .twtr-hd h4 { font-size: 18px }
 </style>
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
 <script>
@@ -10,7 +11,7 @@ new TWTR.Widget({
   rpp: 30,
   interval: 6000,
   subject: 'Tweets from the Mission',
-  width: 200,
+  width: 250,
   height: 80,
   theme: {
     shell: {
@@ -34,4 +35,3 @@ new TWTR.Widget({
   }
 }).render().setList('skwp', 'missionsf').start();
 </script>
-        

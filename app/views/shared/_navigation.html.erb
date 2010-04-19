@@ -2,8 +2,9 @@
 <div id="tabs1" >
   <ul>
     <!-- CSS Tabs -->
-    <%= link_to_tab 'Today', root_path %>
+    <%= link_to_tab 'Events', root_path %>
 
+    <%= link_to_tab 'Venues', venues_path %> 
     <% if user_signed_in? %>
       <%= link_to_tab 'Your profile', edit_user_registration_path %> 
 

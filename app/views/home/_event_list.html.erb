@@ -2,16 +2,14 @@
   <% @events.each do |event| %>     
     <tr class="<%=cycle('even','odd')%>">
       <td class='icon'>
-        <%= image_tag("handdrawn/32x32/hint.png") %> 
-      </td><td class='time'>
-        <strong><%= event.start_time.to_s(:short) %></strong>
+        <%= image_tag("handdrawn/32x32/hint.png") %>
       </td>
       <td class='info'>
         <h1><%= event.title%></h1>
+        <strong class='time'><%= event.start_time.to_s(:time_only) %></strong>
+        <% unless @venue -%>at <%= link_to event.venue, event.venue %><% end-%>
+        <%= clear %>
         <p><%= event.description %></p>
-        <% unless @venue %>
-          at <%= link_to event.venue, event.venue %>
-        <% end %>
       </td>
       <td>
         <%= fb_share_button(event_url(event)) %>
