@@ -10,6 +10,7 @@ class CreateVenues < ActiveRecord::Migration
       t.string :url
       t.string :ical_feed_url
       t.string :twitter_username
+      t.string :facebook_fan_page
       t.text :summary
       t.text :homepage_html
 

@@ -8,4 +8,7 @@ class Venue < ActiveRecord::Base
     Event.populate_from_venue_feed(self)
   end
 
+  def facebook_page_id
+    URI.parse(facebook_fan_page).path.split("/").last
+  end
 end

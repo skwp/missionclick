@@ -14,7 +14,8 @@ venues = [
   :url => "http://myspace.com/revcafe2006",  
   :address => "3248 22nd St.", :city => "San Francisco", :state => "CA", :zip => "94110", 
   :ical_feed_url => "http://www.google.com/calendar/ical/4qam77hab6mmlkhq0ijim94vf0%40group.calendar.google.com/public/basic.ics",
-  :twitter_username => "TheRevCafe"),
+  :twitter_username => "TheRevCafe",
+  :facebook_fan_page => "http://www.facebook.com/pages/San-Francisco-CA/The-Revolution-Cafe/398859449697"),
   
   Venue.create(
   :name => "Kaleidoscope Free Speech Zone", 
@@ -23,7 +24,8 @@ venues = [
   :state => "CA", 
   :zip => "94110", 
   :ical_feed_url => "http://www.google.com/calendar/ical/kaleidoscopesf%40gmail.com/public/basic.ics",
-  :twitter_username => "kaleidoscopesf"),
+  :twitter_username => "kaleidoscopesf",
+  :facebook_fan_page => "http://www.facebook.com/pages/San-Francisco-CA/kaleidoscope/99142838231"),
 
   Venue.create(
     :name => "Million Fishes Art Collective",

@@ -18,6 +18,10 @@
   <%= render :partial => 'user_twitter_widget', :locals => {:username => @venue.twitter_username} %>
 <% end %>
 
+<% unless @venue.facebook_fan_page.blank? %>
+  <%= render :partial => 'facebook_page_widget', :locals => {:facebook_page_id => @venue.facebook_page_id} %>
+<% end %>
+
 <%= spacer %>
 
 <%= render :partial => 'home/event_list' %>
