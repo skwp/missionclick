@@ -117,7 +117,8 @@ div.box img.small_icon { width: 24px; height: 24px; margin-bottom:-6px; }
 /* tables */
 table { border-spacing: 0}
 td { padding: 4px 8px; }
-tr.even td { background: #eee; }
+tr.even td { background: #f9f9f9; }
+tr.odd td { background: #f0f0f0; }
 
 /* fb profile */
 img.fb_profile_pic_small {float: left; margin-right: 9px; }
@@ -125,3 +126,27 @@ img.fb_profile_pic_small {float: left; margin-right: 9px; }
 .twtr-widget {
 margin-bottom: 15px;
 }
+
+
+/* rounded corners */
+.b1f, .b2f, .b3f, .b4f{font-size:1px; overflow:hidden; display:block;}
+.b1f {height:1px; background:#f0f0f0; margin:0 5px;}
+.b2f {height:1px; background:#f0f0f0; margin:0 3px;}
+.b3f {height:1px; background:#f0f0f0; margin:0 2px;}
+.b4f {height:2px; background:#f0f0f0; margin:0 1px;}
+.contentf {background: #f0f0f0; margin-bottom}
+.contentf div.inner_contentf {margin-left: 9px; margin-right:9px; padding-top:2px;} 
+
+.inner_contentf p { margin-bottom: 0; padding-bottom: 9px;}
+.inner_contentf table { margin-bottom : 0;}
+.inner_contentf h3 { margin-bottom: 0; padding-bottom: 10px;}
+.contentf div { margin-bottom: 0;}
+.contentf li { margin-bottom: 0;}
+
+/* rounded corner color classes */
+.b1f.gray,.b2f.gray,.b3f.gray,.b4f.gray,.contentf.gray {background: #f0f0f0;}
+.b1f.green,.b2f.green,.b3f.green,.b4f.green,.contentf.green {background: #51BC02;}
+.b1f.yellow,.b2f.yellow,.b3f.yellow,.b4f.yellow,.contentf.yellow {background: #ffffcc;}
+.b1f.red,.b2f.red,.b3f.red,.b4f.red,.contentf.red {background:#C22;}
+/* end rounded corners */
+
