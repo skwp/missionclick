@@ -90,20 +90,31 @@ padding:0px 0px 0px 0px;
 {
 float:left;
 width:873px;
-height:226px;
+height:206px;
 background-image:url(/images/skins/environmental/bg.jpg);
 background-repeat:repeat;
 background-position:top;
 border-bottom:1px solid #D5D4CD;
 border-top:1px solid #D5D4CD;
 margin:0px;
-padding:38px 0px 0px 25px;
+padding:18px 0px 0px 25px;
 }
-#top_featured_section .top_left_featured
+
+#main_content_container #secondary_feature
+{
+float:left;
+width:873px;
+height:207px;
+background: #ffffcc;
+border-bottom:1px solid #D5D4CD;
+border-top:1px solid #D5D4CD;
+margin:0px;
+padding:9px 0px 0px 25px;
+}
+.top_left_featured
 {
 float:left;
 width:277px;
-font-size:0px;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
@@ -139,7 +150,7 @@ margin-bottom: 0;
 font-size:13px;
 font-weight:bold;
 }
-#top_featured_section #top_right_featured
+.top_right_featured
 {
 float:left;
 margin:0px;
@@ -341,3 +352,4 @@ div#tabs1 span img.icon { margin-bottom: -3px }
 table.eventListing { width: 100% }
 table.eventListing td.icon { width: 32px }
 table.eventListing td.time { width: 100px }
+table.eventListing strong.time { color: darkgreen } 
