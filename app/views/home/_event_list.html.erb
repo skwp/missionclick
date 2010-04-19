@@ -6,7 +6,7 @@
       </td>
       <td class='info'>
         <h1><%= event.title%></h1>
-        <strong class='time'><%= event.start_time.to_s(:time_only) %></strong>
+        <strong class='time'><%= event.start_time.to_s(:short) %></strong>
         <% unless @venue -%>at <%= link_to event.venue, event.venue %><% end-%>
         <%= clear %>
         <p><%= event.description %></p>
