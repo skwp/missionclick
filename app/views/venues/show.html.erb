@@ -6,17 +6,23 @@
   </div>
 <% end %>
 
-<h1><%= @venue %></h1>
-<% editor_content(@venue) do %>
-  <div class='rightBox'>
-    <%= link_to "#{settings_icon} Edit", edit_venue_path(@venue) %> <%= link_to "#{delete_icon} Delete", @venue, :confirm => 'Are you sure?', :method => :delete %>
-  </div>
-<% end %>
-<ul class='flat'>
-  <li><%= @venue.address %></li>
-  <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
+<div class="vcard">
+  
+  <h1 class='fn'><%= @venue %></h1>
+  <% editor_content(@venue) do %>
+    <div class='rightBox'>
+      <%= link_to "#{settings_icon} Edit", edit_venue_path(@venue) %> <%= link_to "#{delete_icon} Delete", @venue, :confirm => 'Are you sure?', :method => :delete %>
+    </div>
+  <% end %>
 
-</ul>
+  <ul class='flat'>
+    <li class='street-address'><%= @venue.address %></li>
+    <li><span class='locality'><%= @venue.city %></span>, <span class='region'><%= @venue.state %></span> <span class='postal-code'><%= @venue.zip %></span></li>
+    <% if @venue.phone %><li class='tel'><%= @venue.phone %></li><% end %>
+    <li><%= link_to "Homepage", @venue.url, :class => 'url' %></li>
+    <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
+  </ul>
+</div>
 
 <% unless @venue.twitter_username.blank? %>
   <%= spacer %>

@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  include EventsHelper
 
   require_admin :except => [:index, :show]
 
@@ -18,6 +19,7 @@ class VenuesController < ApplicationController
   def show
     @venue = Venue.find(params[:id])
     @events = @venue.events
+    separate_events_by_date
 
     respond_to do |format|
       format.html # show.html.erb

@@ -88,6 +88,8 @@ ul.flat, ul.form {
   list-style-type: none;
 }
 
+.big { font-size: 18px; }
+
 /* icons */
 img.icon_24 { margin-bottom: -6px }
 
@@ -108,9 +110,15 @@ div.box img.icon { float: left; margin-right: 10px; display:block; width:48px }
 div.box div.content { float: left; width:203px }
 div.box img.small_icon { width: 24px; height: 24px; margin-bottom:-6px; }
 
-/* venue page */
+/* venue show */
 
 div.rightBox { float:right }
+
+/* venue index */
+
+span.event_tomorrow_notice, span.event_today_notice { color: white; padding: 1px 4px; font-size: 12px; font-weight: strong }
+span.event_today_notice { background: #c22 }
+span.event_tomorrow_notice { background: #51bc02; }
 
 /* gmap */
 .mapMarker {font-size: 11px;}
@@ -156,4 +164,5 @@ margin-bottom: 15px;
 .b1f.yellow,.b2f.yellow,.b3f.yellow,.b4f.yellow,.contentf.yellow {background: #ffffcc;}
 .b1f.red,.b2f.red,.b3f.red,.b4f.red,.contentf.red {background:#C22;}
 /* end rounded corners */
+
 

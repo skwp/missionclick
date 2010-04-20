@@ -1,8 +1,14 @@
 <h1>Venues</h1>
 
-<ul class='flat'>
+<ul class='flat big'>
 <% @venues.each do |venue| %>
-    <li><%=link_to venue.name, venue %></li>
+  <li><%=link_to venue.name, venue %> 
+    <% if venue.events_today.size > 0 %>
+      <span class='event_today_notice'><%= pluralize venue.events_today.count, 'event', 'events' %> today</span>
+    <% elsif venue.events_tomorrow.size > 0 %>
+      <span class='event_tomorrow_notice'><%= pluralize venue.events_tomorrow.count, 'event', 'events' %> tomorrow </span>
+    <% end %>
+  </li>
 <% end %>
 </ul>
 
