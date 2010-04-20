@@ -12,7 +12,6 @@
   <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
 </ul>
 
-
 <% unless @venue.twitter_username.blank? %>
   <%= spacer %>
   <%= render :partial => 'user_twitter_widget', :locals => {:username => @venue.twitter_username} %>
