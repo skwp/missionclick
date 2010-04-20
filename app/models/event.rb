@@ -1,4 +1,7 @@
 class Event < ActiveRecord::Base
+
+  acts_as_taggable
+
   # Some iCal events are 'recurring' events and have complex and 
   # often infinite recurrance rules. When we populate our database, 
   # we will pull recurring events only for a particular time window.
