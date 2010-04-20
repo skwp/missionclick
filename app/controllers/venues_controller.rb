@@ -1,4 +1,7 @@
 class VenuesController < ApplicationController
+
+  require_admin :except => [:index, :show]
+
   # GET /venues
   # GET /venues.xml
   def index

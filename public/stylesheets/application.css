@@ -88,6 +88,9 @@ ul.flat, ul.form {
   list-style-type: none;
 }
 
+/* icons */
+img.icon_24 { margin-bottom: -6px }
+
 /* forms */
 ul.form li { margin-bottom: 9px; }
 ul.form li.label { margin-bottom: 0; }
@@ -104,6 +107,10 @@ div.box { clear:both}
 div.box img.icon { float: left; margin-right: 10px; display:block; width:48px }
 div.box div.content { float: left; width:203px }
 div.box img.small_icon { width: 24px; height: 24px; margin-bottom:-6px; }
+
+/* venue page */
+
+div.rightBox { float:right }
 
 /* gmap */
 .mapMarker {font-size: 11px;}

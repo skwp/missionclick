@@ -1,6 +1,5 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  include IconsHelper, RoundedCornersHelper
 
   def spacer; "<div class='spacer'></div>"; end
   def clear; "<div class='clear'></div>"; end
@@ -23,5 +22,5 @@ module ApplicationHelper
       <li><a href="#" onclick="FB.Connect.logoutAndRedirect('/users/sign_out')"><span>Sign out</span></a></li>
     }
   end
-  
+
 end

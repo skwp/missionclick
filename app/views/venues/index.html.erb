@@ -1,20 +1,13 @@
 <h1>Venues</h1>
 
-<table>
-  <thead>
-    <th>Venue</th>
-    <th>iCal Feed</th>
-  </thead>
+<ul class='flat'>
 <% @venues.each do |venue| %>
-  <tr>
-    <td><%=link_to venue.name, venue %></td>
-    <td><%=link_to truncate(venue.ical_feed_url, 50) %></td>
-    <td><%= link_to 'Destroy', venue, :confirm => 'Are you sure?', :method => :delete %></td>
-    <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
-  </tr>
+    <li><%=link_to venue.name, venue %></li>
 <% end %>
-</table>
+</ul>
 
-<br />
+<%= spacer %>
 
-<%= link_to 'New venue', new_venue_path %>
+<% site_admin_content do %>
+  <p><%= link_to '+ New venue', new_venue_path %></p>
+<% end %>

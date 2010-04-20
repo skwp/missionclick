@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100415044644) do
+ActiveRecord::Schema.define(:version => 20100420045428) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                            :null => false
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(:version => 20100415044644) do
   add_index "fb_profiles", ["user_id"], :name => "index_fb_profiles_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                              :null => false
-    t.string   "encrypted_password",   :limit => 40,                 :null => false
-    t.string   "password_salt",                                      :null => false
+    t.string   "email",                                                  :null => false
+    t.string   "encrypted_password",   :limit => 40,                     :null => false
+    t.string   "password_salt",                                          :null => false
     t.string   "confirmation_token",   :limit => 20
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20100415044644) do
     t.datetime "updated_at"
     t.integer  "facebook_uid",         :limit => 8
     t.string   "facebook_session_key", :limit => 149
+    t.boolean  "admin",                               :default => false
   end
 
   add_index "users", ["facebook_session_key"], :name => "index_users_on_facebook_session_key"
