@@ -2,7 +2,7 @@
 
 <% content_for(:notice) do %>
   <div class='flash flash_notice'> 
-    Is this your venue? <%= link_to 'Claim it' %> to get your own domain at <strong><%= @venue.name.parameterize %>.foodog.com</strong> and customize this page! 
+    Is this your venue? <%= link_to 'Claim it' %> to get your own domain at <strong><%= @venue.name.parameterize %>.<%= request.host %></strong> and customize this page! 
   </div>
 <% end %>
 
