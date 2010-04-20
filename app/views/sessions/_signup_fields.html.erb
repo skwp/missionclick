@@ -1,0 +1,21 @@
+<% form_for resource_name, resource, :url => registration_path(resource_name) do |f| -%>
+  <%= error_messages_for(resource_name, :header_message => "Oops, signup failed.", :message => "Please fix these errors and try again:") %>
+  <fieldset>
+    <legend>Sign Up</legend>
+    <ul class='form'>
+      <li class='label'><%= f.label :name %></li>
+      <li><%= f.text_field :name %></li>
+
+      <li class='label'><%= f.label :email %></li>
+      <li><%= f.text_field :email %></li>
+
+      <li class='label'><%= f.label :password %></li>
+      <li><%= f.password_field :password %></li>
+
+      <li class='label'><%= f.label :password_confirmation %></li>
+      <li><%= f.password_field :password_confirmation %></li>
+
+      <li><%= f.submit "Sign up" %></li>
+    </ul>
+  </fieldset>
+<% end %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100420055531) do
+ActiveRecord::Schema.define(:version => 20100420062343) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                            :null => false
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20100420055531) do
     t.integer  "facebook_uid",         :limit => 8
     t.string   "facebook_session_key", :limit => 149
     t.boolean  "admin",                               :default => false
+    t.string   "name"
   end
 
   add_index "users", ["facebook_session_key"], :name => "index_users_on_facebook_session_key"

@@ -4,7 +4,7 @@
       <%= image_tag current_user.fb_profile.pic_square_with_logo, :class => 'fb_profile_pic_small' %>
     <% end %>
 
-    <h3>Hey, <%= current_user.fb_profile.first_name rescue current_user.email %></h3>
+    <h3>Hey, <%= current_user.name %></h3>
   </div>
   <%= spacer %>
 

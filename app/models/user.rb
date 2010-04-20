@@ -3,11 +3,13 @@ class User < ActiveRecord::Base
   devise :facebook_connectable, :authenticatable, :recoverable,
   :rememberable, :registerable, :trackable, :timeoutable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation
   
   has_one :fb_profile
   has_many :venues
   has_many :events
+
+  validates_presence_of :name
 
   def facebook_id; facebook_uid; end # facebooker compatibility
 
@@ -37,6 +39,7 @@ class User < ActiveRecord::Base
     logger.info "populating profile with #{field_values.inspect}"
 
     self.build_fb_profile(field_values)
+    self.name = field_values[:first_name]
   end
 
   def after_facebook_connect(fb_session)

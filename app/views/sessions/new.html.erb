@@ -27,24 +27,7 @@
 
 <% if devise_mapping.registerable? %>
 <div style='float:left; margin-left: 24px; width:400px'>
-  <% form_for resource_name, resource, :url => registration_path(resource_name) do |f| -%>
-  <%= f.error_messages %>
-    <fieldset>
-      <legend>Sign Up</legend>
-      <ul class='form'>
-        <li class='label'><%= f.label :email %></li>
-        <li><%= f.text_field :email %></li>
-
-        <li class='label'><%= f.label :password %></li>
-        <li><%= f.password_field :password %></li>
-
-        <li class='label'><%= f.label :password_confirmation %></li>
-        <li><%= f.password_field :password_confirmation %></li>
-
-        <li><%= f.submit "Sign up" %></li>
-      </ul>
-    </fieldset>
-<% end -%>
+<%= render :partial => 'signup_fields' %>
 </div>
 <% end %>
 <%= spacer %>
