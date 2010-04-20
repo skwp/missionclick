@@ -1,8 +1,14 @@
-<h3>Have a Facebook account?</h3>
-<p>Log in with one click by clicking the button below.</p>
-<%= facebook_sign_in_link :user %>
-
-<%= spacer %>
+<style type="text/css" media="screen">
+  .facebook_login_box { width: 330px; margin: 18px auto; }
+</style>
+<div class='facebook_login_box'>
+<% rounded_corners do %> 
+  <h3>Have a Facebook account?</h3>
+  <p>Log in with one click by clicking the button below.</p>
+  <%= facebook_sign_in_link :user %>
+  <% end %>
+  <%= spacer %>
+</div>
 
 <div style='float:left; width: 400px;'>
 <% form_for resource_name, resource, :url => session_path(resource_name) do |f| -%>

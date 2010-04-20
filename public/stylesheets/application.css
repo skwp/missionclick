@@ -125,7 +125,7 @@ div.rightBox { float:right }
 table { border-spacing: 0}
 td { padding: 4px 8px; }
 tr.even td { background: #f9f9f9; }
-tr.odd td { background: #f0f0f0; }
+tr.odd td { background: #e9e9e9; }
 
 /* fb profile */
 img.fb_profile_pic_small {float: left; margin-right: 9px; }
