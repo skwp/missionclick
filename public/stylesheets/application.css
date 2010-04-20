@@ -162,6 +162,7 @@ margin-bottom: 15px;
 .b1f.gray,.b2f.gray,.b3f.gray,.b4f.gray,.contentf.gray {background: #f0f0f0;}
 .b1f.green,.b2f.green,.b3f.green,.b4f.green,.contentf.green {background: #51BC02;}
 .b1f.yellow,.b2f.yellow,.b3f.yellow,.b4f.yellow,.contentf.yellow {background: #ffffcc;}
+.b1f.white,.b2f.white,.b3f.white,.b4f.white,.contentf.white {background:#fff}
 .b1f.red,.b2f.red,.b3f.red,.b4f.red,.contentf.red {background:#C22;}
 /* end rounded corners */
 

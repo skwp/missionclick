@@ -29,7 +29,6 @@ padding:0px 0px 0px 0px;
 {
 float:left;
 width:324px;
-font-size:0px;
 margin:0px;
 padding:0px 71px 0px 0px;
 }
@@ -63,15 +62,12 @@ padding:0px 0px 30px 0px;
 #top_container #nav_container
 {
 float:right;
-/* width:395px; */
-font-size:0px;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
 #nav_container img
 {
 float:left;
-font-size:0px;
 margin:0px;
 padding:0px 0px 0px 0px;
 }
@@ -129,7 +125,6 @@ margin-bottom:12px;
 float:left;
 margin:0px;
 padding:0px 11px 0px 0px;
-font-size:0px;
 margin-top: -6px;
 }
 .bullet p
@@ -344,12 +339,14 @@ div.hEvent img { float:left; margin-right: 9px; margin-top:-4px}
 div#map_canvas { border: 1px solid #333 }
 div#tabs1 span img.icon { margin-bottom: -3px }
 
-table.eventListing { width: 100% }
-table.eventListing td.icon { width: 32px }
-table.eventListing td.share { width: 100px }
-table.eventListing strong.time { color: darkgreen } 
+strong.time { color: darkgreen } 
 
 div.event_list_by_day h2 {
   margin-top: 18px;
   color: darkred;
 }
+
+ul.eventListing li { float: left; clear: both; }
+ul.eventListing span.icon { display: block; float: left; width: 36px }
+ul.eventListing span.info { display: block; float: left; width: 700px }
+ul.eventListing span.share { display: block; float: left; width: 50px }

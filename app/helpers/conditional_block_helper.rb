@@ -28,4 +28,11 @@ module ConditionalBlockHelper
     concat(capture(&block)) if object.editable_by?(current_user)
   end
   
+  def iphone_content(&block)
+    concat(capture(&block)) if iphone_request?
+  end
+
+  def non_iphone_content(&block)
+    concat(capture(&block)) unless iphone_request?
+  end
 end

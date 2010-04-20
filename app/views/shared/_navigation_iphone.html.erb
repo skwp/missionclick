@@ -1,0 +1,44 @@
+<style type="text/css" media="screen">
+  #iphone_navigation div.wrapper { float: left; margin-right: 70px; }
+  #iphone_navigation div.wrapper.last { margin-right: 0 }
+</style>
+
+<div id='iphone_navigation'>
+  <div class='wrapper'>
+  <% rounded_corners  do %>
+    <%= link_to 'Events', root_path %>
+  <% end %>
+  </div>
+
+  <div class='wrapper'>
+    <% rounded_corners  do %>
+      <%= link_to 'Places', venues_path %> 
+    <% end %>
+  </div>
+<div> 
+  <% if user_signed_in? %>
+    <div class='wrapper'>
+      <% rounded_corners  do %>
+        <%= link_to 'Profile', edit_user_registration_path %> 
+      <% end %>
+      </div>
+
+      <div class='wrapper'>
+        <% rounded_corners  do %>
+          <% if @facebook_session %> 
+            <%= fb_sign_out_tab %>
+          <% else %>
+            <%= link_to 'Sign out', destroy_user_session_path %></li>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+
+      <div class='wrapper'>
+        <% rounded_corners  do %>
+          <%= link_to 'Sign in or Sign up', new_user_session_path %>
+        <% end -%>
+      </div>
+      <% end %>
+  </div>
+</div>
