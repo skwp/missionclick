@@ -13,7 +13,11 @@ class Event < ActiveRecord::Base
   RECURRING_EVENT_WINDOW = 2.weeks
 
   belongs_to :venue
-  default_scope :order => 'start_time asc'
+  default_scope :order => 'start_time asc', :include => :venue
+
+  named_scope :today, :conditions => ["date(start_time) = date(now())"]
+  named_scope :tomorrow, :conditions => ["date(start_time) = date(now() + '1 day')"]
+  named_scope :by_venue_id, lambda {|venue_id| venue_id ? {:conditions => {:venue_id => venue_id.to_i}} :{}}
 
   def to_s; title; end
   def to_param; "#{id}-#{title.parameterize}"; end
@@ -68,6 +72,11 @@ class Event < ActiveRecord::Base
     event = Event.find_by_uid(event.uid) || Event.new
     event.attributes = attrs
     event.save
+  end
+
+  # Overriding standard method to include associations
+  def to_json(*args)
+    super(:include => :venue)
   end
 
 end

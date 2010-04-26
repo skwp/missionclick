@@ -1,8 +1,0 @@
-  <div class='event_list_by_day'>
-    <h2>Today</h2>
-    <%= render :partial => 'home/event_list', :locals => {:events => @today_events} %>
-    <h2>Tomorrow</h2>
-    <%= render :partial => 'home/event_list', :locals => {:events => @tomorrow_events} %>
-    <h2>Later</h2>
-    <%= render :partial => 'home/event_list', :locals => {:events => @later_events} %>
-  </div>
