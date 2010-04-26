@@ -17,3 +17,7 @@ function gmaps_init() {
 }
 document.observe("dom:loaded", gmaps_init);
 
+function showTagPopup(id) {
+    $("edit_tags_" + id).show();
+    $("tag_editor_" + id).focus();
+}

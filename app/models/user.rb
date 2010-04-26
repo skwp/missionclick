@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
 
+  acts_as_tagger
+
   def facebook_id; facebook_uid; end # facebooker compatibility
 
   def before_facebook_connect(fb_session)

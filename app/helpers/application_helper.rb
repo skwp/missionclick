@@ -23,4 +23,9 @@ module ApplicationHelper
     }
   end
 
+  def render_tags(tags)
+      tags.map do |t|
+        "<span class='tag'>#{link_to t, events_path(:tag => t.name)}</span>"
+      end.join(", ")
+  end
 end
