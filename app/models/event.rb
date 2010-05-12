@@ -76,7 +76,7 @@ class Event < ActiveRecord::Base
 
   # Overriding standard method to include associations
   def to_json(*args)
-    super(:include => :venue)
+    super(:include => [:venue, :tags])
   end
 
 end

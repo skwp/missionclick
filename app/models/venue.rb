@@ -1,4 +1,7 @@
 class Venue < ActiveRecord::Base
+  acts_as_mappable
+  before_validation_on_create :geocode_address
+
   has_many :events
 
   default_scope :order => 'name asc'
@@ -13,4 +16,12 @@ class Venue < ActiveRecord::Base
   def facebook_page_id
     URI.parse(facebook_fan_page).path.split("/").last
   end
+
+  private
+  
+  def geocode_address
+    geo = Geokit::Geocoders::MultiGeocoder.geocode("#{address} #{city}, #{state} #{zip}") 
+    self.lat, self.lng = geo.lat,geo.lng if geo.success
+  end
+
 end

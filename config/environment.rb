@@ -13,6 +13,7 @@ Rails::Initializer.run do |config|
   config.gem 'devise', :version => '1.0.3'
   config.gem 'devise_facebook_connectable'
   config.gem 'ri_cal'
+  config.gem 'geokit'
 
   config.time_zone = 'UTC'
 
