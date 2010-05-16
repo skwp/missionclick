@@ -13,7 +13,7 @@ function gmaps_init() {
       mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  updateMap();
+  kickMap();
 }
 document.observe("dom:loaded", gmaps_init);
 

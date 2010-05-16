@@ -12,6 +12,8 @@ class EventsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @events }
       format.json { render :json => {:today => @today_events, :tomorrow => @tomorrow_events, :later => @later_events}.to_json }
+      js_hash = {:today => @today_events, :tomorrow => @tomorrow_events, :later => @later_events }.to_json
+      format.js { render :text => "var events = #{js_hash}" }
     end
   end
 

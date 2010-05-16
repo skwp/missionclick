@@ -1,3 +1,5 @@
+  <%= javascript_include_tag events_path(:format => 'js') %>
+
   <div class='event_list_by_day'>
     <h2>Today</h2>
     <%= render :partial => 'events/event_list', :locals => {:events => @today_events} %>
