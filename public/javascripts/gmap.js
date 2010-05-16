@@ -45,8 +45,8 @@ function kickMap() {
         });
     }
 
-    addEvents(events.later, 'later');
-    addEvents(events.tomorrow, 'tomorrow');
+    // addEvents(events.later, 'later');
+    // addEvents(events.tomorrow, 'tomorrow');
     addEvents(events.today, 'today');
     map.fitBounds(bounds);
 
