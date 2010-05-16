@@ -5,11 +5,10 @@
     <title><%= yield(:title) %></title>
     <%= stylesheet_link_tag 'application', 'skins/environmental', 'connect_button' %>
     <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
+    <%= yield(:head) %>
     <%= javascript_include_tag :defaults, 'devise.facebook_connectable', 'gmap', :cache => true %>
     <meta name="viewport" content="width=900; initial-scale=1.0, user-scalable=no" />
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-       
-    <%= yield(:head) %>
   </head>
   <body> 
     <%= init_fb_connect :XFBML, :js => :prototype %>

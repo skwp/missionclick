@@ -1,4 +1,6 @@
-  <%= javascript_include_tag events_path(:format => 'js') %>
+  <% content_for :head do %>
+      <%= javascript_include_tag events_path(:format => 'js') %>
+  <% end %>
 
   <div class='event_list_by_day'>
     <h2>Today</h2>
