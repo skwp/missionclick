@@ -126,10 +126,10 @@ span.event_today_notice { background: #c22 }
 span.event_tomorrow_notice { background: #51bc02; }
 
 /* gmap */
-.mapMarker {font-size: 11px;}
+.mapMarker {font-size: 11px; width: 165px;}
 .mapMarker .businessimage { float: left;}
 .mapMarker .ratingsimage {vertical-align:middle; margin-top:0px;}
-.mapMarker .businessinfo { margin-left: 110px;}
+.mapMarker .businessinfo { margin-left: 50px;}
 .sidebar {margin:5px;padding:5px;border:1px solid #e6e6e6;}
 .small {font-size:8pt;}
 #listingsBox {position:absolute; top:250px; left:5px; width:160px;}
