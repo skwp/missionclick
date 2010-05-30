@@ -5,6 +5,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :venues, :has_many => :events
 
   map.devise_for :users
+  
+  map.mapp 'mapp', :controller => 'mapp', :action => 'index'
 
   map.root :controller => :events
 end
