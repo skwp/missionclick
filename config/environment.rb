@@ -7,6 +7,11 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 require 'open-uri'
 
+APP_CONFIG = {
+  :tags_enabled => false, 
+  :mapp_only_alpha => true # disables everything except /mapp
+}
+
 Rails::Initializer.run do |config|
   # Freeze these gems into the rails app by using "rake gems:unpack"
   config.gem 'warden', :version => '0.9.5'
@@ -21,3 +26,4 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :en
 end
+

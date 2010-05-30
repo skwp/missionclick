@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100512024600) do
+ActiveRecord::Schema.define(:version => 20100530103941) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                            :null => false
@@ -80,6 +80,13 @@ ActiveRecord::Schema.define(:version => 20100512024600) do
 
   add_index "fb_profiles", ["user_id"], :name => "index_fb_profiles_on_user_id"
 
+  create_table "mapp_participants", :force => true do |t|
+    t.integer  "venue_id"
+    t.string   "mapp_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -144,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20100512024600) do
     t.datetime "updated_at"
     t.float    "lat"
     t.float    "lng"
+    t.string   "address_hint"
   end
 
   add_index "venues", ["lat"], :name => "index_venues_on_lat"

@@ -28,7 +28,6 @@ padding:0px 0px 0px 0px;
 #top_container #logo_container
 {
 float:left;
-width:324px;
 font-size:0px;
 margin:0px;
 padding:0px 71px 0px 0px;
@@ -45,6 +44,9 @@ padding:32px 0px 0px 0px;
 }
 #logo_container h1 span {
   color:#f90; 
+}
+#logo_container h1 span.sub {
+  color:yellow;
 }
 #logo_container h1, #logo_container h1 a {
 color:#F8F4D5;

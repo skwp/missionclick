@@ -2,5 +2,39 @@
 <% content_for :top_featured_section do %>
   <div id="map_canvas" border='1px solid #ddd' style="width:845px; height:181px; "></div>
 <% end %>
+<% content_for :extra_logo do %><span class='sub'>/MAPP</span><% end %>
 <h1>Mission Arts & Performance Project: June 5, 2010</h1>
-<p>Your Map of the MAPP courtesy of missionclick</p>
+<p>Your Map of the MAPP brought to you by <%= link_to 'missionclick.com' %></p>
+
+<%= mapp_nav %>
+<%= spacer %>
+
+<% rounded_corners do %>
+  <p style='font-size:18px'><strong>The Mapp Street Music, Dance, Madness Parade</strong> beginning at The Red Poppy art house at 7:30 will be an open jam session that will then travel around the mission from venue to venue, creating chaos, lunacy and belligerancy. 
+    Open to anyone who wants to play sing dance or just be strange.</p>
+<% end %>
+
+<% case params[:group]; when 'schedule' %>
+    <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
+<% when 'hourly' %>
+  <% last_events = nil %>
+  <% (1..11).each do |hour| %>
+    <% events_for_hour = @events.select{|e| e.going_on_at?(mapp_time(hour))} %>
+    <% if !events_for_hour.empty? && events_for_hour != last_events %>
+      <h1>What's up at <%= hour %> PM</h1>
+      <% rounded_corners do %>
+      <%= render :partial => 'events/event_list', :locals => {:events => events_for_hour} %>
+      <% end %>
+    <% end %>
+    <% last_events = events_for_hour %>
+  <% end %>
+<% when 'venues' %>
+  <% @venues.each do |venue| %>
+    <% events_by_venue = @events.select{|e| e.venue_id == venue.id} %>
+    <h1><%= link_to venue, venue_path(venue) %></h1>
+    <% rounded_corners do %>
+      <%= render :partial => 'events/event_list', :locals => {:events => events_by_venue} %>
+    <% end %>
+  <% end %>
+
+<% end %>

@@ -48,3 +48,5 @@ venues = [
 
 puts "Populating database with feeds. If you have no internets, this will hang! (hit ctrl-c)"
 venues.each {|venue| venue.fetch_events }
+
+

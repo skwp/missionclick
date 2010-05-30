@@ -16,11 +16,10 @@
     <div id="body_container">
       <div id="top_container">
         <div id="logo_container">
-          <h1><%= link_to "mission<span>click</span>", root_path %></h1>
-          <h4>your guide to The Mission</h4>
+          <h1><%= link_to "mission<span>click</span>", root_path %><%= yield(:extra_logo) %></h1>
         </div>
         <div id="nav_container">
-          <%= render :partial => 'shared/navigation' %>
+          <%#= render :partial => 'shared/navigation' %>
         </div>
       </div>
 

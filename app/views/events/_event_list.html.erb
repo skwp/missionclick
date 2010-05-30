@@ -4,24 +4,22 @@
 <% else %>
   <table class='eventListing'>
     <% events.each do |event| %>     
-      <tr class="<%=cycle('even','odd')%>">
-        <td class='icon'>
+      <tr>
+        <!-- td class='icon' valign='top'>
           <%= image_tag("handdrawn/32x32/hint.png") %>
+          </td -->
+          <td style='width:140px'>
+          <strong class='time'>
+            <% if @show_time_only %>
+              <%= event.start_time.strftime("%l:%M%p") %> &mdash;
+              <%= event.finish_time && event.finish_time.strftime("%l:%M%p") || "Later"%>
+            <% else %>
+              <%= event.start_time.strftime("%a %b %d, %l:%M%p") %>
+            <% end -%>
+          </strong>
         </td>
         <td class='info'>
-          <h1><%= link_to event.title, event_path(event) %></h1>
-          <strong class='time'><%= event.start_time.to_s(:short) %></strong>
-          <% unless @venue -%>at <%= link_to event.venue, event.venue %><% end-%>
-          <%= clear %>
-          <p class='withSubheading'><%= truncate strip_tags(event.description), :length => 100 %></p>
-          <p><%= tag_icon(16) %> <span id="tags_<%=event.id%>"><%= render_tags event.tags %></span> <%= link_to_function "Edit", "showTagPopup(#{event.id})", :class => 'action' %></p>
-
-          <div id='edit_tags_<%=event.id%>' style='display:none'>
-          <% remote_form_for([event, Tagging.new]) do |f| %>
-            <%= text_field_tag "tag_list", event.tags.join(", "), :id => "tag_editor_#{event.id}" %>
-            <%= f.submit "Tag" %>
-          <% end %>
-          </div>
+          <%= render :partial => 'events/event_blurb', :locals => {:event => event} %>
         </td>
         <td class='share'>
           <%= fb_share_button(event_url(event)) %>

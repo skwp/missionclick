@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
   named_scope :today, :conditions => ["date(start_time) = date(now())"]
   named_scope :tomorrow, :conditions => ["date(start_time) = date(now() + '1 day')"]
   named_scope :by_venue_id, lambda {|venue_id| venue_id ? {:conditions => {:venue_id => venue_id.to_i}} :{}}
+  named_scope :by_venues, lambda {|venues| {:conditions => {:venue_id => venues}}}
 
   def to_s; title; end
   def to_param; "#{id}-#{title.parameterize}"; end
@@ -72,6 +73,11 @@ class Event < ActiveRecord::Base
     event = Event.find_by_uid(event.uid) || Event.new
     event.attributes = attrs
     event.save
+  end
+
+  # Determine if this event is going on at the specified DateTime
+  def going_on_at?(time)
+    time.between?(start_time, finish_time || 100.years.from_now)
   end
 
   # Overriding standard method to include associations

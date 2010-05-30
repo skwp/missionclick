@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :taggings
+  map.mapp 'mapp/:group', :controller => 'mapp', :action => 'index', :group => 'time'
 
-  map.resources :events, :has_many => :taggings
-  map.resources :venues, :has_many => :events
+  #unless APP_CONFIG[:mapp_only_alpha] 
+    map.resources :taggings
+    map.resources :events, :has_many => :taggings
+    map.resources :venues, :has_many => :events
+    map.devise_for :users
+    map.root :controller => :events
+  #end 
 
-  map.devise_for :users
-  
-  map.mapp 'mapp', :controller => 'mapp', :action => 'index'
-
-  map.root :controller => :events
 end

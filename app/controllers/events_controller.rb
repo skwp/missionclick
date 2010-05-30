@@ -8,12 +8,13 @@ class EventsController < ApplicationController
     @events = @events.send(:tagged_with, params[:tag]) if params[:tag]
     separate_events_by_date
 
+    js_hash = lambda { {:today => @today_events, :tomorrow => @tomorrow_events, :later => @later_events }.to_json }
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @events }
-      format.json { render :json => {:today => @today_events, :tomorrow => @tomorrow_events, :later => @later_events}.to_json }
-      js_hash = {:today => @today_events, :tomorrow => @tomorrow_events, :later => @later_events }.to_json
-      format.js { render :text => "var events = #{js_hash}" }
+      format.json { render :json => js_hash.call }
+      format.js { render :text => "var events = #{js_hash.call}" }
     end
   end
 

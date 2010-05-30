@@ -1,5 +1,5 @@
 <h1><%=h @event.title %></h1>
+<p>at <%= link_to @event.venue %></p>
 <p><%= h @event.description %></p>
-<p> <b>Starts At:</b> <%=h @event.start_time.to_s(:short) %> </p>
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<p> <b>Starts</b> <%=h @event.start_time.to_s(:long) %> </p>
+<p> <b>Ends</b> <%=h @event.finish_time && @event.finish_time.to_s(:long) || "Later"%> </p>
