@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
+  before_filter :show_beta_screen
 
   protected
 
@@ -30,6 +31,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def show_beta_screen
+    render :template => 'shared/beta'
+  end
 
   def return_error_unless_admin
     if current_user && current_user.admin?

@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.mapp 'mapp/:group', :controller => 'mapp', :action => 'index', :group => 'time'
+  map.mapp 'mapp/:group', :controller => 'mapp', :action => 'index', :group => 'schedule'
 
   #unless APP_CONFIG[:mapp_only_alpha] 
     map.resources :taggings

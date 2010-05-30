@@ -6,6 +6,7 @@ class CreateMappParticipants < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_column :venues, :address_hint, :string
   end
 
   def self.down

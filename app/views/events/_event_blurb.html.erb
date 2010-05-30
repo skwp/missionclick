@@ -1,8 +1,13 @@
 <h1><%= link_to event.title, event_path(event) %></h1>
 <% unless @venue -%>at <%= link_to event.venue, event.venue %> (<%= event.venue.address %><%= " " + event.venue.address_hint if event.venue.address_hint%>)<% end-%>
 <%= clear %>
-<p class='withSubheading'><%= truncate strip_tags(event.description), :length => 100 %></p>
-
+<p class='withSubheading'>
+  <% if @show_full_description %>
+    <%= strip_tags(event.description) %>
+  <% else %>
+    <%= truncate strip_tags(event.description), :length => 100 %>
+  <% end %>
+</p>
 <% if APP_CONFIG[:tags_enabled] %>
   <p><%= tag_icon(16) %> <span id="tags_<%=event.id%>"><%= render_tags event.tags %></span> <%= link_to_function "Edit", "showTagPopup(#{event.id})", :class => 'action' %></p>
 
