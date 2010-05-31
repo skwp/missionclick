@@ -24,6 +24,7 @@ function kickMap() {
 
     // 
     function addEvents(_events, temporal) {
+      if(_events)
         _events.each(function(_event) { addEvent(_event.event, temporal); });
     }
 

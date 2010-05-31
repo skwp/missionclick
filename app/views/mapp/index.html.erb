@@ -10,16 +10,11 @@
 <% content_for :extra_logo do %><span class='sub'>/mapp</span><% end %>
 
 <div class='center'>
-  <h1 class='center'>Mission Arts & Performance Project &mdash; Jun 5</h1>
+  <h1 class='center' style='font-size:18px'>Mission Arts & Performance Project &mdash; Jun 5</h1>
   <br/>
   <%= mapp_nav %>
 </div>
 <%= spacer %>
-
-<% rounded_corners do %>
-  <p style='font-size:18px'><strong>The Mapp Street Music, Dance, Madness Parade</strong> beginning at The Red Poppy art house at 7:30 will be an open jam session that will then travel around the mission from venue to venue, creating chaos, lunacy and belligerancy. 
-    Open to anyone who wants to play sing dance or just be strange.</p>
-<% end %>
 
 <div id='schedule_view' class='mapp_event_view' style='display:none'>
   <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
