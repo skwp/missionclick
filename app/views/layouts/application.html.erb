@@ -3,19 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <title><%= yield(:title) || "Your Guide to The SF Mission" %> | MissionClick</title>
-    <%= stylesheet_link_tag 'application', 'skins/environmental', 'connect_button' %>
-   
-    <% if @iphone %>
-      <link type="text/css" rel="stylesheet" href="/stylesheets/iphone.css">
-    <% end %>
 
-    <% unless @iphone %>
-      <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
-    <% end %>
+    <%= stylesheet_link_merged :base %>
+    <%= javascript_include_merged :base %>
 
+    <% if @iphone %><link type="text/css" rel="stylesheet" href="/stylesheets/iphone.css"><% end %>
+    <% unless @iphone %><%= fb_connect_javascript_tag(:lang => ::I18n.locale) %><% end %>
     <%= yield(:head) %>
-
-    <%= javascript_include_tag :defaults, 'devise.facebook_connectable', 'gmap', :cache => true %>
 
     <meta name="viewport" content="width=480; initial-scale=0.66, user-scalable=no" />
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>

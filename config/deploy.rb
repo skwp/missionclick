@@ -39,5 +39,11 @@ namespace :deploy do
   task :restart, :roles => :app do
     run "touch #{current_release}/tmp/restart.txt"
   end
+  
+  desc "Create asset packages for production" 
+  task :after_update_code, :roles => :app do
+    run %{ cd #{release_path} && rake asset:packager:build_all }
+  end
+
 end
 

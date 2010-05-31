@@ -1,0 +1,13 @@
+--- 
+javascripts: 
+- base: 
+  - prototype
+  - devise.facebook_connectable
+  - application
+  - gmap
+
+stylesheets: 
+- base: 
+  - application
+  - skins/environmental
+  - connect_button
