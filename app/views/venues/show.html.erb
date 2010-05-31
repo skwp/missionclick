@@ -1,10 +1,5 @@
 <% title @venue %>
-
-<% content_for(:head) do %>
-  <style type="text/css" media="screen">
-    #top_featured_section {display:none}
-  </style>
-<% end %>
+<% turn_off_top_featured_section %>
 
 <% content_for(:notice) do %>
   <div class='flash flash_notice'> 

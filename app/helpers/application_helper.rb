@@ -27,5 +27,15 @@ module ApplicationHelper
       tags.map do |t|
         "<span class='tag'>#{link_to t, events_path(:tag => t.name)}</span>"
       end.join(", ")
+    end
+
+  def turn_off_top_featured_section
+    content_for(:head) do 
+      %{
+      <style type="text/css" media="screen">
+       #top_featured_section {display:none}
+      </style>
+      }
+   end 
   end
 end
