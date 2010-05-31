@@ -20,9 +20,11 @@
           </strong>
           <%= render :partial => 'events/event_blurb', :locals => {:event => event} %>
         </td>
+      <% unless @iphone %>
         <td class='share'>
           <%= fb_share_button(event_url(event)) %>
         </td>
+      <% end %>
       </tr>
     <% end %>
   </table>

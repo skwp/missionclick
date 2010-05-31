@@ -7,9 +7,17 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
-#  before_filter :show_beta_screen
+  
+  before_filter :detect_iphone
+  before_filter :show_beta_screen
 
   protected
+
+  def detect_iphone
+    if params[:force_iphone] || request.user_agent.include?("iPhone") then 
+      @iphone = true
+    end
+  end
 
   # A simple way to prevent actions from being accessed by non-admins
   # Usage:

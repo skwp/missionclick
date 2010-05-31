@@ -4,10 +4,9 @@
   <head>
     <title><%= yield(:title) || "Your Guide to The SF Mission" %> | MissionClick</title>
     <%= stylesheet_link_tag 'application', 'skins/environmental', 'connect_button' %>
-    <% if params[:force_iphone] %>
+   
+    <% if @iphone %>
       <link type="text/css" rel="stylesheet" href="/stylesheets/iphone.css">
-    <% else %>
-      <link type="text/css" rel="stylesheet" media="only screen and (max-device-width: 480px)" href="/stylesheets/iphone.css">
     <% end %>
     
     <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
