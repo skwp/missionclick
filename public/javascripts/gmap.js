@@ -41,9 +41,13 @@ function kickMap() {
 
     // only one instance of infowindow :: jumps around markers
     var infowindow = new google.maps.InfoWindow();
+
+    // commented out by yan. makes the fucking thing jump 
+    /*
     google.maps.event.addListener(infowindow, 'closeclick', function() {
         map.fitBounds(bounds);      // repan after panning to fit infowindow
     });
+    */
     
     // infowindow content template + factory
     // TODO read from a separate file?
