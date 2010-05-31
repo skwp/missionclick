@@ -5,7 +5,7 @@
   <li><%=link_to venue.name, venue %> 
     <% if venue.events.today.size > 0 %>
       <span class='event_today_notice'><%= pluralize venue.events.today.count, 'event', 'events' %> today</span>
-    <% elsif venue.events_tomorrow.size > 0 %>
+    <% elsif venue.events.tomorrow.size > 0 %>
       <span class='event_tomorrow_notice'><%= pluralize venue.events.tomorrow.count, 'event', 'events' %> tomorrow </span>
     <% end %>
   </li>
