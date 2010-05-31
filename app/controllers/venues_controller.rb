@@ -1,4 +1,6 @@
 class VenuesController < ApplicationController
+  skip_before_filter :show_beta_screen
+  
   include EventsHelper
 
   require_admin :except => [:index, :show]
