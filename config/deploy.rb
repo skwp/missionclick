@@ -3,6 +3,7 @@ set :repository,  "git@github.com:skwp/missiondog.git"
 set :user, "missionclick"
 set :password, "m1ss10nd0g"
 set :use_sudo, true
+set :branch, ENV["BRANCH"] || 'master'
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
