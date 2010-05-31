@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100531043428) do
+ActiveRecord::Schema.define(:version => 20100531052801) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                            :null => false
@@ -79,6 +79,12 @@ ActiveRecord::Schema.define(:version => 20100531043428) do
   end
 
   add_index "fb_profiles", ["user_id"], :name => "index_fb_profiles_on_user_id"
+
+  create_table "invite_requests", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "mapp_participants", :force => true do |t|
     t.integer  "venue_id"

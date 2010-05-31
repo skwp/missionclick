@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   
   before_filter :detect_iphone
-  before_filter :show_beta_screen
+  before_filter :show_beta_screen if APP_CONFIG[:mapp_only_alpha]
 
   protected
 

@@ -12,6 +12,6 @@ module IconsHelper
   private
 
   def icon_tag(name, size=16, options={})
-    image_tag("#{ICON_SET}/#{size}x#{size}/#{name}.png", :class => "icon icon_#{size}", :alt => options[:alt])
+    image_tag("#{ICON_SET}/#{size}x#{size}/#{name}.png", :class => "icon icon_#{size}", :style => options[:style], :alt => options[:alt])
   end
 end

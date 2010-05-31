@@ -2,8 +2,16 @@
 <br/>
 <iframe src="http://www.facebook.com/plugins/like.php?href=http%253A%252F%252Fmissionclick.com&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:40px;" allowTransparency="true"></iframe>
 <% rounded_corners do %>
+
+  <% form_for InviteRequest.new do |f| %>
 <ul class='flat big'>
   <li><%= image_tag 'colorstroked/Twitter.png', :size => '48x48', :style => 'margin-bottom: -18px' %> Follow us on twitter: <a href="http://twitter.com/missionclick">@missionclick</a></li>
+  <br/>
+  <li><%= icon_tag 'locked', 48, :style => 'margin-bottom: -18px' %> Give us your email for an invite (we won't spam)
+    <%= f.text_field :email,  :style => "width:200px;font-size: 22px"  %>
+    <%= f.submit "Go!" %>
+</li>
 </ul>
 <br/>
+  <% end %>
 <% end %>
