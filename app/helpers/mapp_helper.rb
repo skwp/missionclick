@@ -5,13 +5,15 @@ module MappHelper
     time = "#{@mapp_date} #{time} PM"
     DateTime.parse(time)
   end
+
   def mapp_nav
     sched_active = params[:group] == 'schedule' ? '_active' : ''
     hourly_active = params[:group] == 'hourly' ? '_active' : ''
     venues_active = params[:group] == 'venues' ? '_active' : ''
 
-    link_to(image_tag("mapp/schedule#{sched_active}.png"), :group => "schedule") + " " + 
-    link_to(image_tag("mapp/by_hour#{hourly_active}.png"), :group => 'hourly') + " " +
-    link_to(image_tag("mapp/places#{venues_active}.png"), :group => 'venues') 
+    "<div id='mapp_nav'>" +
+    link_to_function(image_tag("mapp/schedule#{sched_active}.png", :id => 'schedule_button'), "Mapp.toggleView('schedule')") + " " +
+    link_to_function(image_tag("mapp/hourly#{hourly_active}.png", :id => 'hourly_button'), "Mapp.toggleView('hourly')") + " " +
+    link_to_function(image_tag("mapp/venues#{venues_active}.png", :id => 'venues_button'), "Mapp.toggleView('venues')") + "</div>"
   end
 end

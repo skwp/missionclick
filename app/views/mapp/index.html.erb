@@ -21,29 +21,19 @@
     Open to anyone who wants to play sing dance or just be strange.</p>
 <% end %>
 
-<% case params[:group]; when 'schedule' %>
+<div id='schedule_view' class='mapp_event_view' style='display:none'>
   <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
-<% when 'hourly' %>
-  <% last_events = nil %>
-  <% (1..11).each do |hour| %>
-    <% events_for_hour = @events.select{|e| e.going_on_at?(mapp_time(hour))} %>
-    <% if !events_for_hour.empty? && events_for_hour != last_events %>
-      <h1 class='bar'><%= hour %> PM</h1>
-      <% rounded_corners('gray', :no_top => true) do %>
-      <%= render :partial => 'events/event_list', :locals => {:events => events_for_hour} %>
-      <% end %>
-    <% end %>
-    <% last_events = events_for_hour %>
-  <% end %>
-<% when 'venues' %>
-  <% @venues.each do |venue| %>
-    <% events_by_venue = @events.select{|e| e.venue_id == venue.id} %>
-      <h1 class='bar'><%= link_to venue, venue_path(venue) %> <span class='weak'><%= venue.address_with_hint %></span></h1>
-    <% rounded_corners('gray', :no_top => true) do %>
-      <%= render :partial => 'events/event_list', :locals => {:events => events_by_venue} %>
-    <% end %>
-  <% end %>
+</div>
+<div id='hourly_view' class='mapp_event_view' style='display:none'>
+  <%= render :partial => 'mapp_hourly' %>
+</div>
+<div id='venues_view' class='mapp_event_view' style='display:none'>
+  <%= render :partial => 'mapp_venues' %>
+</div>
 
-<% end %>
-
+<script type="text/javascript" language="javascript" charset="utf-8">
+  //<![CDATA[
+  $('<%= params[:group] %>_view').show();
+//]]>
+</script>
 <p style='color:darkred'>Map of the MAPP brought to you by <%= link_to 'missionclick.com', root_path %></p>

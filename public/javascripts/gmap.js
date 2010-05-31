@@ -8,7 +8,7 @@ function kickMap() {
 
     // setup the map 
     var map = new google.maps.Map($("map_canvas"), {
-        zoom: 10,
+        zoom: 14,
         center: new google.maps.LatLng(37.77, -122.41),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,
