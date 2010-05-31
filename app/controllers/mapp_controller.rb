@@ -14,7 +14,11 @@ class MappController < ApplicationController
     js_hash = lambda { { :today => @events }.to_json }
     respond_to do |format|
       format.html
-      format.js { render :text => "var events = #{js_hash.call}" }
+      format.js {
+        resp = "var events = #{js_hash.call}" 
+        cache_page(resp, "/mapp.js") # hacky but a temporary solution to cache only the js list
+        render :text => resp
+      }
     end
   end
 

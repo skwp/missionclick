@@ -1,5 +1,11 @@
 <% title @venue %>
 
+<% content_for(:head) do %>
+  <style type="text/css" media="screen">
+    #top_featured_section {display:none}
+  </style>
+<% end %>
+
 <% content_for(:notice) do %>
   <div class='flash flash_notice'> 
     Is this your venue? <%= mail_to 'contact@missionclick.com', 'Claim it' %> to get your own custom site at <strong><%= @venue.name.parameterize %>.<%= request.host %></strong>! 
