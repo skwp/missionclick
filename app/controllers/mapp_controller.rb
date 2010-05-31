@@ -9,6 +9,7 @@ class MappController < ApplicationController
     @events = Event.scoped(:include => [:venue, :tags]).by_venues(@venues.map(&:id)).scoped(:conditions => ["start_time >= ? and (finish_time <= ? or finish_time is null)", DateTime.parse("Jun 5, 2010 10am PDT"), DateTime.parse("Jun 6, 2010 10am PDT")])
     @show_time_only = true
     @show_full_description = true
+    @hide_location_in_events = (params[:group] == 'venues')
   end
 
 end

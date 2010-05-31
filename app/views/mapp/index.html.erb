@@ -1,12 +1,13 @@
 <% title "MAPP: Mission Arts & Perfomance Project" %>
 <% content_for :top_featured_section do %>
-  <div id="map_canvas" border='1px solid #ddd' style="width:845px; height:181px; "></div>
+  <div id="map_canvas" border='1px solid #ddd'> </div>
 <% end %>
 <% content_for :extra_logo do %><span class='sub'>/MAPP</span><% end %>
-<h1>Mission Arts & Performance Project: June 5, 2010</h1>
-<p>Your Map of the MAPP brought to you by <%= link_to 'missionclick.com' %></p>
+  <h1>Mission Arts & Performance Project<br/>June 5, 2010</h1>
 
-<%= mapp_nav %>
+<div class='center'>
+  <%= mapp_nav %>
+</div>
 <%= spacer %>
 
 <% rounded_corners do %>
@@ -21,8 +22,8 @@
   <% (1..11).each do |hour| %>
     <% events_for_hour = @events.select{|e| e.going_on_at?(mapp_time(hour))} %>
     <% if !events_for_hour.empty? && events_for_hour != last_events %>
-      <h1>What's up at <%= hour %> PM</h1>
-      <% rounded_corners do %>
+      <h1 class='bar'><%= hour %> PM</h1>
+      <% rounded_corners('gray', :no_top => true) do %>
       <%= render :partial => 'events/event_list', :locals => {:events => events_for_hour} %>
       <% end %>
     <% end %>
@@ -31,10 +32,12 @@
 <% when 'venues' %>
   <% @venues.each do |venue| %>
     <% events_by_venue = @events.select{|e| e.venue_id == venue.id} %>
-    <h1><%= link_to venue, venue_path(venue) %></h1>
-    <% rounded_corners do %>
+      <h1 class='bar'><%= link_to venue, venue_path(venue) %> <span class='weak'><%= venue.address_with_hint %></span></h1>
+    <% rounded_corners('gray', :no_top => true) do %>
       <%= render :partial => 'events/event_list', :locals => {:events => events_by_venue} %>
     <% end %>
   <% end %>
 
 <% end %>
+
+<p>Map of the MAPP brought to you by <%= link_to 'missionclick.com' %></p>

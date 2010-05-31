@@ -5,20 +5,19 @@
   <table class='eventListing'>
     <% events.each do |event| %>     
       <tr>
-        <!-- td class='icon' valign='top'>
-          <%= image_tag("handdrawn/32x32/hint.png") %>
-          </td -->
-          <td style='width:140px'>
+        <td class='info'>
           <strong class='time'>
             <% if @show_time_only %>
-              <%= event.start_time.strftime("%l:%M%p") %> &mdash;
-              <%= event.finish_time && event.finish_time.strftime("%l:%M%p") || "Later"%>
+              <% if event.finish_time %>
+                <%= event.start_time.strftime("%l:%M%p") %> &mdash;
+                <%= event.finish_time.strftime("%l:%M%p") %>
+              <% else %>
+                <%= event.start_time.strftime("%l:%M%p") %>
+              <% end %>
             <% else %>
               <%= event.start_time.strftime("%a %b %d, %l:%M%p") %>
             <% end -%>
           </strong>
-        </td>
-        <td class='info'>
           <%= render :partial => 'events/event_blurb', :locals => {:event => event} %>
         </td>
         <td class='share'>

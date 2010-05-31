@@ -11,7 +11,8 @@ function kickMap() {
         zoom: 10,
         center: new google.maps.LatLng(37.77, -122.41),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        scrollwheel: false
+        scrollwheel: false,
+        mapTypeControl: false
     });
     var bounds = new google.maps.LatLngBounds();
 

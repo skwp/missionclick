@@ -35,7 +35,7 @@ padding:0px 71px 0px 0px;
 #logo_container h1
 {
 float:right;
-font-family:Arial, Helvetica, sans-serif;
+font-family:Helvetica, Arial, sans-serif;
 font-size:53px;
 text-align:right;
 font-weight:bold;
@@ -351,9 +351,13 @@ div#tabs1 span img.icon { margin-bottom: -3px }
 table.eventListing { width: 100% }
 table.eventListing td.icon { width: 32px }
 table.eventListing td.share { width: 100px }
-table.eventListing strong.time { color: darkgreen } 
+table.eventListing strong.time { color: #333} 
+table.eventListing td.time { width: 140px }
+table.eventListing { border-spacing: 0px 10px;}
 
 div.event_list_by_day h2 {
   margin-top: 18px;
   color: darkred;
-}
+}  
+
+span.weak { color: #666 }

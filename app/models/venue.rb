@@ -17,6 +17,10 @@ class Venue < ActiveRecord::Base
     URI.parse(facebook_fan_page).path.split("/").last
   end
 
+  def address_with_hint
+    address + (address_hint ? " #{address_hint}" : "")
+  end
+
   private
   
   def geocode_address

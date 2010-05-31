@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
-  before_filter :show_beta_screen
+#  before_filter :show_beta_screen
 
   protected
 

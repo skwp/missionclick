@@ -1,5 +1,5 @@
 <h1><%= link_to event.title, event_path(event) %></h1>
-<% unless @venue -%>at <%= link_to event.venue, event.venue %> (<%= event.venue.address %><%= " " + event.venue.address_hint if event.venue.address_hint%>)<% end-%>
+<% unless @venue || @hide_location_in_events -%>at <%= link_to event.venue, event.venue %> (<%= event.venue.address_with_hint %>)<% end-%>
 <%= clear %>
 <p class='withSubheading'>
   <% if @show_full_description %>
