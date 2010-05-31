@@ -36,7 +36,7 @@ padding:0px 71px 0px 0px;
 {
 float:right;
 font-family:Helvetica, Arial, sans-serif;
-font-size:51px;
+font-size:48px;
 text-align:right;
 font-weight:bold;
 margin:0px;
@@ -361,3 +361,4 @@ div.event_list_by_day h2 {
 }  
 
 span.weak { color: #666 }
+h1.center { text-align:center }

@@ -10,6 +10,12 @@ class MappController < ApplicationController
     @show_time_only = true
     @show_full_description = true
     @hide_location_in_events = (params[:group] == 'venues')
+
+    js_hash = lambda { { :today => @events }.to_json }
+    respond_to do |format|
+      format.html
+      format.js { render :text => "var events = #{js_hash.call}" }
+    end
   end
 
 end

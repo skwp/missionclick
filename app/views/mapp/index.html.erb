@@ -1,11 +1,16 @@
 <% title "MAPP: Mission Arts & Perfomance Project" %>
+
+  <% content_for :head do %>
+      <%= javascript_include_tag mapp_path(:format => 'js') %>
+  <% end %>
+
 <% content_for :top_featured_section do %>
   <div id="map_canvas" border='1px solid #ddd'> </div>
 <% end %>
-<% content_for :extra_logo do %><span class='sub'>/MAPP</span><% end %>
+<% content_for :extra_logo do %><span class='sub'>/mapp</span><% end %>
 
 <div class='center'>
-  <h1 style='margin: 0 auto'>Mission Arts & Performance Project &mdash; Jun 5</h1>
+  <h1 class='center'>Mission Arts & Performance Project &mdash; Jun 5</h1>
   <br/>
   <%= mapp_nav %>
 </div>
