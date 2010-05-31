@@ -9,7 +9,7 @@ function kickMap() {
     // setup the map 
     var map = new google.maps.Map($("map_canvas"), {
         zoom: 14,
-        center: new google.maps.LatLng(37.77, -122.41),
+        center: new google.maps.LatLng(37.757, -122.41),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         scrollwheel: false,
         mapTypeControl: false
@@ -77,6 +77,10 @@ function kickMap() {
     ['today', 'tomorrow', 'later'].each(function(key) {
         addEvents(events[key], key);
     });
-    map.fitBounds(bounds);
+
+    // commented out by yan - it's a hack but at least it won't jump 
+    // to god knows where. the default lat/lng set above is sufficient
+    // for mapp at least
+    //    map.fitBounds(bounds);
 
 }
