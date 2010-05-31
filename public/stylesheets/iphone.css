@@ -5,6 +5,9 @@
 #body_container #footer_container { width: 480px }
 #footer_container #footer { width: 480px }
 
+div#content_container {
+  padding: 9px 15px;
+}
 p { font-size: 18px; }
 table.eventListing strong.time { font-size: 22px } 
 table.eventListing h1 { font-size: 22px }
