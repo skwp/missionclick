@@ -4,12 +4,12 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :venue %><br />
+    <%= f.collection_select :venue_id, Venue.all, :id, :name %>
   </p>
   <p>
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
   </p>
   <p>
     <%= f.label :start_time %><br />

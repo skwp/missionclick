@@ -8,10 +8,6 @@
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </p>
-  <p>
     <%= f.label :start_time %><br />
     <%= f.datetime_select :start_time %>
   </p>
@@ -28,5 +24,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back to event list', mapp_path %> 

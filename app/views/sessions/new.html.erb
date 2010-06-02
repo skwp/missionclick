@@ -1,6 +1,7 @@
 <style type="text/css" media="screen">
   .facebook_login_box { width: 330px; margin: 18px auto; }
 </style>
+<% if APP_CONFIG[:enable_facebook_connect] %>
 <div class='facebook_login_box'>
 <% rounded_corners do %> 
   <h3>Have a Facebook account?</h3>
@@ -9,7 +10,7 @@
   <% end %>
   <%= spacer %>
 </div>
-
+<% end %>
 <div style='float:left; width: 400px;'>
 <% form_for resource_name, resource, :url => session_path(resource_name) do |f| -%>
   <fieldset>

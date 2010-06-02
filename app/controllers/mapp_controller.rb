@@ -11,6 +11,8 @@ class MappController < ApplicationController
     @show_full_description = true
     @hide_location_in_events = (params[:group] == 'venues')
 
+    @editable = true if session[:mapp_admin]
+
     js_hash = lambda { { :today => @events }.to_json }
     respond_to do |format|
       format.html

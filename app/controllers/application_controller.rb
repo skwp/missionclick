@@ -41,7 +41,15 @@ class ApplicationController < ActionController::Base
   private
 
   def show_beta_screen
-    render :template => 'shared/beta'
+    render :template => 'shared/beta' #unless current_user && current_user.admin?
+  end
+
+  def beta_screen_or_mapp_admin
+    if session[:mapp_admin] && action_name != 'index'
+      @editable = true
+    else
+      render :template => 'shared/beta'
+    end
   end
 
   def return_error_unless_admin

@@ -17,11 +17,19 @@
   <% end %>
 
   <ul class='flat'>
-    <li class='street-address'><%= @venue.address %></li>
+    <% unless @venue.address.blank? %>
+      <li class='street-address'><%= @venue.address %></li>
+    <% end %>
+    <% unless @venue.city.blank? %>
     <li><span class='locality'><%= @venue.city %></span>, <span class='region'><%= @venue.state %></span> <span class='postal-code'><%= @venue.zip %></span></li>
+    <% end %>
     <% if @venue.phone %><li class='tel'><%= @venue.phone %></li><% end %>
-    <li><%= link_to "Homepage", @venue.url, :class => 'url' %></li>
-    <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
+    <% unless @venue.url.blank? %>
+      <li><%= link_to "Homepage", @venue.url, :class => 'url' %></li>
+    <% end %>
+    <% unless @venue.ical_feed_url.blank? %> 
+      <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
+    <% end -%>
   </ul>
 </div>
 

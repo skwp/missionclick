@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   include EventsHelper
+  skip_before_filter :show_beta_screen
+  before_filter :beta_screen_or_mapp_admin
 
   # GET /events
   # GET /events.xml
@@ -33,6 +35,7 @@ class EventsController < ApplicationController
   # GET /events/new.xml
   def new
     @event = Event.new
+    @event.venue_id ||= params[:venue_id].to_i
 
     respond_to do |format|
       format.html # new.html.erb
@@ -86,7 +89,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(events_url) }
+      format.html { redirect_to(mapp_url) }
       format.xml  { head :ok }
     end
   end

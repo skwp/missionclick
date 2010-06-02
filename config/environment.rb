@@ -9,6 +9,7 @@ require 'open-uri'
 
 APP_CONFIG = {
   :tags_enabled => false, 
+  :enable_facebook_connect => false,
   :mapp_only_alpha => true # disables everything except /mapp
 }
 
