@@ -26,15 +26,15 @@ var Mapp = {
   //toggleView('schedule') = show the element 'schedule_view' and hide other
   // divs matching 'div.mapp_event_view'. also toggle the schedule_button active/inactive
   toggleView: function(tab_to_show) {
+    $$('div#mapp_nav img').each(function(b) {
+      b.src = b.src.gsub("_active","");
+    });
+    $(tab_to_show + '_button').src = $(tab_to_show + '_button').src.gsub(".png","_active.png");
     $$('div.mapp_event_view').each(function(e) {
         if (e.id == tab_to_show + '_view')
           e.show();
         else
           e.hide();
     });
-    $$('div#mapp_nav img').each(function(b) {
-      b.src = b.src.gsub("_active","");
-    });
-    $(tab_to_show + '_button').src = $(tab_to_show + '_button').src.gsub(".png","_active.png");
   }
 }
