@@ -13,8 +13,8 @@ module MappHelper
 
     "<div id='mapp_nav'>" +
     link_to(image_tag("mapp/schedule#{sched_active}.png"), :group => "schedule") + " " + 
-    link_to(image_tag("mapp/hourly#{hourly_active}.png"), :group => 'hourly') + " " +
-    link_to(image_tag("mapp/venues#{venues_active}.png"), :group => 'venues')  + "</div>"
+    link_to(image_tag("mapp/venues#{venues_active}.png"), :group => 'venues')  + " " +
+    link_to(image_tag("mapp/hourly#{hourly_active}.png"), :group => 'hourly') + "</div>"
   
   end
 end
