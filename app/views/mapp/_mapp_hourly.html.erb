@@ -1,3 +1,4 @@
+<% @show_full_description = false %>
 <% last_events = nil %>
 <% (1..11).each do |hour| %>
   <% events_for_hour = @events.select{|e| e.going_on_at?(mapp_time(hour))} %>

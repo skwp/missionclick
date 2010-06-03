@@ -2,6 +2,12 @@ body {
   color: #111;
 }
 
+ul li { 
+  margin-left: 20px;
+}
+ul {
+  margin-bottom: 10px;
+}
 a, a:hover, a:visited { color:#1B5CCD; text-decoration: none }
 a.action { text-decoration: underline }
 
@@ -87,7 +93,12 @@ div.spacer { margin-bottom:18px; height:1px; clear:both; overflow:hidden }
 
 ul.flat, ul.form { 
   list-style-type: none;
+  margin: 0;
 }
+ul.flat li {
+  margin: 0;
+}
+
 
 .big { font-size: 18px; }
 
@@ -179,9 +190,3 @@ h1.bar {
 background: #bbb; color: white; padding: 2px 4px;
 }
 
-ul li { 
-  margin-left: 20px;
-}
-ul {
-  margin-bottom: 10px;
-}
