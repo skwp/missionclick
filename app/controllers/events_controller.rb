@@ -8,9 +8,7 @@ class EventsController < ApplicationController
 
   def toggle_star
     params[:id] = params[:id].to_i
-    cookies[:stars] || ""
-
-    star_list = cookies[:stars].split(",")
+    star_list = (cookies[:stars] || "").split(",")
 
     respond_to do |format|
       format.js { 
