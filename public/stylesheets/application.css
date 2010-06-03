@@ -178,3 +178,10 @@ height:181px;
 h1.bar {
 background: #bbb; color: white; padding: 2px 4px;
 }
+
+ul li { 
+  margin-left: 20px;
+}
+ul {
+  margin-bottom: 10px;
+}
