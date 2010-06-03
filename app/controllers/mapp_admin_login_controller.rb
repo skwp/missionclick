@@ -7,12 +7,16 @@ class MappAdminLoginController < ApplicationController
     if request.post?
       if params[:password] == 'mapperos'
         session[:mapp_admin] = true
-        flash[:notice] = "You are now able to edit events."
         redirect_to mapp_path
       else
         flash.now[:notice] = "Sorry, wrong password. Email contact@missionclick.com for editing rights."
       end
     end
+  end
 
+  def logout
+    session[:mapp_admin] = false
+    flash[:notice] = "You are now logged out of editing mode."
+    redirect_to mapp_path
   end
 end
