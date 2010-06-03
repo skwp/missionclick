@@ -21,6 +21,10 @@
 </div>
 <%= spacer %>
 
+<% if @editable%>
+  <%= link_to "#{icon_tag 'add', 16} Add Venue", new_venue_path %>
+<% end %>
+
 <div id='schedule_view' class='mapp_event_view' style='display:none'>
   <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
 </div>

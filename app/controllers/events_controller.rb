@@ -52,6 +52,7 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
+    @event.finish_time = nil if params[:no_finish_time]
 
     respond_to do |format|
       if @event.save
@@ -69,9 +70,10 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
-
+    @event.attributes = params[:event] 
+    @event.finish_time = nil if params[:no_finish_time]
     respond_to do |format|
-      if @event.update_attributes(params[:event])
+      if @event.save
         flash[:notice] = 'Event was successfully updated.'
         format.html { redirect_to(@event) }
         format.xml  { head :ok }

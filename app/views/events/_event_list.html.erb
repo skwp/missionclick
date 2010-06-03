@@ -1,3 +1,9 @@
+
+<% if @editable %>
+  <%= link_to "#{icon_tag 'add', 16} Add Event", new_event_path(:venue_id => @venue) %>
+<% end %>
+<%= spacer %>
+
 <% if events.blank? %>
   <p>Nothin yet, check back later...</p>
 <% else %>
@@ -33,11 +39,3 @@
   </table>
   <% end %>
 
-<% if @editable %>
-  <%= link_to "#{icon_tag 'add', 16} Add Event", new_event_path(:venue_id => @venue) %>
-  <% unless @venue %>
-  <br/>
-  <%= link_to "#{icon_tag 'add', 16} Add Venue", new_venue_path %>
-  <% end %>
-<% end %>
-<%= spacer %>

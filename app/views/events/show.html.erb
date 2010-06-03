@@ -5,6 +5,12 @@
 <p> <b>Ends</b> <%=h @event.finish_time && @event.finish_time.to_s(:long) || "Later"%> </p>
 
 <% if @editable %>
-  <%= link_to 'Edit Event Details', edit_event_path(@event) %>
+  <p><%= link_to 'Edit Event Details', edit_event_path(@event) %></p>
 <% end %>
-
+<p>
+<% if MappParticipant.exists?(:venue_id => @event.venue_id) %>
+  <%= link_to "Back to MAPP", params[:return_to] || mapp_path %>
+<% else %>
+  <%= link_to "Back to Events", params[:return_to] || events_path %>
+<% end %>
+</p>

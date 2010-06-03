@@ -16,6 +16,9 @@
     <%= f.datetime_select :finish_time %>
   </p>
   <p>
+    OR <%= check_box_tag :no_finish_time, 1, @event.finish_time.nil? %> <label for='no_finish_time'>This event has no known finish time.</label>
+  </p>
+  <p>
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </p>
