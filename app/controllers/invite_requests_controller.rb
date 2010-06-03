@@ -4,6 +4,6 @@ class InviteRequestsController < ApplicationController
   def create
     InviteRequest.create(params[:invite_request])
     flash[:notice] = "Thanks! We'll be in touch soon."
-    redirect_to root_path
+    redirect_to :back
   end
 end

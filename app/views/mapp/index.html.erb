@@ -36,5 +36,9 @@
   <%= render :partial => 'mapp_venues' %>
 <% end %>
 
-<p style='color:darkred'>MAPP brought to you by <%= link_to 'sfmapp.com', "http://sfmapp.com"%></p>
-<p style='color:darkred'>Map of the MAPP brought to you by <%= link_to 'missionclick.com', root_path %></p>
+
+<% rounded_corners do %>
+<p class='big' style='color:darkred'>MAPP brought to you by <%= link_to 'sfmapp.com', "http://sfmapp.com"%></p>
+<p class='big' style='color:darkred'>Map of the MAPP brought to you by <%= link_to 'missionclick.com', root_path %></p>
+  <%= render :partial => 'shared/invite_request_form' %> 
+<% end -%>
