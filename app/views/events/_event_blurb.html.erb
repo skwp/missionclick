@@ -3,7 +3,7 @@
 <%= clear %>
 <p class='withSubheading'>
   <% if @show_full_description %>
-    <%= strip_tags(event.description) %>
+    <%= event.description %>
   <% else %>
     <%= truncate strip_tags(event.description), :length => 100 %>
   <% end %>
