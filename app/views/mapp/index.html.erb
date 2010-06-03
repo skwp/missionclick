@@ -25,20 +25,13 @@
   <%= link_to "#{icon_tag 'add', 16} Add Venue", new_venue_path %>
 <% end %>
 
-<div id='schedule_view' class='mapp_event_view' style='display:none'>
+<% if params[:group] == 'schedule' %>
   <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
-</div>
-<div id='hourly_view' class='mapp_event_view' style='display:none'>
+<% elsif params[:group] == 'hourly' %>
   <%= render :partial => 'mapp_hourly' %>
-</div>
-<div id='venues_view' class='mapp_event_view' style='display:none'>
+<% elsif params[:group] == 'venues' %>
   <%= render :partial => 'mapp_venues' %>
-</div>
+<% end %>
 
-<script type="text/javascript" language="javascript" charset="utf-8">
-  //<![CDATA[
-  $('<%= params[:group] %>_view').show();
-//]]>
-</script>
 <p style='color:darkred'>MAPP brought to you by <%= link_to 'sfmapp.com', "http://sfmapp.com"%></p>
 <p style='color:darkred'>Map of the MAPP brought to you by <%= link_to 'missionclick.com', root_path %></p>

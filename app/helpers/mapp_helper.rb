@@ -12,8 +12,9 @@ module MappHelper
     venues_active = params[:group] == 'venues' ? '_active' : ''
 
     "<div id='mapp_nav'>" +
-    link_to_function(image_tag("mapp/schedule#{sched_active}.png", :id => 'schedule_button'), "Mapp.toggleView('schedule')") + " " +
-    link_to_function(image_tag("mapp/hourly#{hourly_active}.png", :id => 'hourly_button'), "Mapp.toggleView('hourly')") + " " +
-    link_to_function(image_tag("mapp/venues#{venues_active}.png", :id => 'venues_button'), "Mapp.toggleView('venues')") + "</div>"
+    link_to(image_tag("mapp/schedule#{sched_active}.png"), :group => "schedule") + " " + 
+    link_to(image_tag("mapp/hourly#{hourly_active}.png"), :group => 'hourly') + " " +
+    link_to(image_tag("mapp/venues#{venues_active}.png"), :group => 'venues')  + "</div>"
+  
   end
 end
