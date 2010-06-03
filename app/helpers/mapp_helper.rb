@@ -10,11 +10,13 @@ module MappHelper
     sched_active = params[:group] == 'schedule' ? '_active' : ''
     hourly_active = params[:group] == 'hourly' ? '_active' : ''
     venues_active = params[:group] == 'venues' ? '_active' : ''
+    starred_active = params[:group] == 'starred' ? '_active' : ''
 
     "<div id='mapp_nav'>" +
     link_to(image_tag("mapp/schedule#{sched_active}.png"), :group => "schedule") + " " + 
     link_to(image_tag("mapp/venues#{venues_active}.png"), :group => 'venues')  + " " +
-    link_to(image_tag("mapp/hourly#{hourly_active}.png"), :group => 'hourly') + "</div>"
+    link_to(image_tag("mapp/hourly#{hourly_active}.png"), :group => 'hourly') + " " +
+    link_to(image_tag("mapp/starred#{starred_active}.png"), :group => 'starred') + "</div>"
   
   end
 end

@@ -1,7 +1,36 @@
 class EventsController < ApplicationController
   include EventsHelper
+  
   skip_before_filter :show_beta_screen
-  before_filter :beta_screen_or_mapp_admin
+  before_filter :beta_screen_or_mapp_admin, :except => [:toggle_star]
+
+  cache_sweeper :mapp_sweeper, :only => [:create, :update, :destroy]
+
+  def toggle_star
+    params[:id] = params[:id].to_i
+    cookies[:stars] || ""
+
+    star_list = cookies[:stars].split(",")
+
+    respond_to do |format|
+      format.js { 
+        render :update do |page|
+          logger.info "HERE IS THE COOKIE JAR #{star_list.inspect}"
+          if star_list.include?(params[:id].to_s)
+            star_list.delete(params[:id].to_s)
+            page["star_#{params[:id]}"].src = full_icon_src("star",24)
+            logger.info "Unstarred: #{params[:id]}"
+          else
+            star_list << params[:id].to_s
+            page["star_#{params[:id]}"].src = full_icon_src("star_yellow",24)
+            logger.info "Starred: #{params[:id]}"
+          end
+
+          cookies[:stars] = star_list.join(",")
+        end
+      }
+    end
+  end
 
   # GET /events
   # GET /events.xml

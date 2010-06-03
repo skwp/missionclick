@@ -28,3 +28,4 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :en
 end
 
+ActionController::Base.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"

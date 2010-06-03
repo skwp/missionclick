@@ -9,9 +9,15 @@ module IconsHelper
   def delete_icon(size=24); icon_tag('remove', size, 'remove'); end
   def tag_icon(size=24); icon_tag('tag', size, 'tag'); end
 
-  private
-
   def icon_tag(name, size=16, options={})
-    image_tag("#{ICON_SET}/#{size}x#{size}/#{name}.png", :class => "icon icon_#{size}", :style => options[:style], :alt => options[:alt])
+    image_tag(icon_src(name,size), options.merge(:class => "#{options[:class]} icon icon_#{size}"))
+  end
+
+  def icon_src(name, size=16)
+    "#{ICON_SET}/#{size}x#{size}/#{name}.png"
+  end
+
+  def full_icon_src(name, size=16)
+    "/images/#{icon_src(name,size)}"
   end
 end

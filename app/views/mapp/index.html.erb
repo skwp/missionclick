@@ -1,4 +1,4 @@
-<% title "MAPP: Mission Arts & Perfomance Project" %>
+<% title "MAPP: Mission Arts & Perfomance Project Schedule" %>
 
 
 <% if @iphone %>
@@ -24,21 +24,44 @@
   <iframe class='center' src="http://www.facebook.com/plugins/like.php?href=http%253A%252F%252Fmissionclick.com/mapp&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; display:block; margin: 10px auto 0 auto; height:80px;" allowTransparency="true"></iframe>
 <% end %>
 
+<% cache "mapp/#{params[:group]}/#{@iphone==true}/#{@editable==true}" do %>
+  <% if params[:group] == 'schedule' %>
+    <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
+  <% elsif params[:group] == 'hourly' %>
+    <%= render :partial => 'mapp_hourly' %>
+  <% elsif params[:group] == 'venues' %>
+    <%= render :partial => 'mapp_venues' %>
+  <% end %>
+<% end %>
+
+<%# this should not be cached; it's per-user %>
+<% if params[:group] == 'starred' %>
+  <% rounded_corners do %>
+    <p class='big'>Bookmark interesting events by clicking the <%= icon_tag 'star',24 %> and they will show up on this page.</p>
+  <% end %>
+  <%= render :partial => 'events/event_list', :locals => {:events => @starred_events} %>
+<% end %>
+
 <% if @editable%>
   <%= link_to "#{icon_tag 'add', 16} Add Venue", new_venue_path %>
+  <%= spacer %>
 <% end %>
-
-<% if params[:group] == 'schedule' %>
-  <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
-<% elsif params[:group] == 'hourly' %>
-  <%= render :partial => 'mapp_hourly' %>
-<% elsif params[:group] == 'venues' %>
-  <%= render :partial => 'mapp_venues' %>
-<% end %>
-
 
 <% rounded_corners do %>
 <p class='big' style='color:darkred'>MAPP brought to you by <%= link_to 'sfmapp.com', "http://sfmapp.com"%></p>
 <p class='big' style='color:darkred'>Map of the MAPP brought to you by <%= link_to 'missionclick.com', root_path %></p>
   <%= render :partial => 'shared/invite_request_form' %> 
 <% end -%>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+//<![CDATA[
+// since all events are loaded from cache, we apply known stars on page load
+
+document.observe("dom:loaded", function() {
+  starredEvents = unescape(readCookie("stars")).split(",");
+  starredEvents.each(function(event_id) {
+      $('star_' + event_id).src = "/images/handdrawn/24x24/star_yellow.png";
+      });
+});
+//]]>
+</script>
