@@ -43,7 +43,7 @@ module ApplicationHelper
    width=nil
    height=50
    %{
-   <iframe class='#{css_class}' src="http://www.facebook.com/plugins/like.php?href=<%=CGI.escape(request.request_uri)%>&amp;layout=standard&amp;show_faces=false&amp;width=#{width}&amp;action=like&amp;font&amp;colorscheme=light&amp;height=#{height}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:#{width}px; display:block; margin: 10px auto 0 auto; height:#{height}px;" allowTransparency="true"></iframe>
+   <iframe class='#{css_class}' src="http://www.facebook.com/plugins/like.php?href=#{CGI.escape(request.request_uri)}&amp;layout=standard&amp;show_faces=false&amp;width=#{width}&amp;action=like&amp;font&amp;colorscheme=light&amp;height=#{height}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:#{width}px; display:block; margin: 10px auto 0 auto; height:#{height}px;" allowTransparency="true"></iframe>
    } unless @iphone
   end
 
