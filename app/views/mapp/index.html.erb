@@ -14,12 +14,6 @@
 
 <% content_for :extra_logo do %><span class='sub'>/mapp</span><% end %>
 
-<% if session[:mapp_admin] %>
-  <% content_for :notice do %>
-    <div class='flash flash_notice'>You are logged in as a MAPP editor. <%= link_to "Logout", mapp_admin_logout_path %></div>
-  <% end %>
-<% end %>
-
 <div class='center'>
   <h1 class='center' style='font-size:18px'>Welcome to the MAPP &mdash; June 5, 2010</h1>
   <br/>
@@ -29,6 +23,10 @@
 <% unless @iphone %>
   <iframe class='center' src="http://www.facebook.com/plugins/like.php?href=http%253A%252F%252Fmissionclick.com/mapp&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; display:block; margin: 10px auto 0 auto; height:80px;" allowTransparency="true"></iframe>
 <% else %>
+  <%= spacer %>
+<% end %>
+
+<% if @editable%> <%= link_to "#{icon_tag 'add', 16} Add Venue", new_venue_path %>
   <%= spacer %>
 <% end %>
 
@@ -50,10 +48,6 @@
   <%= render :partial => 'events/event_list', :locals => {:events => @starred_events} %>
 <% end %>
 
-<% if @editable%>
-  <%= link_to "#{icon_tag 'add', 16} Add Venue", new_venue_path %>
-  <%= spacer %>
-<% end %>
 
 <% rounded_corners do %>
 <p class='big' style='color:darkred'>MAPP brought to you by <%= link_to 'sfmapp.com', "http://sfmapp.com"%></p>

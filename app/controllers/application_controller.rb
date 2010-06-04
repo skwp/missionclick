@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   
   before_filter :detect_iphone
+  before_filter :check_mapp_admin
   before_filter :show_beta_screen if APP_CONFIG[:mapp_only_alpha]
 
   protected
@@ -44,10 +45,15 @@ class ApplicationController < ActionController::Base
     render :template => 'shared/beta' #unless current_user && current_user.admin?
   end
 
-  def beta_screen_or_mapp_admin
-    if session[:mapp_admin] && action_name != 'index'
+  def check_mapp_admin
+    if session[:mapp_admin]
       @editable = true
-    else
+      @mapp_admin = true
+    end
+  end
+
+  def beta_screen_or_mapp_admin
+    if !@mapp_admin 
       render :template => 'shared/beta'
     end
   end

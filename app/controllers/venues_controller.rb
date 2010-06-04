@@ -1,6 +1,8 @@
 class VenuesController < ApplicationController
   skip_before_filter :show_beta_screen
   before_filter :beta_screen_or_mapp_admin, :except => [:show]
+  
+  cache_sweeper :mapp_sweeper, :only => [:create, :update, :destroy]
 
   include EventsHelper
 

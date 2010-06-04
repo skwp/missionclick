@@ -10,12 +10,6 @@
 <div class="vcard">
   
   <h1 class='fn'><%= @venue %></h1>
-  <%= left_fb_like_button %>
-  <% editor_content(@venue) do %>
-    <div class='rightBox'>
-      <%= link_to "#{settings_icon} Edit", edit_venue_path(@venue) %> <%= link_to "#{delete_icon} Delete", @venue, :confirm => 'Are you sure?', :method => :delete %>
-    </div>
-  <% end %>
 
   <ul class='flat'>
     <% unless @venue.address.blank? %>
@@ -32,6 +26,10 @@
       <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
     <% end -%>
   </ul>
+  <%= left_fb_like_button %>
+  <% editor_content(@venue) do %>
+    <%= link_to "#{settings_icon} Edit Venue", edit_venue_path(@venue) %> <%= link_to "#{delete_icon} Delete", @venue, :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
 </div>
 
 <% unless @venue.twitter_username.blank? %>
@@ -46,3 +44,5 @@
 <%= spacer %>
 
 <%= render :partial => 'events/event_list_by_day' %>
+
+

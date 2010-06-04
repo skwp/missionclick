@@ -20,6 +20,12 @@
   <body> 
     <%= init_fb_connect :XFBML, :js => :prototype %>
 
+    <% if session[:mapp_admin] %>
+      <% content_for :notice do %>
+        <div class='flash flash_notice'>You are logged in as a MAPP editor. <%= link_to "Logout", mapp_admin_logout_path %></div>
+      <% end %>
+    <% end %>
+
     <div id="body_container">
       <div id="top_container">
         <div id="logo_container">
