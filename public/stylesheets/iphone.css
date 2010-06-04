@@ -11,4 +11,5 @@ div#content_container {
 p { font-size: 18px; }
 table.eventListing strong.time { font-size: 22px } 
 table.eventListing h1 { font-size: 22px }
+h2 { font-size: 18px }
 table.eventListing td.time { width: 200px }

@@ -28,6 +28,8 @@
 
 <% unless @iphone %>
   <iframe class='center' src="http://www.facebook.com/plugins/like.php?href=http%253A%252F%252Fmissionclick.com/mapp&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; display:block; margin: 10px auto 0 auto; height:80px;" allowTransparency="true"></iframe>
+<% else %>
+  <%= spacer %>
 <% end %>
 
 <% cache "mapp/#{params[:group]}/#{@iphone==true}/#{@editable==true}" do %>
