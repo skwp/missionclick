@@ -39,7 +39,20 @@ module ApplicationHelper
    end 
  end
 
- def google_map_url(full_address)
-  "http://maps.google.com?q=#{CGI.escape(full_address)}"
- end
+ def fb_like_button_for_page(css_class='')
+   %{
+   <iframe class='#{css_class}' src="http://www.facebook.com/plugins/like.php?href=<%=CGI.escape(request.request_uri)%>&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:350px; display:block; margin: 10px auto 0 auto; height:80px;" allowTransparency="true"></iframe>
+   } unless @iphone
+  end
+
+  def left_fb_like_button
+    %{
+    #{fb_like_button_for_page('left')}
+    #{clear}
+    } unless @iphone
+  end
+
+  def google_map_url(full_address)
+    "http://maps.google.com?q=#{CGI.escape(full_address)}"
+  end
 end

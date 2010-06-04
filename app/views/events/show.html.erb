@@ -1,13 +1,16 @@
 <h1><%=h @event.title %></h1>
+<%= left_fb_like_button %>
 <p>at <%= link_to @event.venue, venue_path(@event.venue) %></p>
 <p><b>Description:</b> <%= @event.description %></p>
 <p> <b>Starts</b> <%=h @event.start_time.to_s(:long) %> </p>
 <p> <b>Ends</b> <%=h @event.finish_time && @event.finish_time.to_s(:long) || "Later"%> </p>
 
+
 <% if @editable %>
   <p><%= link_to 'Edit Event Details', edit_event_path(@event) %></p>
 <% end %>
 <p>
+
 <% if MappParticipant.exists?(:venue_id => @event.venue_id) %>
   <%= link_to "Back to MAPP", params[:return_to] || mapp_path %>
 <% else %>

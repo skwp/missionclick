@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   include EventsHelper
   
   skip_before_filter :show_beta_screen
-  before_filter :beta_screen_or_mapp_admin, :except => [:toggle_star]
+  before_filter :beta_screen_or_mapp_admin, :except => [:toggle_star, :show]
 
   cache_sweeper :mapp_sweeper, :only => [:create, :update, :destroy]
 
