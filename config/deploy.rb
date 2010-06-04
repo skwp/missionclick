@@ -37,6 +37,7 @@ namespace :deploy do
 
   desc "Restart Application"
   task :restart, :roles => :app do
+    run "rm -rf #{current_release}/tmp/cache/*" # cleanup cache
     run "touch #{current_release}/tmp/restart.txt"
   end
   
