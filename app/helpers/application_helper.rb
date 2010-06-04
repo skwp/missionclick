@@ -37,5 +37,9 @@ module ApplicationHelper
       </style>
       }
    end 
-  end
+ end
+
+ def google_map_url(full_address)
+  "http://maps.google.com?q=#{CGI.escape(full_address)}"
+ end
 end

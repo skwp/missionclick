@@ -18,7 +18,7 @@
 
   <ul class='flat'>
     <% unless @venue.address.blank? %>
-      <li class='street-address'><%= @venue.address %></li>
+      <li class='street-address'><%= link_to icon_tag('map',16) + ' ' + @venue.address, google_map_url(@venue.full_address) %></li>
     <% end %>
     <% unless @venue.city.blank? %>
     <li><span class='locality'><%= @venue.city %></span>, <span class='region'><%= @venue.state %></span> <span class='postal-code'><%= @venue.zip %></span></li>

@@ -1,6 +1,9 @@
-
-<h1><%= link_to event.title, event_path(event) %></h1>
-<% unless @venue || @hide_location_in_events -%>at <%= link_to event.venue, event.venue %> (<%= event.venue.address_with_hint %>)<% end-%>
+<% if @editable %>
+  <h1><%= link_to event.title, event_path(event) %></h1>
+<% else %>
+  <h1><%= event.title %></h1>
+<% end %>
+<% unless @venue || @hide_location_in_events -%>at <%= link_to event.venue, event.venue %> &mdash; <%= link_to icon_tag('map',16) + ' ' +event.venue.address_with_hint, google_map_url(event.venue.full_address)%><% end-%>
 <%= clear %>
 <p class='withSubheading'>
   <% if @show_full_description %>

@@ -22,6 +22,10 @@ class Venue < ActiveRecord::Base
     address + (address_hint ? " #{address_hint}" : "")
   end
 
+  def full_address
+    "#{address} #{city}, #{state} #{zip}"
+  end
+
   private
   
   def geocode_address
