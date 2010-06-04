@@ -66,8 +66,9 @@
 document.observe("dom:loaded", function() {
   starredEvents = unescape(readCookie("stars")).split(",");
   starredEvents.each(function(event_id) {
-      $('star_' + event_id).src = "/images/handdrawn/24x24/star_yellow.png";
-      });
+    elem = $('star_' + event_id);
+    if(elem) elem.src = "/images/handdrawn/24x24/star_yellow.png";
+  });
 });
 //]]>
 </script>

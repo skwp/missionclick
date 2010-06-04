@@ -37,8 +37,7 @@ var Mapp = {
           e.hide();
     });
   }
-}
-
+};
 
 function readCookie(name) {
     var nameEQ = name + "=";
@@ -49,4 +48,5 @@ function readCookie(name) {
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
-}
+};
+
