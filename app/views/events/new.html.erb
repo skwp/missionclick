@@ -1,11 +1,13 @@
 <h1>New event</h1>
-
+<%= spacer %>
 <% form_for(@event) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :venue %><br />
+    <strong><%= f.label :venue %></strong><br />
     <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+
+  <%= link_to "#{icon_tag 'add', 16} Add Another Venue", new_venue_path %>
   </p>
   <p>
     <%= f.label :title %><br />
