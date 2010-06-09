@@ -1,0 +1,5 @@
+<% if MappParticipant.exists?(:venue_id => @event.venue_id) %>
+  <li> <%= link_to "Back to MAPP", params[:return_to] || mapp_path %></li>
+<% end %>
+<li><%= link_to "Back to All Events", params[:return_to] || events_path %></li>
+<li> <%= link_to "Back to Venue: #{@event.venue}", venue_path(@event.venue)%></li>
