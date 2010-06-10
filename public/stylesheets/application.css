@@ -2,6 +2,12 @@ body {
   color: #111;
 }
 
+ul li { 
+  margin-left: 20px;
+}
+ul {
+  margin-bottom: 10px;
+}
 a, a:hover, a:visited { color:#1B5CCD; text-decoration: none }
 a.action { text-decoration: underline }
 
@@ -87,7 +93,12 @@ div.spacer { margin-bottom:18px; height:1px; clear:both; overflow:hidden }
 
 ul.flat, ul.form { 
   list-style-type: none;
+  margin: 0;
 }
+ul.flat li {
+  margin: 0;
+}
+
 
 .big { font-size: 18px; }
 
@@ -136,7 +147,7 @@ span.event_tomorrow_notice { background: #51bc02; }
 
 /* tables */
 table { border-spacing: 0}
-td { padding: 4px 8px; }
+td { padding: 4px 4px 0 0}
 tr.even td { background: #f9f9f9; }
 tr.odd td { background: #e9e9e9; }
 
@@ -171,3 +182,12 @@ margin-bottom: 15px;
 /* end rounded corners */
 
 p.withSubheading { padding-bottom: 0 }
+
+div#map_canvas {
+height:181px;
+}
+h1.bar {
+background: #bbb; color: white; padding: 2px 4px;
+}
+.right { float: right }
+.left { float: left }

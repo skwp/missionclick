@@ -1,0 +1,17 @@
+<h1>We're in ultra secret private alpha testing :)<br/>For now, check out our <%= link_to "Map of the MAPP", mapp_url %></h1>
+<br/>
+<%= left_fb_like_button %>
+<% rounded_corners do %>
+
+  <% form_for InviteRequest.new do |f| %>
+<ul class='flat big'>
+  <li><%= image_tag 'colorstroked/Twitter.png', :size => '48x48', :style => 'margin-bottom: -18px' %> Follow us on twitter: <a href="http://twitter.com/missionclick">@missionclick</a></li>
+  <br/>
+  <li><%= icon_tag 'locked', 48, :style => 'margin-bottom: -32px' %> Give us your email for an invite <br/>
+    <%= f.text_field :email,  :style => "width:200px;font-size: 22px;margin-left:54px"  %>
+    <%= f.submit "Go!" %>
+</li>
+</ul>
+<br/>
+  <% end %>
+<% end %>

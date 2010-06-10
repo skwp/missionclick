@@ -1,15 +1,17 @@
 <h1>New event</h1>
-
+<%= spacer %>
 <% form_for(@event) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <strong><%= f.label :venue %></strong><br />
+    <%= f.collection_select :venue_id, Venue.all, :id, :name %>
+
+  <%= link_to "#{icon_tag 'add', 16} Add Another Venue", new_venue_path %>
   </p>
   <p>
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
   </p>
   <p>
     <%= f.label :start_time %><br />
@@ -18,6 +20,9 @@
   <p>
     <%= f.label :finish_time %><br />
     <%= f.datetime_select :finish_time %>
+  </p>
+  <p>
+    OR <%= check_box_tag :no_finish_time %> <label for='no_finish_time'>This event has no known finish time.</label>
   </p>
   <p>
     <%= f.label :description %><br />

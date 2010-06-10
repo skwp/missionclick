@@ -1,8 +1,5 @@
 class AddMappEvents < ActiveRecord::Migration
   def self.up
-    add_column :venues, :address_hint, :string
-    Venue.reset_column_information
-
     area = Venue.create(
     :name => "Area 2881", 
     :url => "http://www.carlpisaturo.com/index.html",

@@ -27,5 +27,34 @@ module ApplicationHelper
       tags.map do |t|
         "<span class='tag'>#{link_to t, events_path(:tag => t.name)}</span>"
       end.join(", ")
+    end
+
+  def turn_off_top_featured_section
+    content_for(:head) do 
+      %{
+      <style type="text/css" media="screen">
+       #top_featured_section {display:none}
+      </style>
+      }
+   end 
+ end
+
+ def fb_like_button_for_page(css_class='')
+   width=nil
+   height=50
+   %{
+   <iframe class='#{css_class}' src="http://www.facebook.com/plugins/like.php?href=#{CGI.escape(request.url)}&amp;layout=standard&amp;show_faces=false&amp;width=#{width}&amp;action=like&amp;font&amp;colorscheme=light&amp;height=#{height}" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:#{width}px; display:block; margin: 10px auto 0 auto; height:#{height}px;" allowTransparency="true"></iframe>
+   } unless @iphone
+  end
+
+  def left_fb_like_button
+    %{
+    #{fb_like_button_for_page('left')}
+    #{clear}
+    } unless @iphone
+  end
+
+  def google_map_url(full_address)
+    "http://maps.google.com?q=#{CGI.escape(full_address)}"
   end
 end

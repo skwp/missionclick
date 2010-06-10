@@ -77,7 +77,12 @@ class Event < ActiveRecord::Base
 
   # Determine if this event is going on at the specified DateTime
   def going_on_at?(time)
-    time.between?(start_time, finish_time || 100.years.from_now)
+    # This method is a human convenience for determining what events are going 
+    # on for example in the "7pm" time block. A human thinks of time in hour blocks
+    # so an event happening at 7:30 or 7:45 is still within the 7pm block. Therefore
+    # by subtracting 59 mins from the start time in the comparison below we can
+    # group all events occuring at 7:something as a 7pm event
+    time.between?(start_time - 59.minutes, finish_time || 100.years.from_now)
   end
 
   # Overriding standard method to include associations

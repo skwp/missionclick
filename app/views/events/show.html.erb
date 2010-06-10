@@ -1,5 +1,14 @@
 <h1><%=h @event.title %></h1>
-<p>at <%= link_to @event.venue %></p>
-<p><%= h @event.description %></p>
+<%= left_fb_like_button %>
+<p>at <%= link_to @event.venue, venue_path(@event.venue) %></p>
+<p><b>Description:</b> <%= @event.description %></p>
 <p> <b>Starts</b> <%=h @event.start_time.to_s(:long) %> </p>
 <p> <b>Ends</b> <%=h @event.finish_time && @event.finish_time.to_s(:long) || "Later"%> </p>
+
+
+<ul class='flat'>
+  <% if @editable %>
+    <li><%= link_to 'Edit Event Details', edit_event_path(@event) %></li>
+  <% end %>
+  <%= render :partial => 'event_nav' %>
+</ul>

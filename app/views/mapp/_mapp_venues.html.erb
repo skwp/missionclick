@@ -1,0 +1,14 @@
+<% @venues.each do |venue| %>
+  <% events_by_venue = @events.select{|e| e.venue_id == venue.id} %>
+  <h2 class='bar'><%= link_to venue, venue_path(venue) %><br/><span class='weak'><%= link_to icon_tag('map',16) + ' ' + venue.address_with_hint, google_map_url(venue.full_address) %></span></h2>
+
+  <% rounded_corners('gray', :no_top => true) do %>
+
+    <% if @editable %>
+      <%= link_to "#{icon_tag 'add', 16} Add Event", new_event_path(:venue_id => venue) %>
+    <%= spacer %>
+    <% end %>
+
+    <%= render :partial => 'events/event_list', :locals => {:events => events_by_venue} %>
+  <% end %>
+<% end %>

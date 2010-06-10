@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # devise plugin handles authentication
-  devise :facebook_connectable, :authenticatable, :recoverable,
-  :rememberable, :registerable, :trackable, :timeoutable, :validatable
+  devise_options = [:authenticatable, :recoverable, :rememberable, :registerable, :trackable, :validatable, :facebook_connectable]
+  devise(*devise_options)
 
   attr_accessible :name, :email, :password, :password_confirmation
   

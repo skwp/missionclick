@@ -1,0 +1,5 @@
+<h2>Your Starred Events</h2>
+  <% rounded_corners do %>
+    <p class='big'>Bookmark interesting events by clicking the <%= icon_tag 'star',24 %> and they will show up on this page.</p>
+  <% end %>
+<%= render :partial => 'event_list_by_day' %>

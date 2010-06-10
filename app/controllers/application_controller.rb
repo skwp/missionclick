@@ -7,8 +7,18 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
+  
+  before_filter :detect_iphone
+  before_filter :check_mapp_admin
+  before_filter :show_beta_screen if APP_CONFIG[:mapp_only_alpha]
 
   protected
+
+  def detect_iphone
+    if params[:force_iphone] || request.user_agent.include?("iPhone") then 
+      @iphone = true
+    end
+  end
 
   # A simple way to prevent actions from being accessed by non-admins
   # Usage:
@@ -30,6 +40,17 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def show_beta_screen
+    render :template => 'shared/beta' #unless current_user && current_user.admin?
+  end
+
+  def check_mapp_admin
+    if session[:mapp_admin]
+      @editable = true
+      @mapp_admin = true
+    end
+  end
 
   def return_error_unless_admin
     if current_user && current_user.admin?

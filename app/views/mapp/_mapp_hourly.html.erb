@@ -1,0 +1,12 @@
+<% @show_full_description = false %>
+<% last_events = nil %>
+<% (1..11).each do |hour| %>
+  <% events_for_hour = @events.select{|e| e.going_on_at?(mapp_time(hour))} %>
+  <% if !events_for_hour.empty? && events_for_hour != last_events %>
+    <h1 class='bar'><%= hour %> PM</h1>
+    <% rounded_corners('gray', :no_top => true) do %>
+    <%= render :partial => 'events/event_list', :locals => {:events => events_for_hour} %>
+    <% end %>
+  <% end %>
+  <% last_events = events_for_hour %>
+<% end %>

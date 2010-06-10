@@ -1,27 +1,37 @@
 <% title @venue %>
+<% turn_off_top_featured_section %>
 
 <% content_for(:notice) do %>
   <div class='flash flash_notice'> 
-    Is this your venue? <%= link_to 'Claim it' %> to get your own domain at <strong><%= @venue.name.parameterize %>.<%= request.host %></strong> and customize this page! 
+    Is this your venue? <%= mail_to 'contact@missionclick.com', 'Claim it' %> to get your own custom site at <strong><%= @venue.name.parameterize %>.<%= request.host %></strong>! 
   </div>
 <% end %>
 
 <div class="vcard">
   
   <h1 class='fn'><%= @venue %></h1>
-  <% editor_content(@venue) do %>
-    <div class='rightBox'>
-      <%= link_to "#{settings_icon} Edit", edit_venue_path(@venue) %> <%= link_to "#{delete_icon} Delete", @venue, :confirm => 'Are you sure?', :method => :delete %>
-    </div>
-  <% end %>
 
   <ul class='flat'>
-    <li class='street-address'><%= @venue.address %></li>
+    <% unless @venue.address.blank? %>
+      <li class='street-address'><%= link_to icon_tag('map',16) + ' ' + @venue.address, google_map_url(@venue.full_address) %></li>
+    <% end %>
+    <% unless @venue.city.blank? %>
     <li><span class='locality'><%= @venue.city %></span>, <span class='region'><%= @venue.state %></span> <span class='postal-code'><%= @venue.zip %></span></li>
+    <% end %>
     <% if @venue.phone %><li class='tel'><%= @venue.phone %></li><% end %>
-    <li><%= link_to "Homepage", @venue.url, :class => 'url' %></li>
-    <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
+    <% unless @venue.url.blank? %>
+      <li><%= link_to "Homepage", @venue.url, :class => 'url' %></li>
+    <% end %>
+    <% unless @venue.ical_feed_url.blank? %> 
+      <li><%= link_to "iCal Feed", @venue.ical_feed_url %></li>
+    <% end -%>
   </ul>
+  <%= left_fb_like_button %>
+  <% editor_content(@venue) do %>
+    <%= link_to "#{settings_icon(16)} Edit Venue", edit_venue_path(@venue) %> 
+    <%= link_to "#{icon_tag 'add', 16} Add Event", new_event_path(:venue_id => @venue)%>
+    <%= link_to "#{delete_icon(16)} Delete", @venue, :confirm => 'Are you sure?', :method => :delete %>
+  <% end %>
 </div>
 
 <% unless @venue.twitter_username.blank? %>
@@ -36,3 +46,10 @@
 <%= spacer %>
 
 <%= render :partial => 'events/event_list_by_day' %>
+
+<ul class='flat'>
+<% if MappParticipant.exists?(:venue_id => @venue.id) %>
+  <li> <%= link_to "Back to MAPP", params[:return_to] || mapp_path %></li>
+<% end %>
+  <li><%= link_to "Back to Events", params[:return_to] || events_path %></li>
+</ul>

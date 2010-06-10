@@ -1,7 +1,10 @@
 class VenuesController < ApplicationController
+  skip_before_filter :show_beta_screen
+  cache_sweeper :mapp_sweeper, :only => [:create, :update, :destroy]
+
   include EventsHelper
 
-  require_admin :except => [:index, :show]
+  # require_admin :except => [:index, :show]
 
   # GET /venues
   # GET /venues.xml
@@ -50,6 +53,10 @@ class VenuesController < ApplicationController
 
     respond_to do |format|
       if @venue.save
+        if session[:mapp_admin] 
+          MappParticipant.create(:venue_id => @venue.id, :mapp_name => "Jun 2010")
+        end
+
         flash[:notice] = 'Venue was successfully created.'
         format.html { redirect_to(@venue) }
         format.xml  { render :xml => @venue, :status => :created, :location => @venue }

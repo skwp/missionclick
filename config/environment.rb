@@ -8,8 +8,9 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'open-uri'
 
 APP_CONFIG = {
-  :tags_enabled => false, 
-  :mapp_only_alpha => true # disables everything except /mapp
+  :tags_enabled => true, 
+  :enable_facebook_connect => false,
+  :mapp_only_alpha => false
 }
 
 Rails::Initializer.run do |config|
@@ -27,3 +28,4 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :en
 end
 
+ActionController::Base.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"

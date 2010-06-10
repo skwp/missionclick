@@ -8,16 +8,15 @@
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
-  </p>
-  <p>
     <%= f.label :start_time %><br />
     <%= f.datetime_select :start_time %>
   </p>
   <p>
     <%= f.label :finish_time %><br />
     <%= f.datetime_select :finish_time %>
+  </p>
+  <p>
+    OR <%= check_box_tag :no_finish_time, 1, @event.finish_time.nil? %> <label for='no_finish_time'>This event has no known finish time.</label>
   </p>
   <p>
     <%= f.label :description %><br />
@@ -28,5 +27,6 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<ul class='flat'>
+  <%= render :partial => 'event_nav' %>
+</ul>

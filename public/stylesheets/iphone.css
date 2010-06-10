@@ -1,0 +1,15 @@
+#body_container { width: 480px }
+#body_container #top_container { width: 480px }
+#body_container #main_content_container { width: 480px; }
+#main_content_container #top_featured_section { width: 430px; }
+#body_container #footer_container { width: 480px }
+#footer_container #footer { width: 480px }
+
+div#content_container {
+  padding: 9px 15px;
+}
+p { font-size: 18px; }
+table.eventListing strong.time { font-size: 22px } 
+table.eventListing h1 { font-size: 22px }
+h2 { font-size: 18px }
+table.eventListing td.time { width: 200px }

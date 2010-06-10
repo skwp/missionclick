@@ -3,6 +3,7 @@ class Venue < ActiveRecord::Base
   before_validation_on_create :geocode_address
 
   has_many :events
+  has_many :mapp_participants
 
   default_scope :order => 'name asc'
 
@@ -15,6 +16,14 @@ class Venue < ActiveRecord::Base
 
   def facebook_page_id
     URI.parse(facebook_fan_page).path.split("/").last
+  end
+
+  def address_with_hint
+    address + (address_hint ? " #{address_hint}" : "")
+  end
+
+  def full_address
+    "#{address} #{city}, #{state} #{zip}"
   end
 
   private

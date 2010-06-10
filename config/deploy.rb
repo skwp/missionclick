@@ -3,6 +3,7 @@ set :repository,  "git@github.com:skwp/missiondog.git"
 set :user, "missionclick"
 set :password, "m1ss10nd0g"
 set :use_sudo, true
+set :branch, ENV["BRANCH"] || 'master'
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -36,7 +37,14 @@ namespace :deploy do
 
   desc "Restart Application"
   task :restart, :roles => :app do
+    run "rm -rf #{current_release}/tmp/cache/*" # cleanup cache
     run "touch #{current_release}/tmp/restart.txt"
   end
+  
+  desc "Create asset packages for production" 
+  task :after_update_code, :roles => :app do
+    run %{ cd #{release_path} && rake asset:packager:build_all }
+  end
+
 end
 

@@ -25,7 +25,7 @@ module ConditionalBlockHelper
   end
 
   def editor_content(object, &block)
-    concat(capture(&block)) if object.editable_by?(current_user)
+    concat(capture(&block)) if object.editable_by?(current_user) || @mapp_admin
   end
   
 end

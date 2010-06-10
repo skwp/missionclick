@@ -3,15 +3,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
   <head>
     <title><%= yield(:title) || "Your Guide to The SF Mission" %> | MissionClick</title>
-    <%= stylesheet_link_tag 'application', 'skins/environmental', 'connect_button' %>
-    <%= fb_connect_javascript_tag(:lang => ::I18n.locale) %>
+
+    <%= stylesheet_link_merged :base %>
+    <%= javascript_include_merged :base %>
+
+    <% if @iphone %><link type="text/css" rel="stylesheet" href="/stylesheets/iphone.css"><% end %>
+    <% unless @iphone %><%= fb_connect_javascript_tag(:lang => ::I18n.locale) %><% end %>
     <%= yield(:head) %>
-    <%= javascript_include_tag :defaults, 'devise.facebook_connectable', 'gmap', :cache => true %>
-    <meta name="viewport" content="width=900; initial-scale=1.0, user-scalable=no" />
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+    <meta name="viewport" content="width=480; initial-scale=0.66, user-scalable=no" />
+
+    <% unless @iphone %>
+      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <% end %>
   </head>
   <body> 
     <%= init_fb_connect :XFBML, :js => :prototype %>
+
+    <% if session[:mapp_admin] %>
+      <% content_for :notice do %>
+        <div class='flash flash_notice'>You are logged in as a MAPP editor. <%= link_to "Logout", mapp_admin_logout_path %></div>
+      <% end %>
+    <% end %>
 
     <div id="body_container">
       <div id="top_container">
@@ -19,7 +32,7 @@
           <h1><%= link_to "mission<span>click</span>", root_path %><%= yield(:extra_logo) %></h1>
         </div>
         <div id="nav_container">
-          <%#= render :partial => 'shared/navigation' %>
+          <%= render :partial => 'shared/navigation' %>
         </div>
       </div>
 
@@ -39,9 +52,35 @@
 
       <div id="footer_container">
         <div id="footer">
-          <p><span>Copyright © 2010</span> 
+          <p><span>Copyright © 2010 missionclick.com => contact AT missionclick DOT com | <%= link_to "MAPP Admins", mapp_admin_path %></span></p> 
         </div>
       </div>
-  </div>
+    </div>
+
+      <% if @iphone %>
+          <script type="text/javascript" language="javascript" charset="utf-8">
+          //<![CDATA[
+          document.observe('dom:loaded', function() {
+              window.scrollTo(0,1);
+              });
+          //]]>
+        </script>  
+      <% end %>
+      
+     
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-16711914-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+      
   </body>
 </html>
