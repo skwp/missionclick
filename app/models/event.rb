@@ -56,6 +56,7 @@ class Event < ActiveRecord::Base
   end
 
   def self.create_from_ical_event(event, venue=nil, user=nil)
+    logger.info "Processing start time: #{event.start_time}"
     if event.start_time < Date.today
       logger.info "Skipping event because it occurs before today: #{event.start_time}"
       return
@@ -63,7 +64,7 @@ class Event < ActiveRecord::Base
 
     attrs = {:title => event.summary, 
       :description => event.description, 
-      :start_time => event.start_time, 
+      :start_time => Time.new(event.start_time).getlocal, 
       :finish_time => event.finish_time, 
       :location => event.location, 
       :uid => event.uid,
