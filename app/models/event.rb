@@ -21,8 +21,10 @@ class Event < ActiveRecord::Base
   named_scope :by_venue_id, lambda {|venue_id| venue_id ? {:conditions => {:venue_id => venue_id.to_i}} :{}}
   named_scope :by_venues, lambda {|venues| {:conditions => {:venue_id => venues}}}
 
+  validates_presence_of :title
+
   def to_s; title; end
-  def to_param; "#{id}-#{title.parameterize}"; end
+  def to_param; "#{id}-#{title.to_s.parameterize}"; end
 
   def self.populate_from_venue_feed(venue)
     feed = FeedCache.get_live_or_cached(venue)
