@@ -3,7 +3,6 @@ class Venue < ActiveRecord::Base
   before_validation_on_create :geocode_address
 
   has_many :events
-  has_many :mapp_participants
 
   default_scope :order => 'name asc'
 

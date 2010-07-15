@@ -1,0 +1,31 @@
+<h1>Editing festival</h1>
+
+<% form_for(@festival) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :start_time %><br />
+    <%= f.datetime_select :start_time %>
+  </p>
+  <p>
+    <%= f.label :finish_time %><br />
+    <%= f.datetime_select :finish_time %>
+  </p>
+  <p>
+    <%= f.label :short_name %><br />
+    <%= f.text_field :short_name %>
+  </p>
+  <p>
+    <%= f.check_box :current %> <%= f.label :current %><br />
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @festival %> |
+<%= link_to 'Back', festivals_path %>

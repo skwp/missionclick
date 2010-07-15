@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
   RECURRING_EVENT_WINDOW = 2.weeks
 
   belongs_to :venue
+  belongs_to :festival
   default_scope :order => 'start_time asc', :include => :venue
 
   named_scope :today, :conditions => ["date(start_time) = date(now())"]
@@ -47,7 +48,7 @@ class Event < ActiveRecord::Base
           # TODO: we are getting lots of errors from some event feeds
           # like thelab.org. I think they messed up some recurrance rules
           # We should generate a full error report summary for each feed.
-          logger.error e.message 
+          logger.error "#{e.message}: #{e.backtrace.inspect}"
         end
       end
     end
@@ -86,6 +87,10 @@ class Event < ActiveRecord::Base
     # by subtracting 59 mins from the start time in the comparison below we can
     # group all events occuring at 7:something as a 7pm event
     time.between?(start_time - 59.minutes, finish_time || 100.years.from_now)
+  end
+
+  def mapp?
+    festival && festival.mapp?
   end
 
   # Overriding standard method to include associations

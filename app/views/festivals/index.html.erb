@@ -1,0 +1,28 @@
+<h1>Listing festivals</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Start time</th>
+    <th>Finish time</th>
+    <th>Short name</th>
+    <th>Current</th>
+  </tr>
+
+<% @festivals.each do |festival| %>
+  <tr>
+    <td><%=h festival.name %></td>
+    <td><%=h festival.start_time %></td>
+    <td><%=h festival.finish_time %></td>
+    <td><%=h festival.short_name %></td>
+    <td><%=h festival.current %></td>
+    <td><%= link_to 'Show', festival %></td>
+    <td><%= link_to 'Edit', edit_festival_path(festival) %></td>
+    <td><%= link_to 'Destroy', festival, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New festival', new_festival_path %>

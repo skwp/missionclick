@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  start_time: 2010-07-14 20:28:10
+  finish_time: 2010-07-14 20:28:10
+  short_name: MyString
+
+two:
+  name: MyString
+  start_time: 2010-07-14 20:28:10
+  finish_time: 2010-07-14 20:28:10
+  short_name: MyString

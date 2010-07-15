@@ -50,13 +50,10 @@ class VenuesController < ApplicationController
   # POST /venues.xml
   def create
     @venue = Venue.new(params[:venue])
+    @venue.festival = Festival.current_mapp if session[:mapp_admin]
 
     respond_to do |format|
       if @venue.save
-        if session[:mapp_admin] 
-          MappParticipant.create(:venue_id => @venue.id, :mapp_name => "Jun 2010")
-        end
-
         flash[:notice] = 'Venue was successfully created.'
         format.html { redirect_to(@venue) }
         format.xml  { render :xml => @venue, :status => :created, :location => @venue }

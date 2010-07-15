@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100611011400) do
+ActiveRecord::Schema.define(:version => 20100715034028) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                            :null => false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20100611011400) do
     t.integer  "venue_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "festival_id"
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
@@ -80,15 +81,18 @@ ActiveRecord::Schema.define(:version => 20100611011400) do
 
   add_index "fb_profiles", ["user_id"], :name => "index_fb_profiles_on_user_id"
 
-  create_table "invite_requests", :force => true do |t|
-    t.string   "email"
+  create_table "festivals", :force => true do |t|
+    t.string   "name",                           :null => false
+    t.datetime "start_time"
+    t.datetime "finish_time"
+    t.string   "short_name"
+    t.boolean  "current",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "mapp_participants", :force => true do |t|
-    t.integer  "venue_id"
-    t.string   "mapp_name"
+  create_table "invite_requests", :force => true do |t|
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

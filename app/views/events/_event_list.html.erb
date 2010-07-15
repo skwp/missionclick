@@ -4,7 +4,7 @@
   <table class='eventListing'>
     <% events.each do |event| %>     
       <tr>
-        <td valign='top'><%= link_to_remote icon_tag("star",24, :id => "star_#{event.id}"), :url => toggle_star_event_path(event) %></td>
+        <td valign='top' style='width:24px'><%= link_to_remote icon_tag("star",24, :id => "star_#{event.id}"), :url => toggle_star_event_path(event) %></td>
         <td class='info'>
           <strong class='time'>
             <% if @show_time_only %>

@@ -59,4 +59,5 @@ venues_scraped = [
 ]
 
 puts "Populating database with feeds. If you have no internets, this will hang! (hit ctrl-c)"
-(venues_direct + venues_scraped).each {|venue| venue.fetch_events }
+# (venues_direct + venues_scraped).each {|venue| venue.fetch_events }
+venues_scraped.each {|venue| venue.fetch_events }
