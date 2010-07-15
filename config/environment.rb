@@ -21,7 +21,7 @@ Rails::Initializer.run do |config|
   config.gem 'ri_cal'
   config.gem 'geokit'
 
-  config.time_zone = 'UTC'
+  config.time_zone = 'Pacific Time (US & Canada)'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]

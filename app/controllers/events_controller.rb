@@ -33,6 +33,7 @@ class EventsController < ApplicationController
     @events = Event.scoped(:include => [:venue, :tags]).by_venue_id(params[:venue_id])
     @events = @events.send(:tagged_with, params[:tag]) if params[:tag]
 
+    debugger
     respond_to_event_list
   end
 

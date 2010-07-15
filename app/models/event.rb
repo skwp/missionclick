@@ -62,7 +62,6 @@ class Event < ActiveRecord::Base
       return
     end
     
-    debugger
     attrs = {
       :title => event.summary,
       :description => event.description,
