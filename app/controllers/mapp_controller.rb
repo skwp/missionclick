@@ -5,9 +5,8 @@ class MappController < ApplicationController
   def index
     params[:group] ||= 'schedule' #default
     
-    @mapp_date = "Jun 5, 2010"
-
     @events = Festival.current_mapp.events
+    @venues = @events.map(&:venue).uniq
 
     if params[:group] == 'starred'
       @starred_events = Event.find((cookies[:stars] || "").split(","))

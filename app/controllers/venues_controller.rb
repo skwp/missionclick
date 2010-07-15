@@ -50,7 +50,6 @@ class VenuesController < ApplicationController
   # POST /venues.xml
   def create
     @venue = Venue.new(params[:venue])
-    @venue.festival = Festival.current_mapp if session[:mapp_admin]
 
     respond_to do |format|
       if @venue.save

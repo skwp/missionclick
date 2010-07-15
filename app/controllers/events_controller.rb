@@ -76,6 +76,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
     @event.finish_time = nil if params[:no_finish_time]
+    @event.festival = Festival.current_mapp if session[:mapp_admin] && Festival.current_mapp
 
     respond_to do |format|
       if @event.save
@@ -95,6 +96,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.attributes = params[:event] 
     @event.finish_time = nil if params[:no_finish_time]
+    @event.festival = Festival.current_mapp if session[:mapp_admin] && Festival.current_mapp
+
     respond_to do |format|
       if @event.save
         flash[:notice] = 'Event was successfully updated.'

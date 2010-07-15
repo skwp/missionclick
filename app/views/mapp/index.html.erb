@@ -15,7 +15,7 @@
 <% content_for :extra_logo do %><span class='sub'>/mapp</span><% end %>
 
 <div class='center'>
-  <h1 class='center' style='font-size:18px'>Welcome to the MAPP &mdash; June 5, 2010</h1>
+  <h1 class='center' style='font-size:18px'>Welcome to the MAPP &mdash; <%= Festival.current_mapp.start_time.to_date.to_s(:long) %></h1>
   <br/>
   <%= mapp_nav %>
 </div>
