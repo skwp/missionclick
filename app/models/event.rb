@@ -61,16 +61,19 @@ class Event < ActiveRecord::Base
       logger.info "Skipping event because it occurs before today: #{event.start_time}"
       return
     end
-
-    attrs = {:title => event.summary, 
-      :description => event.description, 
-      :start_time => Time.new(event.start_time).getlocal, 
+    
+    debugger
+    attrs = {
+      :title => event.summary,
+      :description => event.description,
+      :start_time => event.start_time,
       :finish_time => event.finish_time, 
       :location => event.location, 
       :uid => event.uid,
       :venue_id => (venue.id if venue), 
-      :user_id => (user.id if user)} 
-    
+      :user_id => (user.id if user)
+    }
+
     event = Event.find_by_uid(event.uid) || Event.new
     event.attributes = attrs
     event.save
