@@ -8,8 +8,8 @@ require File.join(File.dirname(__FILE__), 'boot')
 require 'open-uri'
 
 APP_CONFIG = {
-  :tags_enabled => true, 
-  :enable_facebook_connect => false,
+  :tags_enabled => false, 
+  :enable_facebook_connect => true,
   :mapp_only_alpha => false
 }
 
