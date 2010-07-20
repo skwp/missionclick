@@ -102,7 +102,7 @@ function kickMap() {
         var entries = events.collect(function(_event){
             return event_entry_template.evaluate({
                 event_title: _event.title,
-                event_start_time: _event.start_time
+                event_start_time: _event.formatted_start_time
             });
         }).join('<hr />');
         return infowindow_template.evaluate({ events: entries });
