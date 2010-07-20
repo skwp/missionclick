@@ -30,7 +30,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.scoped(:include => [:venue, :tags]).by_venue_id(params[:venue_id])
+    @events = Event.scoped(:conditions => ["start_time >= ?", Time.now]).scoped(:include => [:venue, :tags]).by_venue_id(params[:venue_id])
     @events = @events.send(:tagged_with, params[:tag]) if params[:tag]
 
     debugger

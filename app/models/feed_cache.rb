@@ -11,6 +11,8 @@ class FeedCache
 
   def self.get_live_or_cached(venue)
     url = venue.ical_feed_url
+    return if url.blank?
+
     feed_id = MD5.new(url).to_s
     retries = CONFIG[:retries]
 

@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
 
   def self.populate_from_venue_feed(venue)
     feed = FeedCache.get_live_or_cached(venue)
-    populate_from_ical_feed(feed, venue)
+    populate_from_ical_feed(feed, venue) unless feed.blank?
   end
 
   # TODO this should tie to the venue from which the feed came
