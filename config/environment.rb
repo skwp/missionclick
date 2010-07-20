@@ -28,4 +28,6 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :en
 end
 
+Time::DATE_FORMATS[:json] ="%a %b %d  %I:%M%p"
+
 ActionController::Base.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"

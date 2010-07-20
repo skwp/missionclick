@@ -95,9 +95,17 @@ class Event < ActiveRecord::Base
     festival && festival.mapp?
   end
 
+  def formatted_start_time
+    start_time.to_s(:json)
+  end
+
+  def formatted_end_time
+    finish_time.to_s(:json)
+  end
+
   # Overriding standard method to include associations
   def to_json(*args)
-    super(:include => [:venue, :tags])
+    super(:include => [:venue, :tags], :methods => [:formatted_start_time, :formatted_end_time])
   end
 
 end
