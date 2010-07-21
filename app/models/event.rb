@@ -40,7 +40,7 @@ class Event < ActiveRecord::Base
         logger.debug "Processing #{event.uid} - #{event.summary}"
         begin
           if event.recurs?
-            event.occurrences(:overlapping => [Date.today, Date.today + RECURRING_EVENT_WINDOW]).each do |e| 
+            event.occurrences(:overlapping => [Time.zone.now.to_date, Time.zone.now.to_date + RECURRING_EVENT_WINDOW]).each do |e| 
               create_from_ical_event(e, venue, user)
             end
           else
@@ -60,7 +60,7 @@ class Event < ActiveRecord::Base
 
   def self.create_from_ical_event(event, venue=nil, user=nil)
     logger.info "Processing start time: #{event.start_time}"
-    if event.start_time < Date.today
+    if event.start_time < Time.zone.now.to_date
       logger.info "Skipping event because it occurs before today: #{event.start_time}"
       return
     end
