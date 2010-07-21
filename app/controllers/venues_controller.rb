@@ -21,7 +21,7 @@ class VenuesController < ApplicationController
   # GET /venues/1.xml
   def show
     @venue = Venue.find(params[:id])
-    @events = @venue.events
+    @events = @venue.events.scoped(:conditions => "start_time >= now()")
     separate_events_by_date
 
     respond_to do |format|
