@@ -7,7 +7,7 @@ module EventsHelper
     @events.each do |e|
       if e.start_time.to_date == Time.zone.now.to_date
         @today_events << e 
-      elsif e.start_time.to_date == Time.zone.now.to_date
+      elsif e.start_time.to_date == Time.zone.now.to_date.succ
         @tomorrow_events << e
       else
         @later_events << e
