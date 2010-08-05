@@ -2,7 +2,7 @@ class Festival < ActiveRecord::Base
   has_many :events
 
   named_scope :current, :conditions => {:current => true}
-  named_scope :mapp, :conditions => "short_name like 'mapp_%'"
+  named_scope :mapp, :conditions => "short_name like 'mapp_%'", :order => 'created_at desc'
 
   validates_uniqueness_of :short_name
 

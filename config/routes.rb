@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.mapp_admin 'mapp/admin', :controller => 'mapp_admin_login', :action => 'login'
   map.mapp_admin_logout 'mapp/admin/logout', :controller => 'mapp_admin_login', :action => 'logout'
+  map.mapp_bulk_edit 'mapp/bulk_edit', :controller => 'mapp', :action => 'bulk_edit'
   map.mapp 'mapp/:group', :controller => 'mapp', :action => 'index', :group => 'schedule'
   map.mapp 'mapp.:format/:group', :controller => 'mapp', :action => 'index', :group => 'schedule'
 

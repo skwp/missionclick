@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
+  protected 
 
   def show_beta_screen
     render :template => 'shared/beta' #unless current_user && current_user.admin?
@@ -49,6 +49,13 @@ class ApplicationController < ActionController::Base
     if session[:mapp_admin]
       @editable = true
       @mapp_admin = true
+    end
+  end
+
+  def require_mapp_admin
+    unless session[:mapp_admin]
+      flash[:error] ="You must be logged in as a MAPP admin to perform this action."
+      redirect_to mapp_admin_path
     end
   end
 

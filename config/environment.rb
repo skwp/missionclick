@@ -29,5 +29,6 @@ Rails::Initializer.run do |config|
 end
 
 Time::DATE_FORMATS[:json] ="%a %b %d  %I:%M%p"
+Time::DATE_FORMATS[:clean] ="%b %d %I:%M%p"
 
 ActionController::Base.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"

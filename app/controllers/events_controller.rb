@@ -74,9 +74,20 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.xml
   def create
+    if start_time_text = params[:event].delete(:start_time_text)
+      @start_time = DateTime.parse(start_time_text + DateTime.now.zone)
+      if finish_time_text = params[:event].delete(:finish_time_text)
+        @finish_time = DateTime.parse(finish_time_text + DateTime.now.zone)
+      end
+      params[:event].merge!(:start_time => @start_time, :finish_time => @finish_time)
+    end
+
     @event = Event.new(params[:event])
     @event.finish_time = nil if params[:no_finish_time]
     @event.festival = Festival.current_mapp if session[:mapp_admin] && Festival.current_mapp
+    @event.venue_id = params[:venue_id].to_i
+    
+    logger.info "Parsing: #{params[:start_time]}"
 
     respond_to do |format|
       if @event.save
