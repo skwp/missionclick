@@ -103,7 +103,11 @@ class EventsController < ApplicationController
   # PUT /events/1.xml
   def update
     @event = Event.find(params[:id])
+    mapp = params[:event].delete(:mapp)
     @event.attributes = params[:event] 
+    if mapp 
+      @event.festival = Festival.current_mapp
+    end
     @event.finish_time = nil if params[:no_finish_time]
     @event.festival = Festival.current_mapp if session[:mapp_admin] && Festival.current_mapp
 
