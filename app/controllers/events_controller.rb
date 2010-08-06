@@ -30,7 +30,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
-    @events = Event.starting_today.scoped(:include => [:venue, :tags]).by_venue_id(params[:venue_id])
+    @events = Event.starting_today.scoped(:include => [:venue, :tags]).by_venue_id(params[:venue_id]).by_festival_id(params[:festival])
     @events = @events.send(:tagged_with, params[:tag]) if params[:tag]
 
     debugger
@@ -74,14 +74,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.xml
   def create
-    if start_time_text = params[:event].delete(:start_time_text)
-      @start_time = DateTime.parse(start_time_text + DateTime.now.zone)
-      if finish_time_text = params[:event].delete(:finish_time_text)
-        @finish_time = DateTime.parse(finish_time_text + DateTime.now.zone)
-      end
-      params[:event].merge!(:start_time => @start_time, :finish_time => @finish_time)
-    end
-  
     mapp = params[:event].delete(:mapp)
 
     @event = Event.new(params[:event])
@@ -91,7 +83,7 @@ class EventsController < ApplicationController
     end
 
     @event.finish_time = nil if params[:no_finish_time]
-    @event.venue_id = params[:venue_id].to_i
+    @event.venue_id = (params[:event][:venue_id] || params[:venue_id]).to_i
     
     logger.info "Parsing: #{params[:start_time]}"
 

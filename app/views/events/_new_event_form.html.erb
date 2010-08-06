@@ -1,7 +1,7 @@
 <% form_for [v, Event.new] do |f| %>
   <fieldset style='background: #ffffcc' class='largeText'>
-  <%= text_field_tag 'event[start_time_text]', DateTime.now.to_s(:clean)%> TO
-  <%= text_field_tag 'event[finish_time_text]',(DateTime.now + 1.hour).to_s(:clean)%>
+    <%= f.text_field :start_time, :size => 18, :value => DateTime.now.to_s(:clean)%> TO
+    <%= f.text_field :finish_time, :size => 18, :value => (DateTime.now + 1.hour).to_s(:clean)%>
   <%= f.hidden_field :festival_id, :value => @festival.id rescue nil%>
   <%= f.text_field :title%>
   <%= check_box_tag 'event[mapp]' %> <%= label_tag "MAPP", :mapp %>

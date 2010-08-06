@@ -13,12 +13,7 @@ class FestivalsController < ApplicationController
   # GET /festivals/1
   # GET /festivals/1.xml
   def show
-    @festival = Festival.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @festival }
-    end
+    redirect_to events_path(:festival_id => params[:id])
   end
 
   # GET /festivals/new
