@@ -8,6 +8,9 @@
     <%= f.text_field :title %>
   </p>
   <p>
+    <%= check_box_tag 'event[mapp]' %> <%= label_tag "MAPP", :mapp %>
+  </p>
+  <p>
     <%= f.label :start_time %><br />
     <%= f.datetime_select :start_time %>
   </p>

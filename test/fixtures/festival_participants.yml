@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  description: MyText
+  festival_id: 1
+  venue_id: 1
+
+two:
+  description: MyText
+  festival_id: 1
+  venue_id: 1

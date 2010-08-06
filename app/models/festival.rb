@@ -1,5 +1,7 @@
 class Festival < ActiveRecord::Base
   has_many :events
+  has_many :festival_participants
+  has_many :venues, :through => :festival_participants
 
   named_scope :current, :conditions => {:current => true}
   named_scope :mapp, :conditions => "short_name like 'mapp_%'", :order => 'created_at desc'
