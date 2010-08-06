@@ -27,7 +27,9 @@
     <% end -%>
   </ul>
   <%= left_fb_like_button %>
+
   <% editor_content(@venue) do %>
+    <%= render :partial => 'events/new_event_form', :locals => {:v => @venue} %>
     <%= link_to "#{settings_icon(16)} Edit Venue", edit_venue_path(@venue) %> 
     <%= link_to "#{icon_tag 'add', 16} Add Event", new_event_path(:venue_id => @venue)%>
     <%= link_to "#{delete_icon(16)} Delete", @venue, :confirm => 'Are you sure?', :method => :delete %>

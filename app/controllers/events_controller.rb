@@ -81,10 +81,16 @@ class EventsController < ApplicationController
       end
       params[:event].merge!(:start_time => @start_time, :finish_time => @finish_time)
     end
+  
+    mapp = params[:event].delete(:mapp)
 
     @event = Event.new(params[:event])
+    
+    if mapp 
+      @event.festival = Festival.current_mapp
+    end
+
     @event.finish_time = nil if params[:no_finish_time]
-    @event.festival = Festival.current_mapp if session[:mapp_admin] && Festival.current_mapp
     @event.venue_id = params[:venue_id].to_i
     
     logger.info "Parsing: #{params[:start_time]}"
