@@ -98,11 +98,11 @@ class Event < ActiveRecord::Base
   end
 
   def formatted_start_time
-    start_time.to_s(:json)
+    start_time && start_time.to_s(:json)
   end
 
   def formatted_end_time
-    finish_time.to_s(:json)
+    finish_time && finish_time.to_s(:json) 
   end
 
   # Overriding standard method to include associations
