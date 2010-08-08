@@ -33,10 +33,8 @@
 <% end %>
 
 <% cache "mapp/#{params[:group]}/#{@iphone==true}/#{@editable==true}" do %>
-  <% if params[:group] == 'schedule' %>
+  <% if %w(now schedule).include?(params[:group]) %>
     <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
-  <% elsif params[:group] == 'hourly' %>
-    <%= render :partial => 'mapp_hourly' %>
   <% elsif params[:group] == 'venues' %>
     <%= render :partial => 'mapp_venues' %>
   <% end %>

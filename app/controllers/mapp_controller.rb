@@ -4,10 +4,14 @@ class MappController < ApplicationController
   before_filter :require_mapp_admin, :only => :bulk_edit
 
   def index
-    params[:group] ||= 'schedule' #default
+    params[:group] ||= 'now' #default
     
     @events = Festival.current_mapp.events
     @venues = @events.map(&:venue).uniq
+
+    if params[:group] == 'now'
+      @events = @events.starting_this_hour
+    end
 
     if params[:group] == 'starred'
       @starred_events = Event.find((cookies[:stars] || "").split(","))
