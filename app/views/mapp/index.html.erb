@@ -32,13 +32,17 @@
   <%= spacer %>
 <% end %>
 
-<% cache "mapp/#{params[:group]}/#{@iphone==true}/#{@editable==true}" do %>
-  <% if %w(now schedule).include?(params[:group]) %>
+  <% if params[:group] == 'now' %>
     <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
-  <% elsif params[:group] == 'venues' %>
-    <%= render :partial => 'mapp_venues' %>
+  <% else %>
+    <% cache "mapp/#{params[:group]}/#{@iphone==true}/#{@editable==true}" do %>
+      <% if params[:group] == 'schedule' %>
+        <%= render :partial => 'events/event_list', :locals => {:events => @events} %>
+      <% elsif params[:group] == 'venues' %>
+        <%= render :partial => 'mapp_venues' %>
+      <% end %>
+    <% end %>
   <% end %>
-<% end %>
 
 <%# this should not be cached; it's per-user %>
 <% if params[:group] == 'starred' %>

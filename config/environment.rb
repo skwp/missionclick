@@ -30,5 +30,6 @@ end
 
 Time::DATE_FORMATS[:json] ="%a %b %d  %I:%M%p"
 Time::DATE_FORMATS[:clean] ="%b %d %I:%M%p"
+Time::DATE_FORMATS[:hour_only] ="%b %d %I%p"
 
 ActionController::Base.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"
