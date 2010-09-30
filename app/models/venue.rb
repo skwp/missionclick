@@ -9,6 +9,10 @@ class Venue < ActiveRecord::Base
   def to_s; name; end
   def to_param; "#{id}-#{name.parameterize}"; end
 
+  def self.[](name)
+    find_by_name(name)
+  end
+  
   def fetch_events
     Event.populate_from_venue_feed(self)
   end

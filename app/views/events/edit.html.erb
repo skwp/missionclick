@@ -8,7 +8,7 @@
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= check_box_tag 'event[mapp]' %> <%= label_tag :mapp, "This is a MAPP Event" %>
+    <%= check_box_tag 'event[mapp]', 1, @event.festival == Festival.current_mapp  %> <%= label_tag :mapp, "This is a MAPP Event" %>
   </p>
   <p>
     <%= f.label :start_time %><br />
