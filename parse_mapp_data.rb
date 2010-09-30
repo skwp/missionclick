@@ -1,9 +1,14 @@
 class MappParser
-  def self.parse_data(venue, venue_description, data=nil)
+  def self.update_description(venue, venue_description)
     festival = Festival.current_mapp
-    participant = festival.festival_participants.find_by_venue_id(venue) || festival.festival_participants.create(:venue_id => venue)
+    participant = festival.festival_participants.find_by_venue_id(venue.id) || festival.festival_participants.create(:venue_id => venue.id)
     puts "Updating participant #{participant.id} description #{venue_description}"
     participant.update_attribute(:description,  venue_description)
+
+  end
+
+  def self.parse_data(venue, venue_description, data=nil)
+    update_description(venue, venue_description)
 
     data && data.split("\n").each do |line|
       puts "Working line: #{line}"
@@ -171,6 +176,7 @@ MappParser.parse_data(venue, description, data)
 
 venue = Venue.create(:user_id => User.first.id, :name => "Mission Cultural Center", :address=>"2868 Mission St.", :city => "San Francisco", :state => "CA")
 description = "Curator: Iyara Robles<br/>Meet in front of Mission Cultural Center 10 to 15 minutes early to pick up your limited edition map/zine with program." 
+# 1-2:30 PM with Trunk Show and Receptionn to follow in MCCLA Gallery until 5pm. Featuring  Isso SF, Marilyn Yu, Ector Garcia, Michelle Wolfie Rodriguez, Sy Wagone/C.I.C., Sisterz of the Underground, Soulful Dress, Leeann’sVintage/Static, Jeepneys, Zineblasters!, Jai Arun Ravine, Emael, Jukie Sunshine, Pippa Fleming, Golden Roots Catering"
 data=%{
 1:00-2:30 Fashion Crawl with Trunk Show
 5-7 Reception in MCCLA Gallery
@@ -180,10 +186,10 @@ MappParser.parse_data(venue, description, data)
 venue = Venue['Galeria de La Raza']
 description = "Curator: Nairem Morales<br/>The Family Day, created in appreciation of Galería's cherished community, is intended to invite neighbors and new individuals to discover Galería's curriculum. The day will offer a fun and informative programming for all ages. Children will be able to participate in the hands-on-art-making activities with local artists and craftsmen. Guests will also experience a diverse sampling of the Galería's programs as well enjoy specialty music, art and performance." 
 data=%{
-6:00-6:40 - Theresa Pérez
-6:45-7:25 - Cyborg Mutinity
-7:30-8:10 - Johana Suárez "iEiE"
-8:15-9:00 - Hector Lugo "Plenazo"
+6:00-6:40 Theresa Pérez
+6:45-7:25 Cyborg Mutinity
+7:30-8:10 Johana Suárez "iEiE"
+8:15-9:00 Hector Lugo "Plenazo"
 }
 MappParser.parse_data(venue, description, data)
 
@@ -213,12 +219,12 @@ Paintings by Maria Claudia Guerrero, Luis Vasquez-Gomez, Hersalia Cantoral, Yoly
 Photography by Alejandro Meza
 EOF
 data = %{
-7:45 pm Ceremony for the Ancestors
-8:30 Miguel Robles, Poetry del Aqui y el Ahora 
-9:00 "Maria Machetes", & border OUT lgbtq, immigrant collaborative traditional alternative music
-9:30 Alfredo Gomez, Canta autor, Singing to Life 
-10:00 MamaCoatl, Song writer, Songs of Resistance 
-10:30 Rupa, Song writer, Songs for the next Millenium 
-11:00 Candelaria Band, To dance for life -- Cumbia, reggae, and everything in between.
+7:45-8:30 Ceremony for the Ancestors
+8:30-9:00 Miguel Robles, Poetry del Aqui y el Ahora 
+9:00-9:30 "Maria Machetes", & border OUT lgbtq, immigrant collaborative traditional alternative music
+9:30-10:00 Alfredo Gomez, Canta autor, Singing to Life 
+10:00-10:30 MamaCoatl, Song writer, Songs of Resistance 
+10:30-11:00 Rupa, Song writer, Songs for the next Millenium 
+11:00-12:00 Candelaria Band, To dance for life -- Cumbia, reggae, and everything in between.
 }
 MappParser.parse_data(venue, description, data)

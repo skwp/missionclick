@@ -5,7 +5,9 @@
   <% rounded_corners('gray', :no_top => true) do %>
     <% participant_description = Festival.current_mapp.festival_participants.find_by_venue_id(venue.id).description rescue nil %>
     <% if participant_description %>
-      <p><%= home_icon %> <%= participant_description %></p>
+      <table class='eventListing'>
+        <tr><td style='width:24px'><%= home_icon %></td><td><%= participant_description %></td></tr>
+      </table>
     <% end %>
 
     <% if @editable %>
