@@ -7,7 +7,7 @@ class MappController < ApplicationController
     params[:group] ||= 'now' #default
     
     @events = Festival.current_mapp.events
-    @venues = @events.map(&:venue).uniq
+    @venues = @events.map(&:venue).uniq.sort_by(&:name)
 
     if params[:group] == 'now'
       @events = @events.starting_this_hour
