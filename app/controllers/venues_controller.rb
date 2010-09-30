@@ -67,6 +67,15 @@ class VenuesController < ApplicationController
   # PUT /venues/1.xml
   def update
     @venue = Venue.find(params[:id])
+    
+    # TODO this should be handled on create as well
+    @festivals = params[:festivals]
+    @festivals.keys.each do |festival_id|
+      logger.info "Processing festival id: #{festival_id}; FestivalParticipant.find_by_festival_id_and_venue_id(#{festival_id}, #{@venue.id}) "
+      if participant = FestivalParticipant.find_by_festival_id_and_venue_id(festival_id, @venue.id)
+        participant.update_attribute(:description, @festivals[festival_id][:participant_description])
+      end
+    end
 
     respond_to do |format|
       if @venue.update_attributes(params[:venue])
