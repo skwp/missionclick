@@ -9,11 +9,13 @@
         <td class='info'>
           <strong class='time'>
             <% if @show_time_only %>
-              <% if event.finish_time %>
+              <% if event.start_time && event.finish_time %>
                 <%= event.start_time.strftime("%l:%M%p") %> &mdash;
                 <%= event.finish_time.strftime("%l:%M%p") %>
-              <% else %>
+              <% elsif event.start_time %>
                 <%= event.start_time.strftime("%l:%M%p") %>
+              <% else %>
+                Unknown Time
               <% end %>
             <% else %>
               <%= event.start_time.strftime("%a %b %d, %l:%M%p") %>

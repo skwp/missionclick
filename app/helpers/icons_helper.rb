@@ -8,6 +8,8 @@ module IconsHelper
   def settings_icon(size=24); icon_tag('configuration', size, :alt => 'settings'); end
   def delete_icon(size=24); icon_tag('remove', size, :alt => 'remove'); end
   def tag_icon(size=24); icon_tag('tag', size, :alt => 'tag'); end
+  def comment_icon(size=24); icon_tag('comment', size, :alt => 'comment'); end
+  def home_icon(size=24); icon_tag('home', size, :alt => 'home'); end
 
   def icon_tag(name, size=16, options={})
     image_tag(icon_src(name,size), options.merge(:class => "#{options[:class]} icon icon_#{size}"))
