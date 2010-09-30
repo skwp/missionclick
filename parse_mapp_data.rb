@@ -2,9 +2,11 @@ class MappParser
   def self.parse_data(venue, venue_description, data=nil)
     festival = Festival.current_mapp
     participant = festival.festival_participants.find_by_venue_id(venue) || festival.festival_participants.create(:venue_id => venue)
-    participant.update_attribute(:description =>  venue_description)
+    puts "Updating participant #{participant.id} description #{venue_description}"
+    participant.update_attribute(:description,  venue_description)
 
     data && data.split("\n").each do |line|
+      puts "Working line: #{line}"
       md = line.match(/(\d+\:\d+.*\d+\:\d+)(.*)/)
       next unless md
       times = md[1].gsub(" ", "").split("-").map {|t| "#{t}pm"}
@@ -17,13 +19,24 @@ class MappParser
       description = md[2].strip
       attrs = {:festival_id => festival.id, :start_time => start, :finish_time => finish, :title => description}
       puts "Creating: #{attrs.inspect}"
-      venue.events.create(attrs)
+      venue.events.create!(attrs)
     end
+    expire_cache
   end
 
   def self.parse_time(festival, time)
     date = festival.start_time.strftime("%b %d")
     DateTime.parse("#{date} #{time} #{DateTime.now.zone}")
+  end
+
+  def self.expire_cache
+    %w(schedule now venues events starred).each do |grouping_type|
+      %w(true false).each do |iphone_type|
+        %w(true false).each do |editable_type| 
+          ActionController::Base.new.expire_fragment "mapp/#{grouping_type}/#{iphone_type}/#{editable_type}"
+        end
+      end
+    end
   end
 end
   
@@ -38,29 +51,29 @@ data = %{
 8:00-8:45 Boca do Rio (Samba Rock) 
 9:00-9:45 Johanna Suarez "iE iE" (Colombian Songstress and Dance) 
 10:00-11:00 La Gente (Cumbia/Reggae/Salsa/Hip-Hop) 
-11:15-12:00am BOMBA BOMBA. feat. Hector Lugo & Christina
+11:15-12:00 BOMBA BOMBA. feat. Hector Lugo & Christina
 }
 
 MappParser.parse_data(venue, description, data)
 
 
-venue = Venue["PATHOS On Harrison"]
+venue = Venue["PATHOS on Harrison"]
 description = <<-EOF
 Curator: Jorge Molina and David Kubrin
 Photography by Nichol Sepanek will be featured throughout the night
 Wish tree by Anna Fizyta. Pecan Pies and Drinks by Jericho Lindsey
 EOF
 data = %{
-8:00 Introduction by David Kubrin
-8:30 Stina da Silva, Singer Songwriter
-8:50 Alejandro Murguia, Poet
-9:10 Colm O'Riain, Musician
-9:30 David Kubrin, The Space of In-between
-9:50 Nicole Baren, Poet
-10:05 Classical Revolution
-10:45 Ariel Eisen, Singer Songwriter
-11:05 Alejandro Chavez
-11:35 Jorge Molina with Spontaneous Combustion Opera with Guest Dancers
+8:00-8:30 Introduction by David Kubrin
+8:30-8:50 Stina da Silva, Singer Songwriter
+8:50-9:10 Alejandro Murguia, Poet
+9:10-9:30 Colm O'Riain, Musician
+9:30-9:50 David Kubrin, The Space of In-between
+9:50-10:05 Nicole Baren, Poet
+10:05-10:45 Classical Revolution
+10:45-11:05 Ariel Eisen, Singer Songwriter
+11:05-11:35 Alejandro Chavez
+11:35-12:00 Jorge Molina with Spontaneous Combustion Opera with Guest Dancers
 }
 MappParser.parse_data(venue, description, data)
 
@@ -112,11 +125,11 @@ description = <<-EOF
 Curator: Lola Fraknoi	
 EOF
 data = %{
-12-4 will feature Music, gallery exhibit by artists of SCRAP, art demonstrations and projects, silent auction 
-12:00 Origami opening ceremony by District 9 Supervisor David Campos
-2:00 Dance Generators performing a piece choreographed for this event
-3:00 Ruth’s Table Tai Chi class demonstration
-3:45 End of silent auction and raffle
+12:00-4:00 will feature Music, gallery exhibit by artists of SCRAP, art demonstrations and projects, silent auction 
+12:00-2:00 Origami opening ceremony by District 9 Supervisor David Campos
+2:00-3:00 Dance Generators performing a piece choreographed for this event
+3:00-4:00 Ruth’s Table Tai Chi class demonstration
+3:45-4:00 End of silent auction and raffle
 }
 MappParser.parse_data(venue, description, data)
 
@@ -131,13 +144,14 @@ MappParser.parse_data(venue, description, data)
 
 venue = Venue['The Blue House']
 description = "Curator: Tony Bravo"
+# presented by: Zombie Officiant/Makeup Artist Evan Kaminsky, Beauty and Grooming Guru, owner of Oui, Three Queens Productions (www.ouithreequeens.com), providing hair, makeup, skincare and wedding services. Cake Artists Steph Meier and Richard Celic of Heaven and Hell Cakes (www.heavenandhellcakes.com)
 data = %{
-7:15 Zombie Wedding presented by: Zombie Officiant/Makeup Artist Evan Kaminsky, Beauty and Grooming Guru, owner of Oui, Three Queens Productions (www.ouithreequeens.com), providing hair, makeup, skincare and wedding services. Cake Artists Steph Meier and Richard Celic of Heaven and Hell Cakes (www.heavenandhellcakes.com)
-8:00 Dash Kamm, Poet
-8:15 Songs and Poetry, Gil Rodriguez, poet, Roberto Havan, sax, Russell Brown, guitar
-9:00 Tony Bravo, Horizontally Speaking and other forms of TMI
-9:20 Adam Cornford, Poet
-9:45 Jam, all welcome
+7:15-8:00 Zombie Wedding
+8:00-8:15 Dash Kamm, Poet
+8:15-9:00 Songs and Poetry, Gil Rodriguez, poet, Roberto Havan, sax, Russell Brown, guitar
+9:00-9:20 Tony Bravo, Horizontally Speaking and other forms of TMI
+9:20-9:45 Adam Cornford, Poet
+9:45-12 Jam, all welcome
 }
 MappParser.parse_data(venue, description, data)
 
@@ -156,8 +170,11 @@ data = %{
 MappParser.parse_data(venue, description, data)
 
 venue = Venue.create(:user_id => User.first.id, :name => "Mission Cultural Center", :address=>"2868 Mission St.", :city => "San Francisco", :state => "CA")
-description = "Curator: Iyara Robles<br/>Meet in front of Mission Cultural Center 10 to 15 minutes early to pick up your limited edition map/zine with program. Departs at 1pm! Fashion Crawl 1-2:30 PM with Trunk Show and Receptionn to follow in MCCLA Gallery until 5pm. Featuring  Isso SF, Marilyn Yu, Ector Garcia, Michelle Wolfie Rodriguez, Sy Wagone/C.I.C., Sisterz of the Underground, Soulful Dress, Leeann’sVintage/Static, Jeepneys, Zineblasters!, Jai Arun Ravine, Emael, Jukie Sunshine, Pippa Fleming, Golden Roots Catering"
-data=nil
+description = "Curator: Iyara Robles<br/>Meet in front of Mission Cultural Center 10 to 15 minutes early to pick up your limited edition map/zine with program." 
+data=%{
+1:00-2:30 Fashion Crawl with Trunk Show
+5-7 Reception in MCCLA Gallery
+}
 MappParser.parse_data(venue, description, data)
  
 venue = Venue['Galeria de La Raza']
