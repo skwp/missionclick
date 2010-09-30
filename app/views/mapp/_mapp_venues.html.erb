@@ -3,6 +3,11 @@
   <h2 class='bar'><%= link_to venue, venue_path(venue) %> <span style='float:right' class='weak'><%= link_to icon_tag('map',16) + ' ' + venue.address_with_hint, google_map_url(venue.full_address) %></span></h2>
 
   <% rounded_corners('gray', :no_top => true) do %>
+    <% if @editable %>
+      <%= link_to "#{icon_tag 'add', 16} Add Event", new_event_path(:venue_id => venue) %>
+    <%= spacer %>
+    <% end %>
+
     <% participant_description = Festival.current_mapp.festival_participants.find_by_venue_id(venue.id).description rescue nil %>
     <% if participant_description %>
       <table class='eventListing'>
@@ -10,10 +15,6 @@
       </table>
     <% end %>
 
-    <% if @editable %>
-      <%= link_to "#{icon_tag 'add', 16} Add Event", new_event_path(:venue_id => venue) %>
-    <%= spacer %>
-    <% end %>
 
     <%= render :partial => 'events/event_list', :locals => {:events => events_by_venue} %>
   <% end %>
