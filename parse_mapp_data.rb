@@ -4,11 +4,11 @@ class MappParser
     participant = festival.festival_participants.find_by_venue_id(venue.id) || festival.festival_participants.create(:venue_id => venue.id)
     puts "Updating participant #{participant.id} description #{venue_description}"
     participant.update_attribute(:description,  venue_description)
-
+    festival
   end
 
   def self.parse_data(venue, venue_description, data=nil)
-    update_description(venue, venue_description)
+    festival = update_description(venue, venue_description)
 
     data && data.split("\n").each do |line|
       puts "Working line: #{line}"
@@ -138,7 +138,7 @@ data = %{
 }
 MappParser.parse_data(venue, description, data)
 
-venue = Venue.create(:user_id => User.first.id, :name => "Jamie & Wendy's", :address=>"1229 York St", :city => "San Francisco", :state => "CA")
+venue = Venue["Jamie & Wendy's"]
 description = "Curator: Jamie Doyle & Wendy Marlatt	"
 data=%{
 7:30-8:00 Lior Benhur (Hebrew Roots Soul) 
@@ -227,4 +227,12 @@ data = %{
 10:30-11:00 Rupa, Song writer, Songs for the next Millenium 
 11:00-12:00 Candelaria Band, To dance for life -- Cumbia, reggae, and everything in between.
 }
+MappParser.parse_data(venue, description, data)
+
+venue = Venue.create(:user_id => User.first.id, :name => "Precita Eyes", :address=>"2649 Folsom St.", :address_hint => "at 22nd", :city => "San Francisco", :state => "CA")
+description = "Curator: Ariana Terrence"
+data = %{
+6:00-9:00 Patricia Rose Reflections and Refractions.A Select Restrospective from 1980 - 2010. Art exhibiton and reception.
+}
+
 MappParser.parse_data(venue, description, data)

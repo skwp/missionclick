@@ -70,7 +70,7 @@ class VenuesController < ApplicationController
     
     # TODO this should be handled on create as well
     @festivals = params[:festivals]
-    @festivals.keys.each do |festival_id|
+    @festivals && @festivals.keys.each do |festival_id|
       logger.info "Processing festival id: #{festival_id}; FestivalParticipant.find_by_festival_id_and_venue_id(#{festival_id}, #{@venue.id}) "
       if participant = FestivalParticipant.find_by_festival_id_and_venue_id(festival_id, @venue.id)
         participant.update_attribute(:description, @festivals[festival_id][:participant_description])

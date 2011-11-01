@@ -14,7 +14,10 @@ class Venue < ActiveRecord::Base
   end
   
   def fetch_events
+    RAILS_DEFAULT_LOGGER.info "Parsing venue feed: #{self}"
     Event.populate_from_venue_feed(self)
+  rescue
+    RAILS_DEFAULT_LOGGER.error "Error parsing feed from venue #{self}: #{$!.message}"
   end
 
   def facebook_page_id
