@@ -11,4 +11,15 @@
 
  /var/lib/gems/1.8/bin/passenger-install-nginx-module 
 
+== Clearing Cache..
+ghetto way: paste into console (based on MappSweeper)
+also delete tmp/cache and public/mapp.js (this needs to be fixed to live in tmp/cache as well)
 
+    %w(schedule now venues events starred).each do |grouping_type|
+      %w(true false).each do |iphone_type|
+        %w(true false).each do |editable_type| 
+          ActionController::Base.new.expire_fragment "mapp/#{grouping_type}/#{iphone_type}/#{editable_type}"
+        end
+      end
+    end
+ 
