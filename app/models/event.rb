@@ -16,13 +16,13 @@ class Event < ActiveRecord::Base
   belongs_to :festival
   default_scope :order => 'start_time asc', :include => :venue
 
-  named_scope :today, :conditions => ["date(start_time) = date(now())"]
-  named_scope :starting_today, :conditions => ["date(start_time) >= date(now())"]
-  named_scope :tomorrow, :conditions => ["date(start_time) = date(now() + '1 day')"]
-  named_scope :by_venue_id, lambda {|venue_id| venue_id ? {:conditions => {:venue_id => venue_id.to_i}} :{}}
-  named_scope :by_festival_id, lambda {|festival_id| festival_id ? {:conditions => {:festival_id => festival_id.to_i}} :{}}
-  named_scope :by_venues, lambda {|venues| {:conditions => {:venue_id => venues}}}
-  named_scope :starting_this_hour, :conditions => "start_time >= (now() at time zone 'UTC' - interval '59 minutes') and start_time <= (now() at time zone 'UTC' + interval '1 hours')"
+  scope :today, :conditions => ["date(start_time) = date(now())"]
+  scope :starting_today, :conditions => ["date(start_time) >= date(now())"]
+  scope :tomorrow, :conditions => ["date(start_time) = date(now() + '1 day')"]
+  scope :by_venue_id, lambda {|venue_id| venue_id ? {:conditions => {:venue_id => venue_id.to_i}} :{}}
+  scope :by_festival_id, lambda {|festival_id| festival_id ? {:conditions => {:festival_id => festival_id.to_i}} :{}}
+  scope :by_venues, lambda {|venues| {:conditions => {:venue_id => venues}}}
+  scope :starting_this_hour, :conditions => "start_time >= (now() at time zone 'UTC' - interval '59 minutes') and start_time <= (now() at time zone 'UTC' + interval '1 hours')"
 
   validates_presence_of :title
 

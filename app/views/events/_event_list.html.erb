@@ -3,7 +3,6 @@
 <% else %>
   <table class='eventListing'>
     <% events.each do |event| %>     
-      <% RAILS_DEFAULT_LOGGER.info "LOGGING #{event.inspect}" %>
       <tr>
         <td valign='top' style='width:24px'><%= link_to_remote icon_tag("star",24, :id => "star_#{event.id}"), :url => toggle_star_event_path(event) %></td>
         <td class='info'>

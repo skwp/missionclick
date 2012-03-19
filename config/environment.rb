@@ -15,11 +15,6 @@ APP_CONFIG = {
 
 Rails::Initializer.run do |config|
   # Freeze these gems into the rails app by using "rake gems:unpack"
-  config.gem 'warden', :version => '0.9.5'
-  config.gem 'devise', :version => '1.0.3'
-  config.gem 'devise_facebook_connectable'
-  config.gem 'ri_cal'
-  config.gem 'geokit'
 
   config.time_zone = 'Pacific Time (US & Canada)'
 
@@ -32,4 +27,4 @@ Time::DATE_FORMATS[:json] ="%a %b %d  %I:%M%p"
 Time::DATE_FORMATS[:clean] ="%b %d %I:%M%p"
 Time::DATE_FORMATS[:hour_only] ="%b %d %I%p"
 
-ActionController::Base.cache_store = :file_store, "#{RAILS_ROOT}/tmp/cache"
+ActionController::Base.cache_store = :file_store, "#{Rails.root}/tmp/cache"

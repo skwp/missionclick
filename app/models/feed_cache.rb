@@ -3,7 +3,7 @@ require 'md5'
 class FeedCache
 
   CONFIG = {
-    :storage_dir => "#{RAILS_ROOT}/tmp/feeds",
+    :storage_dir => Rails.root.join('tmp/feeds'),
     :timeout => 5, # seconds
     :retries => 3,
     :retry_wait => 5
@@ -54,6 +54,6 @@ class FeedCache
     File.join(dir, feed_id)
   end
 
-  def self.logger; RAILS_DEFAULT_LOGGER; end
+  def self.logger; Rails.logger; end
 
 end
