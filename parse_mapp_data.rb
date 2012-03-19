@@ -4,11 +4,11 @@ class MappParser
     participant = festival.festival_participants.find_by_venue_id(venue.id) || festival.festival_participants.create(:venue_id => venue.id)
     puts "Updating participant #{participant.id} description #{venue_description}"
     participant.update_attribute(:description,  venue_description)
-
+    festival
   end
 
   def self.parse_data(venue, venue_description, data=nil)
-    update_description(venue, venue_description)
+    festival = update_description(venue, venue_description)
 
     data && data.split("\n").each do |line|
       puts "Working line: #{line}"
@@ -48,15 +48,17 @@ end
 venue = Venue.find_by_name("The Red Poppy Art House")
 description =<<-EOF
 Curator: Rafael Sarria	
-Painting exhibition of Red Poppy visiting resident artist Herselia Cantoral. Exhibition of "Mission Mercy Jimenez Mural" by Evan Bissell". 
-"Live Musica Latina" 
+Art & Music Fritanga
 EOF
 
 data = %{
-8:00-8:45 Boca do Rio (Samba Rock) 
-9:00-9:45 Johanna Suarez "iE iE" (Colombian Songstress and Dance) 
-10:00-11:00 La Gente (Cumbia/Reggae/Salsa/Hip-Hop) 
-11:15-12:00 BOMBA BOMBA. feat. Hector Lugo & Christina
+1:00-4:00 Family Art Program Free Art Activities for children, youth & families
+6:00-7:00 MAPP talks and percussive discussions
+7:15-7:45 Carlos Ramirez (Spoken Word)
+8:00-8:45 Kate Kilbane (Epic Jazz soul Rock)
+9:00-9:30 Nico Rimbaud (Acoustic Latin Rock)
+9:45-10:30 Felili (Groove pop soul)
+10:45-11:30 Borucoe’ (Latin Roots Dance Party)
 }
 
 MappParser.parse_data(venue, description, data)
@@ -65,20 +67,19 @@ MappParser.parse_data(venue, description, data)
 venue = Venue["PATHOS on Harrison"]
 description = <<-EOF
 Curator: Jorge Molina and David Kubrin
-Photography by Nichol Sepanek will be featured throughout the night
-Wish tree by Anna Fizyta. Pecan Pies and Drinks by Jericho Lindsey
+Mara Kubrin (Bite-Sized Baking): drinks and treats
+Michael Koch, Visual artist.
 EOF
 data = %{
-8:00-8:30 Introduction by David Kubrin
-8:30-8:50 Stina da Silva, Singer Songwriter
-8:50-9:10 Alejandro Murguia, Poet
-9:10-9:30 Colm O'Riain, Musician
-9:30-9:50 David Kubrin, The Space of In-between
-9:50-10:05 Nicole Baren, Poet
-10:05-10:45 Classical Revolution
-10:45-11:05 Ariel Eisen, Singer Songwriter
-11:05-11:35 Alejandro Chavez
-11:35-12:00 Jorge Molina with Spontaneous Combustion Opera with Guest Dancers
+9:00-9:15 Paul Drabkin, poetry.
+9:15-9:35 Rachel Toups, singer, songwriter.
+9:40-9:55 V.A.(Veteram Artists) storytelling.
+10:00-10:25 Ensemble Mik Nawooj, music.
+10:30-10:50 Willy Lizarraga, storyteller, cuentos
+10:55-11:15 Jorge Molina and friends, music.
+11:15-11:25 David Kubrin, storyteller and poet.
+11:30-11:55 Los Nadies, music.
+12:00-12:30 Jeffrey Alphonsus Mooney and friends, music.
 }
 MappParser.parse_data(venue, description, data)
 
@@ -100,13 +101,13 @@ description =<<-EOF
 Curator: Carl Pisaturo
 An immersive Micromuseum of operating Lumino-Kinetic and Robotic Sculpture; 3D Photography; Structures and Curiosities of human and natural origin. 
 EOF
-data = %{ 8pm-12 Mariko MiyaKawa & Jeremy Reinhold (Jazz-esque electrified Cello & Keyboard) }
+data = %{ 8:00-12:00 Mariko MiyaKawa & Jeremy Reinhold (Jazz-esque electrified Cello & Keyboard) }
 MappParser.parse_data(venue, description, data)
 
 venue = Venue['Kaleidoscope Free Speech Zone']
-description=nil
+description="Curator: Sara Powell"
 data = %{ 
-9:00-12am "Late Night Breakfast" brings on an Americana folk show of music and storytelling. Visual Art by Trius Fernsler.
+7:00-10:00 Web of Words: An Interactive Installation
 }
 MappParser.parse_data(venue, description, data)
 
@@ -138,7 +139,7 @@ data = %{
 }
 MappParser.parse_data(venue, description, data)
 
-venue = Venue.create(:user_id => User.first.id, :name => "Jamie & Wendy's", :address=>"1229 York St", :city => "San Francisco", :state => "CA")
+venue = Venue["Jamie & Wendy's"]
 description = "Curator: Jamie Doyle & Wendy Marlatt	"
 data=%{
 7:30-8:00 Lior Benhur (Hebrew Roots Soul) 
@@ -161,18 +162,51 @@ data = %{
 MappParser.parse_data(venue, description, data)
 
 venue = Venue['The Secret Garden']
-description = "Curator: Brian Robledo"
+description = %{
+Curator: Students from Metropolitan Arts & Tech High School<br/>
+Visual Exhibition with the art of Camilla, Deserea, Jose, and more<br/>
+Screening of films from Kayla, Christian, Chanel, and more<br/>
+}
+
 data = %{
-7:00-7:20 Exibition ¨Body maps¨ youth latino student union 
-7:20-7:30 Ariel Soto (Photo) 
-7:30-7:40 Mayra madriz (story telling) 
-7:40-7:55 Mario Esteva (Music)
-8:00-8:10 Natta (DANCE) 
-8:10-8:20 Bryan Robledo (Hip Hop) 
-8:20-8:35 Nancy steva (Singing and Poetry) 
-8:35-8:55 Los Nadie (Music) 
+7:00-7:30 Christina (poetry)
+7:30-8:00 Chanel (poetry)
+8:00-8:30 Jussy B (hip hop)
+8:30-9:00 The Infractiond (Rock and Roll)
 }
 MappParser.parse_data(venue, description, data)
+
+
+venue = Venue.create(:name => "Dance Mission Theater", :address=>"3316 24th St", :address_hint => "at Mission", :city => "San Francisco", :state => "CA")
+description=%{
+Curator: Embodiment Project
+}
+data=%{
+10:30-12:00 Elevaters: Hip-Hop/Soul live band/dance party 
+}
+MappParser.parse_data(venue, description, data)
+
+
+venue = Venue.create(:user_id => User.first.id, :name => "OmShanTea", :address=>"233 14th St.", :address_hint => "", :city => "San Francisco", :state => "CA")
+description = "Curator: Laura Inserra<Br/>Sonic installation by John Coveney dedicated to the ocean, based on beach kelp and sand."
+data=%{
+7:00-8:00 Tea Ceremony and ocean art installation
+8:00-9:30 Concert 
+9:30 Interactive installation.
+}
+MappParser.parse_data(venue, description, data)
+
+
+venue = Venue.create(:user_id => User.first.id, :name => "The Box Factory", :address=>"865 Florida St. #1", :address_hint => "at 21st", :city => "San Francisco", :state => "CA")
+description = "Curator: Artlarking Multimedia (Alison Dale, Don Cadora, Bernadette); Visual Art: Money Tree Installation by architect Richard Parker, Digital Drawing Video by Shantell Martin, Visual Art by Hailey Gaiser, Kristin Farr, Kristen Reike, Michelle Chandra, Cole Willsea, and Jon Soat."
+data=%{
+6:00-6:45 Seabright (electronic/surf/pop)
+7:00-7:45 Fear Not Radio, featuring Cartoon Justice (experimental musical rendition of Jennifer Harris' Fear Not Project)
+8:00-8:45 Anna Ash (romantic country/soul)
+9:00-9:45 Uncle Rebel (folk/rock)
+}
+MappParser.parse_data(venue, description, data)
+
 
 venue = Venue.create(:user_id => User.first.id, :name => "Mission Cultural Center", :address=>"2868 Mission St.", :city => "San Francisco", :state => "CA")
 description = "Curator: Iyara Robles<br/>Meet in front of Mission Cultural Center 10 to 15 minutes early to pick up your limited edition map/zine with program." 
@@ -214,17 +248,33 @@ MappParser.parse_data(venue, description, data)
 
 venue = Venue['Casa de los Sentidos']
 description = <<-EOF
-Curator: Luis Vasquez-Gomez<br/>	
-Paintings by Maria Claudia Guerrero, Luis Vasquez-Gomez, Hersalia Cantoral, Yoly Herrera<br/>
-Photography by Alejandro Meza
+Curator: Luis Vasquez-Gomez<br/>
+Visual art: Ramon Rodriguez -sculptures- and Cristina Isabel Rivera- paintings-<br/>
+This venue is facilitated by : Alli, Eric, Manuel, Maria Claudia, Luis.
 EOF
 data = %{
-7:45-8:30 Ceremony for the Ancestors
-8:30-9:00 Miguel Robles, Poetry del Aqui y el Ahora 
-9:00-9:30 "Maria Machetes", & border OUT lgbtq, immigrant collaborative traditional alternative music
-9:30-10:00 Alfredo Gomez, Canta autor, Singing to Life 
-10:00-10:30 MamaCoatl, Song writer, Songs of Resistance 
-10:30-11:00 Rupa, Song writer, Songs for the next Millenium 
-11:00-12:00 Candelaria Band, To dance for life -- Cumbia, reggae, and everything in between.
+7:30-8:00 Ceremony to undo the End of the World Craze
+8:00-8:30 Poets from the Collective ""Verso Activo""
+8:30-9:00 Sang Matiz, Latin Rhythms 
+9:00-9:30 Makru, Rumba y Mas
+9:30-10:00 Locura, Pa' bailar con soltura
+10:00-10:30 Candelaria Band, Cumbia Dub
 }
+MappParser.parse_data(venue, description, data)
+
+venue = Venue.create(:user_id => User.first.id, :name => "Alomobile", :address=>"2919 24th St", :address_hint => "outside Galeria Paloma", :city => "San Francisco", :state => "CA")
+description = "Curator: Aloma Campana"
+data = %{
+7:00-10:00 Alomusic & Dance Tranceformance, Alomistical Meditation samplers
+}
+MappParser.parse_data(venue, description, data)
+
+venue = Venue["Precita Eyes"]
+description = %{Curator: Eli Lippert<br/>"A Special Invite to Youth Culture" An Evening of Art, Music, and a Special Silent Auction to Support the 15th Annual Urban Youth Arts Festival}
+data = %{
+8:00-8:45 Love Tko
+9:00-9:45 Noble Savages
+10:00-10:45 Cio Castenada 
+}
+
 MappParser.parse_data(venue, description, data)
